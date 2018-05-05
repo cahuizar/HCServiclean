@@ -12,6 +12,7 @@ $(document).ready(function(){
   });
   
   $('#copyright-year').html((new Date).getFullYear());
+  $('#yearsWorking').html((new Date).getFullYear() - 2010);
 
 	$("#nav ul li a[href^='#']").on('click', function(e) {
 
