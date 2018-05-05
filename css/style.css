@@ -7,6 +7,9 @@ a, button {
 	cursor: pointer;
 }
 
+a {
+	text-decoration: none !important;
+}
 .scroll, carousel-text {
 	visibility: hidden;
 }
@@ -16,6 +19,32 @@ a, button {
 
 .clean {
 	color: #52b6bc;
+}
+
+.navbar-light .navbar-toggler {
+	color: white;
+	border-color: transparent;
+	background: transparent !important;
+	
+}
+
+.section-description {
+	font-size: 1.1rem;
+	color: #6f6d6d;
+	margin-top: 20px;
+	margin-bottom: 20px;
+}
+
+.section-description.white {
+	color: white;
+}
+
+.navbar-brand img {
+	transition: 0.8s;
+}
+.navbar-brand:hover img {
+	max-width: 116px;
+	transition: 0.8s;
 }
 
 .hero {
@@ -31,6 +60,19 @@ a, button {
     background-attachment: fixed;
 }
 
+.email {
+	color: #9d9d9d;
+}
+.email:hover {
+	transition: all 0.5s ease 0s;
+    color: #52b6bc !important;
+}
+
+.email:hover .at {
+	color: #ffca3c; 
+	transition: all 0.5s ease 0s;
+}
+
 .hero.first {
 	background-image: linear-gradient(rgba(0, 0, 0, 0.5),rgba(0, 0, 0, 0.5)), url('https://preview.ibb.co/ddLsUS/apartment_architecture_carpet_584399.jpg');
 }
@@ -43,6 +85,35 @@ a, button {
 	background-image: linear-gradient(rgba(0, 0, 0, 0.5),rgba(0, 0, 0, 0.5)), url('https://preview.ibb.co/k6dkin/apartment_architecture_cabinets_373548.jpg');
 }
 
+.contact-us {
+	display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    color: white;
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
+	background-attachment: fixed;
+	padding-top: 100px;
+	padding-bottom: 100px;
+	background-image: linear-gradient(rgba(0, 0, 0, 0.5),rgba(0, 0, 0, 0.5)), url('https://preview.ibb.co/ieWNW7/kitchen_stove_sink_kitchen_counter_349749.jpg');
+}
+
+.contact-us input {
+	background: #369fa5 none repeat scroll 0 0;
+    border: medium none;
+    border-radius: 30px;
+    color: #f1f1f1;
+    display: inline-block;
+    font-size: 15px;
+    font-weight: 300;
+    height: 46px;
+    margin-right: 10px;
+    padding-left: 35px;
+    width: 90%;
+	transition: all 0.3s ease-out 0s;
+}
 
 .hero h1 {
     font-size: 5em;
@@ -98,7 +169,7 @@ li > a:before {
 	content: "";
 	width: 0;
 	height: 2px;
-	background: #52b6bc;
+	background: #ffca3c;
 	position: absolute;
 	top: -20px;
 	transition: 0.5s;
@@ -173,6 +244,10 @@ button:hover {
     color:#f1f1f1;
 }
 
+.section-header {
+	font-size: 2.1rem;
+}
+
 input:focus, button:focus {
 	outline: none;
 } 
@@ -204,20 +279,30 @@ input:focus, button:focus {
 	color: #9d9d9d;
 	white-space: initial !important;
 	text-align: left;
+	transition: .8s;
 }
 
 .btn-link:hover {
 	text-decoration: none !important;
 	color: #52b6bc !important;
+	transition: .8s;
 }
 
-[data-toggle="collapse"] .fas:before {   
-	content: "\f139";
-  }
+.fas.fa-plus {
+	color: #52b6bc;
+}
+
+[data-toggle="collapse"] .fas:before{   
+	content: "\f068";
+	color:#ffca3c;
+	transition: .5s;
+}
   
-  [data-toggle="collapse"].collapsed .fas:before {
-	content: "\f13a";
-  }
+[data-toggle="collapse"].collapsed .fas:before {
+	content: "\f067";
+	color: #52b6bc;
+	transition: .5s;
+}
 
 footer {
 	margin-top: 100px;
@@ -289,7 +374,7 @@ footer .contact-val .link {
 /* MD */
 @media (max-width: 992px) {
 	.navbar {
-		background-color: #f8f9fa!important;
+		background-color: #49adb3!important
 	}
 	.nav-link {
 		color: black;
@@ -311,6 +396,10 @@ footer .contact-val .link {
 	}
 	.dont-miss-out button {
 		margin-top: 30px;
+	}
+
+	.contact-us input {
+		margin-bottom: 30px;
 	}
 
 }

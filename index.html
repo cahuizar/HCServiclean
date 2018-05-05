@@ -14,7 +14,7 @@
 
   <nav id="nav" class="navbar navbar-expand-lg navbar-light  fixed-top">
 	<a class="navbar-brand" href="#">
-		<img src="https://preview.ibb.co/bvN0G7/logo.jpg" alt="logo" border="0">
+		<img src="https://preview.ibb.co/nfdYon/logo_Transparent.png" alt="logo_Transparent" border="0">
 	</a>
 		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
 		<span class="navbar-toggler-icon"></span>
@@ -34,7 +34,7 @@
 					<a class="nav-link" href="#contact" class="scroll-to">Contact</a>
 				</li>
 				<li class="nav-item">
-					<a class="nav-link" href="#faw" class="scroll-to">FAQ</a>
+					<a class="nav-link" href="#faq" class="scroll-to">FAQ</a>
 				</li>
 				<li class="nav-item">
 					<a class="nav-link" href="#newsletter" class="scroll-to">Newsletter</a>
@@ -42,7 +42,7 @@
 			</ul>
 		</div>
 	</nav>
-	<div class="page-body"  data-spy="scroll" data-target="#mainNav" data-offset="0">
+	<div id="home" class="page-body"  data-spy="scroll" data-target="#mainNav" data-offset="0">
 		<div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
 			<ol class="carousel-indicators">
 				<li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
@@ -79,17 +79,56 @@
 				</div>
 			</div>
 		</div>
+		<!--  Services -->
+		<div class="container scroll">
+			<div class="row">
+				<div class="col-12">
+					<h2 id="services" class="section-header">What we Offer that Others Don't</h2>
+					<p class="section-description white">Fill out the form below and we will contact you as soon as possible!</p>
+				</div>
+			</div>
+		</div>
 
+		<!-- Contact Us -->
+		<div class="contact-us">
+			<div class="container scroll">
+				<div class="row">
+					<div class="col-12">
+						<h2 id="contact" class="section-header">Let Us Do The Cleaning For You</h2>
+						<p class="section-description white">Fill out the form below and we will contact you as soon as possible!</p>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-12 col-md">
+						<input type="text" placeholder="Full Name">
+					</div>
+					<div class="col-12 col-md">
+						<input type="text" placeholder="Email">
+					</div>
+					<div class="col-12 col-md">
+						<input type="text" placeholder="Phone Number">
+					</div>
+					<div class="col-12 col-md">
+						<button type="button">Submit</button>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!--  FAQ  -->
 		<div class="container scroll mt-5 mb-5">
 			<div class="row">
+				<div class="col-12">
+					<h2 id="faq" class="section-header">Frequently Asked Questions</h2>
+					<p class="section-description">Check out some of the questions we are asked on a daily basis. If your question is still unanswered, be sure to send us an email at <a class="email link" href= "mailto:contact@hcserviclean.com?Subject=Question">contact<span class="at">@</span>serviclean.com</a></p>
+				</div>
 				<div class="col-12 col-md-6">
 					<h3>General</h3>
 					<div id="accordion" class="mobile-spacing-5">
 						<div class="card">
 							<div class="card-header" id="headingOne">
 								<h5 class="mb-0">
-									<button class="btn btn-link" data-toggle="collapse" data-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
-										<i class="fas fa-plus"></i> Do we bring all the cleaning supplies needed to get the job done?
+									<button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
+										<i class="fas fa-plus"></i> Do we bring all the cleaning supplies needed?
 									</button>
 								</h5>
 							</div>
@@ -164,7 +203,7 @@
 						<div class="card">
 							<div class="card-header" id="headingSeven">
 								<h5 class="mb-0">
-									<button class="btn btn-link" data-toggle="collapse" data-target="#collapseSeven" aria-expanded="false" aria-controls="collapseSeven">
+									<button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseSeven" aria-expanded="false" aria-controls="collapseSeven">
 										<i class="fas fa-plus"></i> How long have you been in business?
 									</button>
 								</h5>
@@ -178,7 +217,7 @@
 						<div class="card">
 							<div class="card-header" id="headingEight">
 								<h5 class="mb-0">
-									<button class="btn btn-link" data-toggle="collapse" data-target="#collapseEight" aria-expanded="false" aria-controls="collapseEight">
+									<button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseEight" aria-expanded="false" aria-controls="collapseEight">
 										<i class="fas fa-plus"></i> Can I trust the cleaners?
 									</button>
 								</h5>
@@ -192,7 +231,7 @@
 						<div class="card">
 							<div class="card-header" id="headingNine">
 								<h5 class="mb-0">
-									<button class="btn btn-link" data-toggle="collapse" data-target="#collapseNine" aria-expanded="false" aria-controls="collapseNine">
+									<button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseNine" aria-expanded="false" aria-controls="collapseNine">
 										<i class="fas fa-plus"></i> Is HC ServiClean pet safe?
 									</button>
 								</h5>
@@ -206,7 +245,7 @@
 						<div class="card">
 							<div class="card-header" id="headingTen">
 								<h5 class="mb-0">
-									<button class="btn btn-link" data-toggle="collapse" data-target="#collapseTen" aria-expanded="false" aria-controls="collapseTen">
+									<button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseTen" aria-expanded="false" aria-controls="collapseTen">
 										<i class="fas fa-plus"></i> Any references? 
 									</button>
 								</h5>
@@ -220,7 +259,7 @@
 						<div class="card">
 							<div class="card-header" id="headingEleven">
 								<h5 class="mb-0">
-									<button class="btn btn-link" data-toggle="collapse" data-target="#collapseEleven" aria-expanded="false" aria-controls="collapseEleven">
+									<button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseEleven" aria-expanded="false" aria-controls="collapseEleven">
 										<i class="fas fa-plus"></i> Do you use cleaning products that are safe for all surfaces?
 									</button>
 								</h5>
@@ -285,7 +324,7 @@
 				<div class="col-12 col-md-3">
 					<h4>Contact Information</h4>
 					<div class="contact-val contact-email">
-						<a class="link"><i class="fas fa-envelope"></i> contact<span class="at">@</span>hcserviclean.com</a>
+						<a class="link email" href= "mailto:contact@hcserviclean.com?Subject=Question"><i class="fas fa-envelope"></i> contact<span class="at">@</span>hcserviclean.com</a>
 					</div>
 					<div class="contact-val contact-phone">
 						<a class="link"><i class="fas fa-phone-square"></i><span class="area-code"> (847)</span>-293-4525</a>
