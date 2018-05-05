@@ -1,0 +1,287 @@
+body { 
+	margin: 0;
+	font-size: 14px;
+	line-height: 1.7;
+}
+a, button {
+	cursor: pointer;
+}
+
+.scroll, carousel-text {
+	visibility: hidden;
+}
+.servi {
+	color: #ffca3c;
+}
+
+.clean {
+	color: #52b6bc;
+}
+
+.hero {
+	height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    color: white;
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
+
+.hero.first {
+	background-image: linear-gradient(rgba(0, 0, 0, 0.5),rgba(0, 0, 0, 0.5)), url('https://preview.ibb.co/ddLsUS/apartment_architecture_carpet_584399.jpg');
+}
+
+.hero.second {
+	background-image: linear-gradient(rgba(0, 0, 0, 0.5),rgba(0, 0, 0, 0.5)), url('https://preview.ibb.co/g0MAG7/ashtray_book_condo_298842.jpg');
+}
+
+.hero.third {
+	background-image: linear-gradient(rgba(0, 0, 0, 0.5),rgba(0, 0, 0, 0.5)), url('https://preview.ibb.co/k6dkin/apartment_architecture_cabinets_373548.jpg');
+}
+
+
+.hero h1 {
+    font-size: 5em;
+    margin-top: 0;
+    margin-bottom: 0.5em;
+}
+
+.floating-div {
+	position: fixed;
+	width: 100%;
+	padding: 0 100px;
+}
+.main-nav {
+	display: flex;
+	justify-content:space-between;
+}
+
+.logo-div {
+	flex-shrink 0;
+}
+
+img {
+	max-height: 100px;
+	max-width: 100px;
+}
+
+.real-nav {
+	display: flex;
+	align-items: center;
+}
+
+ul.right-nav {
+	display: flex;
+	margin: 0;
+	list-style: none;
+	padding: 0;
+}
+
+li { 
+	position: relative;
+	padding: 0 14px;
+}
+li a { 
+	color: white !important;
+	font-size: 14px;
+	padding: 30px 0;
+	position: relative;
+	text-transform: uppercase;
+	cursor: pointer;
+}
+
+li > a:before {
+	content: "";
+	width: 0;
+	height: 2px;
+	background: #52b6bc;
+	position: absolute;
+	top: -20px;
+	transition: 0.5s;
+
+}
+
+li:hover > a:before {
+	width: 100%;
+}
+
+h1 {
+	margin-top: 1000px;
+}
+
+.dont-miss-out {
+	background: #52b6bc;
+	padding-top: 100px;
+	padding-bottom: 100px;
+	align-items: center;
+}
+
+.dont-miss-out .row {
+	align-items: center;
+}
+button {
+	background: rgba(0, 0, 0, 0) none repeat scroll 0 0;
+	border: 2px solid #ffffff;
+	border-radius: 30px;
+	color: #ffffff;
+	display: inline-block;
+	font-size: 15px;
+	font-weight: 500;
+	line-height: 1;
+	padding: 14px 46px;
+	-webkit-transition: all 0.3s ease 0s;
+	transition: all 0.3s ease 0s;
+	cursor: pointer;
+}
+
+button:hover {
+    background: #fff;
+    color: #52b6bc;
+}
+.dont-miss-out input[type='email'] {
+	background: #369fa5 none repeat scroll 0 0;
+	border: medium none;
+	border-radius: 30px;
+	color: #f1f1f1;
+	display: inline-block;
+	font-size: 15px;
+	font-weight: 300;
+	height: 46px;
+	margin-right: 10px;
+	padding-left: 35px;
+	width: 60%;
+	transition: all 0.3s ease-out 0s;
+}
+
+::-webkit-input-placeholder {
+    color:#f1f1f1;
+}
+
+::-moz-placeholder {
+    color:#f1f1f1;
+}
+
+::-ms-placeholder {
+    color:#f1f1f1;
+}
+
+::placeholder {
+    color:#f1f1f1;
+}
+
+input:focus, button:focus {
+	outline: none;
+} 
+
+.dont-miss-out {
+	align-items: center;
+	color:#f1f1f1;
+}
+
+.dont-miss-out h2 {
+	font-size: 2.1rem;
+}
+
+.dont-miss-out .deals-text {
+	font-size: 1.1rem;
+	margin-bottom: 30px;
+}
+
+footer {
+	margin-top: 100px;
+	margin-bottom: 100px;
+}
+
+
+footer a.social {
+	  border-radius: 50px;
+    color: #9a9a9a;
+    display: inline-block;
+    font-size: 1.8rem;
+    height: 50px;
+    line-height: 45px;
+    margin-right: 5px;
+    text-align: center;
+    width: 50px;
+    background: #edf0f2;
+	cursor: pointer;
+}
+footer .company-description {
+	color: #9d9d9d;
+}
+footer .fab {
+	color: #52b6bc;
+}
+footer .fab:hover,
+footer a.link:hover span.at,
+footer a.link:hover span.area-code,
+footer a.link:hover i.fas
+{
+	transition: all 0.3s ease 0s;
+	color: #ffca3c;
+}
+
+span.at,
+span.area-code{
+	color: #52b6bc;
+}
+
+footer a.link {
+	color: #9d9d9d;
+}
+footer a.link:hover {
+	transition: all 0.3s ease 0s;
+	color: #52b6bc !important;
+}
+
+footer .fas {
+	font-size: 26px;
+	color: #52b6bc;
+	padding-right: 8px;
+}
+
+footer .contact-email {
+	padding-bottom: 15px;
+	padding-top: 5px;
+}
+
+footer .contact-val {
+	color: #9d9d9d;
+}
+
+footer .contact-val .link {
+	display: flex;
+	align-items:center;
+}
+
+/* MD */
+@media (max-width: 992px) {
+	.navbar {
+		background-color: #f8f9fa!important;
+	}
+	.nav-link {
+		color: black;
+	}
+	h1 {
+		font-size: 3rem !important;
+	}
+
+	h2 {
+		font-size: 1.5rem;
+	}
+}
+
+/* Phone */
+@media (max-width: 992px) {
+	
+	.mobile-spacing-5 {
+		margin-bottom: 30px;
+	}
+	.dont-miss-out button {
+		margin-top: 30px;
+	}
+}
