@@ -27,9 +27,6 @@ $(document).ready(function(){
         scrollTop: $(hash).offset().top - 200
       }, 1000, function(){
 
-        // when done, add hash to url
-        // (default click behaviour)
-        window.location.hash = hash;
       });
 
   });
