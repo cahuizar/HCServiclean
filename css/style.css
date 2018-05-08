@@ -2,6 +2,7 @@ body {
 	margin: 0;
 	font-size: 14px;
 	line-height: 1.7;
+	font-family: 'Lato';
 }
 a, button {
 	cursor: pointer;
@@ -29,7 +30,7 @@ a {
 }
 
 .section-description {
-	font-size: 1.1rem;
+	font-size: 1rem;
 	color: #6f6d6d;
 	margin-top: 20px;
 	margin-bottom: 20px;
@@ -86,7 +87,7 @@ a {
 }
 
 .contact-us {
-	display: flex;
+	/* display: flex; */
     justify-content: center;
     align-items: center;
     text-align: center;
