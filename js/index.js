@@ -2,6 +2,25 @@
 
 window.sr = ScrollReveal({ reset: true });
 sr.reveal('.scroll');
+
+$(function () {
+  $(document).scroll(function () {
+    var nav = $("#nav");
+    var hero = $('#carouselExampleIndicators');
+    //$nav.toggleClass('scrolled', $(this).scrollTop() > $nav.height() + 200);
+    if(!isScrolledIntoView(hero)) {
+        $(nav).addClass('scrolled');
+
+    } else {
+        $(nav).removeClass('scrolled');
+    }
+  });
+});
+
+function isScrolledIntoView(elem){
+   return $(window).scrollTop() < $(elem).offset().top + $(elem).height()-100;
+}
+
 $(document).ready(function(){
 	$('.carousel').carousel({
 		interval: 5000

@@ -100,7 +100,8 @@ a {
 	background-image: linear-gradient(rgba(0, 0, 0, 0.5),rgba(0, 0, 0, 0.5)), url('https://preview.ibb.co/ieWNW7/kitchen_stove_sink_kitchen_counter_349749.jpg');
 }
 
-.contact-us input {
+.contact-us input,
+textarea {
 	/* background: #369fa5 none repeat scroll 0 0;
     border: medium none; */
 	background: transparent;
@@ -110,11 +111,30 @@ a {
     display: inline-block;
     font-size: 15px;
     font-weight: 300;
-    height: 46px;
-    margin-right: 10px;
-    padding-left: 35px;
-    width: 90%;
+	margin-right: 10px;
+	padding-left: 20px;
 	transition: all 0.3s ease-out 0s;
+}
+
+.contact-us input,
+textarea {
+	width: 100%;
+}
+
+.contact-us input {
+	height: 46px;
+}
+
+textarea {
+	padding-right: 20px;
+}
+
+.margin-in-between {
+	margin-bottom: 30px;
+}
+
+.scrolled {
+	background-color: #49adb3!important;
 }
 
 .hero h1 {
@@ -270,7 +290,7 @@ button:hover {
 	font-weight: 300;
 	height: 46px;
 	margin-right: 10px;
-	padding-left: 35px;
+	padding-left: 20px;
 	width: 60%;
 	transition: all 0.3s ease-out 0s;
 }
@@ -399,7 +419,8 @@ footer .fab {
 footer .fab:hover,
 footer a.link:hover span.at,
 footer a.link:hover span.area-code,
-footer a.link:hover i.fas
+footer a.link:hover i.fas,
+footer .social:hover .fab 
 {
 	transition: all 0.3s ease 0s;
 	color: #ffca3c;
@@ -440,8 +461,9 @@ footer .contact-val .link {
 
 /* MD */
 @media (max-width: 992px) {
-	.navbar {
-		background-color: #49adb3!important
+	.contact-us input,
+	textarea {
+		width: 90%;
 	}
 	.nav-link {
 		color: black;
