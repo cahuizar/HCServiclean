@@ -29,11 +29,15 @@ $(document).ready(function(){
 	$('#carouselExampleIndicators').on('slid.bs.carousel', function () {
 
   });
+
+  $('.navbar-nav>li>a').on('click', function(){
+      $('.navbar-collapse').collapse('hide');
+  });
   
   $('#copyright-year').html((new Date).getFullYear());
   $('#yearsWorking').html((new Date).getFullYear() - 2010);
 
-	$("#nav ul li a[href^='#']").on('click', function(e) {
+	$("#nav ul li a[href^='#'], .quote-btn").on('click', function(e) {
 
     // prevent default anchor click behavior
     e.preventDefault();

@@ -262,7 +262,8 @@ li:hover > a:before {
 .services {
 	background: #edf0f2;
 }
-button {
+button,
+.quote-btn {
 	background: rgba(0, 0, 0, 0) none repeat scroll 0 0;
 	border: 2px solid #ffffff;
 	border-radius: 30px;
@@ -277,7 +278,9 @@ button {
 	cursor: pointer;
 }
 
-button:hover {
+button:hover,
+.quote-btn:hover
+ {
     background: #fff;
     color: #52b6bc;
 }
@@ -462,6 +465,13 @@ footer .contact-val .link {
 
 /* MD */
 @media (max-width: 992px) {
+	li > a:before {
+		top: -1px;
+
+	}
+	li:hover > a:before {
+		width: 15%;
+	}
 	.contact-us input,
 	textarea {
 		width: 90%;
