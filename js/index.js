@@ -37,7 +37,7 @@ $(document).ready(function(){
   $('#copyright-year').html((new Date).getFullYear());
   $('#yearsWorking').html((new Date).getFullYear() - 2010);
 
-	$("#nav ul li a[href^='#'], .quote-btn").on('click', function(e) {
+	$("#nav ul li a[href^='#'], .quote-btn, .scroll-link").on('click', function(e) {
 
     // prevent default anchor click behavior
     e.preventDefault();
