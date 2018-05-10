@@ -39,18 +39,13 @@ $(document).ready(function(){
 
 	$("#nav ul li a[href^='#'], .quote-btn, .scroll-link").on('click', function(e) {
 
-    // prevent default anchor click behavior
-    e.preventDefault();
-
     // store hash
     var hash = this.hash;
 
     // animate
     $('html, body').animate({
         scrollTop: $(hash).offset().top - 200
-      }, 1000, function(){
-
-      });
+      }, 1000);
 
   });
 });
