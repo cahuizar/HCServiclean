@@ -196,7 +196,7 @@ li a {
 	cursor: pointer;
 }
 
-/* li > a:before {
+li > a:before {
 	content: "";
 	width: 0;
 	height: 2px;
@@ -209,7 +209,7 @@ li a {
 
 li:hover > a:before {
 	width: 100%;
-} */
+}
 
 .about-us {
 	padding-top: 70px;
@@ -531,7 +531,7 @@ footer .contact-val .link {
 
 	}
 	li:hover > a:before {
-		width: 15%;
+		width: 20%;
 	}
 	.contact-us input,
 	textarea {
