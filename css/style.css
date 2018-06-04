@@ -550,6 +550,12 @@ footer .contact-val .link {
 		margin-bottom: 30px;
 	}
 
+	.hero,
+	.contact-us  {
+		background-attachment: unset !important;
+		background-position: center top !important; 
+	}
+
 }
 
 @media (min-width: 992px) { 
@@ -568,3 +574,4 @@ footer .contact-val .link {
 		width: 100%;
 	}
 }
+
