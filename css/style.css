@@ -145,9 +145,14 @@ textarea {
 }
 
 .hero h1 {
-    font-size: 5em;
+    font-size: 6em;
     margin-top: 0;
     margin-bottom: 0.5em;
+}
+
+.hero h2 {
+	padding-left: 30px;
+	padding-right: 30px;
 }
 
 .floating-div {
@@ -194,21 +199,6 @@ li a {
 	position: relative;
 	text-transform: uppercase;
 	cursor: pointer;
-}
-
-li > a:before {
-	content: "";
-	width: 0;
-	height: 2px;
-	background: #ffca3c;
-	position: absolute;
-	top: -20px;
-	transition: 0.5s;
-
-}
-
-li:hover > a:before {
-	width: 100%;
 }
 
 .about-us {
@@ -530,9 +520,6 @@ footer .contact-val .link {
 		top: -1px;
 
 	}
-	li:hover > a:before {
-		width: 20%;
-	}
 	.contact-us input,
 	textarea {
 		width: 90%;
@@ -563,4 +550,21 @@ footer .contact-val .link {
 		margin-bottom: 30px;
 	}
 
+}
+
+@media (min-width: 992px) { 
+	li > a:before {
+		content: "";
+		width: 0;
+		height: 2px;
+		background: #ffca3c;
+		position: absolute;
+		top: -20px;
+		transition: 0.5s;
+	
+	}
+	
+	li:hover > a:before {
+		width: 100%;
+	}
 }

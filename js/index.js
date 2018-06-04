@@ -25,21 +25,14 @@ $(document).ready(function(){
 	$('.carousel').carousel({
 		interval: 5000
 	})
-
 	$('#carouselExampleIndicators').on('slid.bs.carousel', function () {
-
   });
 
   $('.navbar-nav>li>a').on('click', function(){
       $('.navbar-collapse').collapse('hide');
   });
 
-  $("a").on("click touchend", function(e) {
-    var el = $(this);
-    var link = el.attr("href");
-    window.location = link;
-  });
-  
+
   $('#copyright-year').html((new Date).getFullYear());
   $('.yearsWorking').html((new Date).getFullYear() - 2010);
 
