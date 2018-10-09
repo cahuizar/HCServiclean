@@ -1,27 +1,25 @@
-
-
-window.sr = ScrollReveal({ reset: true });
-sr.reveal('.scroll');
-
-$(function () {
-  $(document).scroll(function () {
-    var nav = $("#nav");
-    var hero = $('#carouselExampleIndicators');
-    //$nav.toggleClass('scrolled', $(this).scrollTop() > $nav.height() + 200);
-    if(!isScrolledIntoView(hero)) {
-        $(nav).addClass('scrolled');
-
-    } else {
-        $(nav).removeClass('scrolled');
-    }
-  });
-});
-
-function isScrolledIntoView(elem){
-   return $(window).scrollTop() < $(elem).offset().top + $(elem).height()-100;
-}
-
 $(document).ready(function(){
+    window.sr = ScrollReveal({ reset: true });
+    sr.reveal('.scroll');
+    function checkScrolled() {
+        if ($(this).scrollTop() > 10){  
+            $('#nav').addClass("scrolled");
+        }
+        else{
+            $('#nav').removeClass("scrolled");
+        }
+    }
+    $(window).scroll(checkScrolled);
+    checkScrolled();
+
+    var contactForm = new formValidationServiClean();
+    contactForm.initialize({
+        form: '#contact-us-form'
+    });
+    var newsletterForm = new formValidationServiClean();
+    newsletterForm.initialize({
+        form: '#newsletterForm'
+    })
 	$('.carousel').carousel({
 		interval: 5000
 	})
@@ -47,4 +45,43 @@ $(document).ready(function(){
       }, 1000);
 
   });
+});
+
+var formValidationServiClean = (function(){
+    function notEmpty(elem) {
+        var isValid = $(elem).val() == '';
+        $(elem).toggleClass('invalid-input',isValid).next().toggle(isValid);
+    }
+
+    function formPost() {
+        $form.find('.length-check').each(function(){
+            notEmpty(this);
+        })
+
+        if($('.invalid-input').is(':visible')) {
+            event.preventDefault();
+            event.stopPropagation();
+            return false;
+        }
+        event.preventDefault();
+            event.stopPropagation();
+            return false;
+    }
+
+    function initialize(args){
+        $form = $(args.form);
+        $form.bind("submit", formPost);
+        $length.bind("blur", function() { 
+            return notEmpty(this); 
+        });
+    }
+
+    var 
+        $length = $('.length-check'),
+        $form,
+        publicAPI = {
+            initialize: initialize
+        }
+
+    return publicAPI;
 });

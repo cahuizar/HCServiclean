@@ -145,7 +145,7 @@
 					<!-- Bedrooms and living room -->
 					<div class="col-10 col-sm-6 col-md-4 card-col">
 						<div class="card">
-							<img class="card-img-top" height="260px" src="https://preview.ibb.co/eqtPJy/living_room.jpg" alt="Card image cap">
+							<img class="card-img-top" height="260px" src="./images/bedroom.jpg" alt="Bedroom image">
 							<h4 class="card-title">Bedroom</h4>
 							<div class="card-body">
 								<ul>
@@ -160,7 +160,7 @@
 					<!-- Bathroom -->
 					<div class="col-10 col-sm-6 col-md-4 card-col">
 						<div class="card ">
-							<img class="card-img-top" height="260px" src="https://preview.ibb.co/mWASKS/bathroom.jpg" alt="Card image cap">
+							<img class="card-img-top" height="260px" src="./images/bathroom.jpg" alt="Bathroom image">
 							<h4 class="card-title">Bathroom</h4>
 							<div class="card-body">
 								<ul>
@@ -177,7 +177,7 @@
 					<!-- Kitchen -->
 					<div class="col-10 col-sm-6 col-md-4 card-col">
 						<div class="card">
-							<img class="card-img-top" height="260px" src="https://preview.ibb.co/bMLBeS/kitchen.jpg" alt="Card image cap">
+							<img class="card-img-top" height="260px" src="./images/kitchen.jpg" alt="Kitchen image">
 							<h4 class="card-title">Kitchen</h4>
 							<div class="card-body">
 								<ul>
@@ -192,7 +192,7 @@
 					<!-- Extras -->
 					<div class="col-10 col-sm-6 col-md-4 card-col">
 						<div class="card">
-							<img class="card-img-top" height="260px" src="https://preview.ibb.co/cYBpYn/extra.jpg" alt="Card image cap">
+							<img class="card-img-top" height="260px" src="./images/extra.jpg" alt="Extra image">
 							<h4 class="card-title">Extras</h4>
 							<div class="card-body">
 								<ul>
@@ -219,34 +219,56 @@
 						<p class="section-description white">Fill out the form below and receive your free consultation. We will contact you as soon as possible!</p>
 					</div>
 				</div>
-				<div class="row mt-3 align-items-center">
-					<div class="col-12 col-md-9">
-						<div class="row">
-							<div class="col-12 col-md-4">
-								<input class="margin-in-between" type="text" placeholder="Name">
-							</div>
-							<div class="col-12 col-md-4">
-								<input class="margin-in-between" type="text" placeholder="Email">
-							</div>
-							<div class="col-12 col-md-4">
-								<input class="margin-in-between" type="text" placeholder="Phone Number">
-							</div>
-							<div class="col-12 col-md-8">
-								<input class="margin-in-between" type="text" placeholder="Address Line 1">
-								<br/>
-								<input type="text" placeholder="Address Line 2">
-							</div>
-							<div class="col-12 col-md-4">
-								<input class="margin-in-between" type="text" placeholder="City">
-								<br/>
-								<input type="text" placeholder="Zip Code">
+				<form id="contact-us-form" action="/post_contact" method="post" >
+					<div class="row mt-3 align-items-center">
+						<div class="col-12 col-md-9">
+							<div class="row">
+								<div class="col-12 col-md-4 margin-in-between">
+									<input id="name" class="length-check" type="text" placeholder="Name">
+									<div class="invalid">
+										Enter a valid Name
+									</div>
+								</div>
+								<div class="col-12 col-md-4 margin-in-between">
+									<input id="email" class="length-check" type="text" placeholder="Email">
+									<div class="invalid">
+										Enter a valid email
+									</div>
+								</div>
+								<div class="col-12 col-md-4 margin-in-between">
+									<input id="phoneNumber" class="length-check" type="number" placeholder="Phone Number">
+									<div class="invalid">
+										Enter a valid phone number
+									</div>
+								</div>
+								<div class="col-12 col-md-8 margin-in-between">
+									<input id="address1" class="length-check" type="text" placeholder="Address Line 1">
+									<div class="invalid">
+										Enter a valid Address
+									</div>
+									<div class="second-line-input">
+										<input id="address2" type="text" placeholder="Address Line 2">
+									</div>
+								</div>
+								<div class="col-12 col-md-4 margin-in-between">
+									<input id="city" class="length-check" type="text" placeholder="City">
+									<div class="invalid">
+										Enter a valid city
+									</div>
+									<div class="second-line-input">
+										<input id="zipCode" class="length-check" type="text" placeholder="Zip Code">
+										<div class="invalid">
+											Enter a valid zip code
+										</div>
+									</div>
+								</div>
 							</div>
 						</div>
+						<div class="col-12 col-md-3">
+							<button type="submit">Submit</button>
+						</div>
 					</div>
-					<div class="col-12 col-md-3">
-						<button type="button">Submit</button>
-					</div>
-				</div>
+				</form>
 			</div>
 		</div>
 		<!--  FAQ  -->
@@ -413,18 +435,25 @@
 		<!-- NewsLetter -->
 		<div id="newsletter" class="dont-miss-out scroll">
 			<div class="container">
+					<form id="newsletterForm" action="/post_contact" method="post">
 				<div class="row">
-					<div class="col-12 col-lg-6">
-						<h2>Don't Miss Out on Deals!</h2>
-						<div class="deals-text">
-							Sign up to our Newsletter to take advantages of all the offers
+						<div class="col-12 col-lg-6">
+							<h2>Don't Miss Out on Deals!</h2>
+							<div class="deals-text">
+								Sign up to our Newsletter to take advantages of all the offers
+							</div>
 						</div>
-					</div>
-					<div class="col-12 col-lg-6">
-						<input type="email" placeholder="Email Address here" />
-						<button type="button">Subscribe</button>
-					</div>
+						<div class="col-12 col-lg-3">
+							<input type="email" class="length-check" placeholder="Email Address here" />
+							<div class="invalid">
+								Enter a valid Address
+							</div>
+						</div>
+						<div class="col-12 col-lg-2 text-center">
+							<button type="submit">Subscribe</button>
+						</div>
 				</div>
+					</form>
 			</div>
 		</div>
 	</div>

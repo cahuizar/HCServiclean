@@ -3,6 +3,7 @@ body {
 	font-size: 14px;
 	line-height: 1.7;
 	font-family: 'Lato';
+	overflow-x: hidden;
 }
 a, button {
 	cursor: pointer;
@@ -11,6 +12,7 @@ a, button {
 a {
 	text-decoration: none !important;
 }
+
 .scroll, carousel-text {
 	visibility: hidden;
 }
@@ -81,15 +83,15 @@ a {
 }
 
 .hero.first {
-	background-image: linear-gradient(rgba(0, 0, 0, 0.5),rgba(0, 0, 0, 0.5)), url('https://preview.ibb.co/ddLsUS/apartment_architecture_carpet_584399.jpg');
+	background-image: linear-gradient(rgba(0, 0, 0, 0.5),rgba(0, 0, 0, 0.5)), url('../images/carousel-1.jpg');
 }
 
 .hero.second {
-	background-image: linear-gradient(rgba(0, 0, 0, 0.5),rgba(0, 0, 0, 0.5)), url('https://preview.ibb.co/g0MAG7/ashtray_book_condo_298842.jpg');
+	background-image: linear-gradient(rgba(0, 0, 0, 0.5),rgba(0, 0, 0, 0.5)), url('../images/carousel-2.jpg');
 }
 
 .hero.third {
-	background-image: linear-gradient(rgba(0, 0, 0, 0.5),rgba(0, 0, 0, 0.5)), url('https://preview.ibb.co/k6dkin/apartment_architecture_cabinets_373548.jpg');
+	background-image: linear-gradient(rgba(0, 0, 0, 0.5),rgba(0, 0, 0, 0.5)), url('../images/carousel-3.jpg');
 }
 
 .contact-us {
@@ -104,7 +106,7 @@ a {
 	background-attachment: fixed;
 	padding-top: 100px;
 	padding-bottom: 100px;
-	background-image: linear-gradient(rgba(0, 0, 0, 0.5),rgba(0, 0, 0, 0.5)), url('https://preview.ibb.co/ieWNW7/kitchen_stove_sink_kitchen_counter_349749.jpg');
+	background-image: linear-gradient(rgba(0, 0, 0, 0.5),rgba(0, 0, 0, 0.5)), url('../images/contact-parallax.jpg');
 }
 
 .contact-us input,
@@ -138,6 +140,10 @@ textarea {
 
 .margin-in-between {
 	margin-bottom: 30px;
+}
+
+.second-line-input {
+	margin-top: 30px;
 }
 
 .scrolled {
@@ -346,8 +352,8 @@ button:hover,
 	height: 46px;
 	margin-right: 10px;
 	padding-left: 20px;
-	width: 60%;
 	transition: all 0.3s ease-out 0s;
+	width: 100%;
 }
 
 ::-webkit-input-placeholder {
@@ -446,6 +452,25 @@ input:focus, button:focus {
 	transition: .5s;
 }
 
+
+.invalid-input {
+	border-color: red !important;
+}
+
+.invalid-input::placeholder {
+	color: red !important;
+}
+
+.invalid {
+	display: none;
+	width: 100%;
+    margin-top: 0.25rem;
+    font-size: 80%;
+	color: #dc3545;
+	text-align: left;
+    margin-left: 15px;
+}
+
 footer {
 	margin-top: 100px;
 	margin-bottom: 20px;
@@ -514,6 +539,12 @@ footer .contact-val .link {
 	align-items:center;
 }
 
+input[type=number]::-webkit-inner-spin-button, 
+input[type=number]::-webkit-outer-spin-button { 
+  -webkit-appearance: none; 
+  margin: 0; 
+}
+
 /* MD */
 @media (max-width: 992px) {
 	li > a:before {
@@ -538,7 +569,13 @@ footer .contact-val .link {
 
 /* Phone */
 @media (max-width: 992px) {
-	
+
+	.dont-miss-out input[type='email'] { 
+		
+	}
+	.invalid {
+		margin-left: 30px;
+	}
 	.mobile-spacing-5 {
 		margin-bottom: 30px;
 	}
@@ -546,14 +583,14 @@ footer .contact-val .link {
 		margin-top: 30px;
 	}
 
-	.contact-us input {
-		margin-bottom: 30px;
-	}
-
 	.hero,
 	.contact-us  {
 		background-attachment: unset !important;
 		background-position: center top !important; 
+	}
+
+	.navbar {
+		background-color: #52b6bc;
 	}
 
 }
