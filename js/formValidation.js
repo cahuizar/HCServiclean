@@ -26,7 +26,7 @@ var formValidationServiClean = (function(){
                     $serverMessage.addClass('success-message').html('Thank you! your email has been sent.');
 
                 } else {
-                    $serverMessage.addClass('invalid-message').html('Uh oh... there was an error, please try again');
+                    $serverMessage.addClass('invalid-message').html(response);
                 }
                 
             }
