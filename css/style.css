@@ -471,6 +471,26 @@ input:focus, button:focus {
     margin-left: 15px;
 }
 
+.server-message {
+	display: none;
+	width: 100%;
+    margin-top: 0.25rem;
+    font-size: 100%;
+	text-align: left;
+	margin-left: 15px;
+	font-weight: bold;
+}
+
+.success-message, .invalid-message {
+	display: block;
+}
+.invalid-message {
+	color: #dc3545;
+}
+.success-message {
+	color: green;
+}
+
 footer {
 	margin-top: 100px;
 	margin-bottom: 20px;

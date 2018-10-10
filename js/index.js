@@ -14,7 +14,7 @@ $(document).ready(function(){
 
     var contactForm = new formValidationServiClean();
     contactForm.initialize({
-        form: '#contact-us-form'
+        form: '#contactUsForm'
     });
     var newsletterForm = new formValidationServiClean();
     newsletterForm.initialize({

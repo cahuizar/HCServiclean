@@ -233,44 +233,44 @@
 						<p class="section-description white">Fill out the form below and receive your free consultation. We will contact you as soon as possible!</p>
 					</div>
 				</div>
-				<form id="contact-us-form" action="/post_contact" method="post" >
+				<form id="contactUsForm" action="php/contact_us.php" method="post" >
 					<div class="row mt-3 align-items-center">
 						<div class="col-12 col-md-9">
 							<div class="row">
 								<div class="col-12 col-md-4 margin-in-between">
-									<input id="name" class="length-check" type="text" placeholder="Name">
+									<input name="name" class="length-check" type="text" placeholder="Name">
 									<div class="invalid">
 										Enter a valid Name
 									</div>
 								</div>
 								<div class="col-12 col-md-4 margin-in-between">
-									<input id="email" class="length-check" type="text" placeholder="Email">
+									<input name="email" name="name" class="length-check" type="email" placeholder="Email">
 									<div class="invalid">
 										Enter a valid email
 									</div>
 								</div>
 								<div class="col-12 col-md-4 margin-in-between">
-									<input id="phoneNumber" class="length-check" type="number" placeholder="Phone Number">
+									<input name="phoneNumber" class="length-check" type="number" placeholder="Phone Number">
 									<div class="invalid">
 										Enter a valid phone number
 									</div>
 								</div>
 								<div class="col-12 col-md-8 margin-in-between">
-									<input id="address1" class="length-check" type="text" placeholder="Address Line 1">
+									<input name="address1" class="length-check" type="text" placeholder="Address Line 1">
 									<div class="invalid">
 										Enter a valid Address
 									</div>
 									<div class="second-line-input">
-										<input id="address2" type="text" placeholder="Address Line 2">
+										<input name="address2" type="text" placeholder="Address Line 2">
 									</div>
 								</div>
 								<div class="col-12 col-md-4 margin-in-between">
-									<input id="city" class="length-check" type="text" placeholder="City">
+									<input name="city" class="length-check" type="text" placeholder="City">
 									<div class="invalid">
 										Enter a valid city
 									</div>
 									<div class="second-line-input">
-										<input id="zipCode" class="length-check" type="text" placeholder="Zip Code">
+										<input name="zipCode" class="length-check" type="text" placeholder="Zip Code">
 										<div class="invalid">
 											Enter a valid zip code
 										</div>
@@ -280,6 +280,7 @@
 						</div>
 						<div class="col-12 col-md-3">
 							<button type="submit">Submit</button>
+							<div class="server-message"></div>
 						</div>
 					</div>
 				</form>
@@ -448,25 +449,26 @@
 		<!-- NewsLetter -->
 		<div id="newsletter" class="dont-miss-out scroll">
 			<div class="container">
-					<form id="newsletterForm" action="/post_contact" method="post">
-				<div class="row">
-						<div class="col-12 col-lg-6">
-							<h2>Don't Miss Out on Deals!</h2>
-							<div class="deals-text">
-								Sign up to our Newsletter to take advantages of all the offers
+				<form id="newsletterForm" action="#" method="post">
+					<div class="row">
+							<div class="col-12 col-lg-6">
+								<h2>Don't Miss Out on Deals!</h2>
+								<div class="deals-text">
+									Sign up to our Newsletter to take advantages of all the offers
+								</div>
 							</div>
-						</div>
-						<div class="col-12 col-lg-3">
-							<input type="email" class="length-check" placeholder="Email Address here" />
-							<div class="invalid">
-								Enter a valid Address
+							<div class="col-12 col-lg-3">
+								<input type="email" class="length-check" placeholder="Email Address here" />
+								<div class="invalid">
+									Enter a valid Address
+								</div>
 							</div>
-						</div>
-						<div class="col-12 col-lg-2 text-center">
-							<button type="submit">Subscribe</button>
-						</div>
-				</div>
-					</form>
+							<div class="col-12 col-lg-2 text-center">
+								<button type="submit">Subscribe</button>
+								<div class="server-message"></div>
+							</div>
+					</div>
+				</form>
 			</div>
 		</div>
 	</div>
