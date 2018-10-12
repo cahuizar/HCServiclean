@@ -328,6 +328,11 @@ li a {
 .services {
 	background: #edf0f2;
 }
+
+.loading-modal, .server-response {
+	display: none;
+}
+
 button,
 .quote-btn {
 	background: rgba(0, 0, 0, 0) none repeat scroll 0 0;
