@@ -333,6 +333,26 @@ li a {
 	display: none;
 }
 
+.modal-header .close, .modal-header .close:hover {
+	opacity: 1;
+} 
+
+.btn-primary {
+	border: none;
+}
+
+.btn-primary, .btn-primary:hover, .btn-primary:active  {
+	background-color: #49adb3;
+}
+
+.modal-title, .modal-header .close {
+	color: #49adb3;
+}
+
+.fa-spinner {
+	color: #ffca3c;
+}
+
 button,
 .quote-btn {
 	background: rgba(0, 0, 0, 0) none repeat scroll 0 0;
