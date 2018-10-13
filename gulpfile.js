@@ -52,7 +52,7 @@ gulp.task('php', function() {
     .pipe(gulp.dest('dist/php'))
 });
 gulp.task('moveFiles', function() {
-  return gulp.src('*.+(png|jpg|jpeg|gif|svg|xml|webmanifest|txt|ico|xml)')
+  return gulp.src(['*.+(png|jpg|jpeg|gif|svg|xml|webmanifest|txt|ico|xml)', '404.php'])
     .pipe(gulp.dest('dist/'))
 });
 
