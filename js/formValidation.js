@@ -7,7 +7,7 @@ var formValidationServiClean = (function(){
         $('.loading-modal').toggle(modalType === 'loading-modal');
         $('.server-response').toggle(modalType === 'server-response');
     }
-    
+
     function loadingModal(title) {
         showCorrectModal('loading-modal');
         $('#modaltitle').text(title);
@@ -17,7 +17,7 @@ var formValidationServiClean = (function(){
     function serverResponseModal(title, body) {
         showCorrectModal(body)
         $('#modaltitle').text(title);
-        $('div.server-response').text(body);
+        $('div.server-response').html(body);
         showModal();
     }
 
@@ -43,7 +43,7 @@ var formValidationServiClean = (function(){
                     $form.find('input').val("");
                 } else {
                     modalTitle = 'Error';
-                    modalBody = 'response';
+                    modalBody = 'Sorry, something went wrong while submitting the form. If you see this message again do not hesite to contact us at <br/> <a class="link email" href= "mailto:contact@hcserviclean.com?Subject=Question" title="Email">contact<span class="at">@</span>hcserviclean.com</a>';
                 }
                 serverResponseModal(modalTitle, modalBody);
             }
