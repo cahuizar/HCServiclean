@@ -2,11 +2,13 @@ $(document).ready(function(){
     window.sr = ScrollReveal({ reset: true });
     sr.reveal('.scroll');
     function checkScrolled() {
-        if ($(this).scrollTop() > 10){  
-            $('#nav').addClass("scrolled");
-        }
-        else{
-            $('#nav').removeClass("scrolled");
+        if($(window).width() > 991) {
+            if ($(this).scrollTop() > 10 ){  
+                $('#nav').addClass("scrolled");
+            }
+            else{
+                $('#nav').removeClass("scrolled");
+            }
         }
     }
     $(window).scroll(checkScrolled);
@@ -14,11 +16,13 @@ $(document).ready(function(){
 
     var contactForm = new formValidationServiClean();
     contactForm.initialize({
-        form: '#contactUsForm'
+        form: '#contactUsForm',
+        modal: '#serverResponse'
     });
     var newsletterForm = new formValidationServiClean();
     newsletterForm.initialize({
-        form: '#newsletterForm'
+        form: '#newsletterForm',
+        modal: '#serverResponse'
     })
 	$('.carousel').carousel({
 		interval: 5000

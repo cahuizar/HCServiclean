@@ -7,7 +7,7 @@
     $city = $_POST["city"];
     $zipCode = $_POST["zipCode"];
     if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-        echo("$email is not a valid email address");
+        echo("error");
         die();
     } 
     $messageCompany = "Name: " . $name . "\r\nEmail: " . $email . "\r\nPhone Number: " . $phoneNumber . "\r\n" . $address1 . "\r\n" . $address2 . "\r\n" . $city . ", IN " . $zipCode;
@@ -15,7 +15,7 @@
     if(mail('me@carloshuizar.com', "Estimate Request For " . $name , $messageCompany) && mail($email, 'Free Estimate from H C ServiClean' , $messageCustomer)) {
         echo ("true");
     } else {
-        echo ("Something went wrong, please try again later");
+        echo ("error");
         die();
     }
 ?>

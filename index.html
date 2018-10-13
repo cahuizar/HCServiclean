@@ -30,7 +30,7 @@
 	<link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
 	<link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
 	<link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
-	<link rel="manifest" href="site.webmanifest">
+	<link rel="manifest" href="manifest.json">
 	<link rel="mask-icon" href="safari-pinned-tab.svg" color="#5bbad5">
 	<meta name="msapplication-TileColor" content="#da532c">
 	<meta name="theme-color" content="#ffffff">
@@ -44,7 +44,7 @@
 <body>
   <nav id="nav" class="navbar navbar-expand-lg navbar-light  fixed-top">
 	<a class="navbar-brand scroll-link" href="#home" title="Home">
-		<img class="logo" src="./images/logoTransparent.png" alt="logo_Transparent" border="0">
+		<img class="logo" src="./images/logoTransparent.png" alt="logo_Transparent">
 	</a>
 		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
 		<span class="navbar-toggler-icon"></span>
@@ -52,22 +52,22 @@
 		<div class="collapse navbar-collapse" id="navbarNav">
 			<ul class="nav navbar-nav ml-auto">
 				<li class="nav-item">
-					<a class="nav-link" href="#home" class="scroll-to" title="Home">Home</span></a>
+					<a class="nav-link scroll-to" href="#home" title="Home">Home</a>
 				</li>
 				<li class="nav-item">
-					<a class="nav-link" href="#about" class="scroll-to" title="About">About</a>
+					<a class="nav-link scroll-to" href="#about" title="About">About</a>
 				</li>
 				<li class="nav-item">
-					<a class="nav-link" href="#services" class="scroll-to" title="Services">Services</a>
+					<a class="nav-link scroll-to" href="#services" title="Services">Services</a>
 				</li>
 				<li class="nav-item">
-					<a class="nav-link" href="#estimate" class="scroll-to" title="Free Estimate">Free Estimate</a>
+					<a class="nav-link scroll-to" href="#estimate" title="Free Estimate">Free Estimate</a>
 				</li>
 				<li class="nav-item">
-					<a class="nav-link" href="#faq" class="scroll-to" title="FAQ">FAQ</a>
+					<a class="nav-link scroll-to" href="#faq" title="FAQ">FAQ</a>
 				</li>
 				<li class="nav-item">
-					<a class="nav-link" href="#newsletter" class="scroll-to" title="Newsletter">Newsletter</a>
+					<a class="nav-link scroll-to" href="#newsletter" title="Newsletter">Newsletter</a>
 				</li>
 			</ul>
 		</div>
@@ -156,7 +156,7 @@
 					</div>
 				</div>
 				<div class="col-12 col-md-6 offset-lg-1 col-lg-5">
-					<iframe src="https://www.google.com/maps/d/u/0/embed?mid=1-dEc71GOLsKtb8YTKMO9_erbZRQV9GPY" width="640" height="480"></iframe>
+					<iframe src="https://www.google.com/maps/d/u/0/embed?mid=1-dEc71GOLsKtb8YTKMO9_erbZRQV9GPY" width="640" height="480" title="Google Maps - Areas Currently Served"></iframe>
 				</div>
 			</div>
 		</div>
@@ -175,7 +175,7 @@
 					<!-- Bedrooms and living room -->
 					<div class="col-10 col-sm-6 col-lg-3 card-col">
 						<div class="card">
-							<img class="card-img-top" height="260px" src="./images/bedroom.jpg" alt="Bedroom image">
+							<img class="card-img-top" src="./images/bedroom.jpg" alt="Bedroom image">
 							<h4 class="card-title">Bedroom</h4>
 							<div class="card-body">
 								<ul>
@@ -190,7 +190,7 @@
 					<!-- Bathroom -->
 					<div class="col-10 col-sm-6 col-lg-3 card-col">
 						<div class="card ">
-							<img class="card-img-top" height="260px" src="./images/bathroom.jpg" alt="Bathroom image">
+							<img class="card-img-top" src="./images/bathroom.jpg" alt="Bathroom image">
 							<h4 class="card-title">Bathroom</h4>
 							<div class="card-body">
 								<ul>
@@ -205,7 +205,7 @@
 					<!-- Kitchen -->
 					<div class="col-10 col-sm-6 col-lg-3 card-col">
 						<div class="card">
-							<img class="card-img-top" height="260px" src="./images/kitchen.jpg" alt="Kitchen image">
+							<img class="card-img-top" src="./images/kitchen.jpg" alt="Kitchen image">
 							<h4 class="card-title">Kitchen</h4>
 							<div class="card-body">
 								<ul>
@@ -251,39 +251,46 @@
 						<div class="col-12 col-md-9">
 							<div class="row">
 								<div class="col-12 col-md-4 margin-in-between">
-									<input name="name" class="length-check" type="text" placeholder="Name">
+									<label for="name" class="sr-only">Name </label>
+									<input name="name" class="length-check" type="text" placeholder="Name" id="name">
 									<div class="invalid">
 										Enter a valid Name
 									</div>
 								</div>
 								<div class="col-12 col-md-4 margin-in-between">
-									<input name="email" name="name" class="length-check" type="email" placeholder="Email">
+									<label for="email" class="sr-only">Email </label>
+									<input name="email" id="email" class="length-check" type="email" placeholder="Email">
 									<div class="invalid">
 										Enter a valid email
 									</div>
 								</div>
 								<div class="col-12 col-md-4 margin-in-between">
-									<input name="phoneNumber" class="length-check" type="number" placeholder="Phone Number">
+									<label for="phoneNumber" class="sr-only">Phone Number </label>
+									<input name="phoneNumber" id="phoneNumber" class="length-check" type="number" placeholder="Phone Number">
 									<div class="invalid">
 										Enter a valid phone number
 									</div>
 								</div>
 								<div class="col-12 col-md-8 margin-in-between">
-									<input name="address1" class="length-check" type="text" placeholder="Address Line 1">
+									<label for="address1" class="sr-only">Address 1</label>
+									<input name="address1" id="address1" class="length-check" type="text" placeholder="Address Line 1">
 									<div class="invalid">
 										Enter a valid Address
 									</div>
 									<div class="second-line-input">
-										<input name="address2" type="text" placeholder="Address Line 2">
+										<label for="address2" class="sr-only">Address 2</label>
+										<input name="address2" id="address2" type="text" placeholder="Address Line 2">
 									</div>
 								</div>
 								<div class="col-12 col-md-4 margin-in-between">
-									<input name="city" class="length-check" type="text" placeholder="City">
+									<label for="city" class="sr-only">City</label>
+									<input name="city" id="city" class="length-check" type="text" placeholder="City">
 									<div class="invalid">
 										Enter a valid city
 									</div>
 									<div class="second-line-input">
-										<input name="zipCode" class="length-check" type="text" placeholder="Zip Code">
+										<label for="zipCode" class="sr-only">Zip Code</label>
+										<input name="zipCode" id="zipCode" class="length-check" type="text" placeholder="Zip Code">
 										<div class="invalid">
 											Enter a valid zip code
 										</div>
@@ -461,7 +468,7 @@
 		<!-- NewsLetter -->
 		<div id="newsletter" class="dont-miss-out scroll">
 			<div class="container">
-				<form id="newsletterForm" action="#" method="post">
+				<form id="newsletterForm" action="php/newsletter.php" method="post" >
 					<div class="row">
 						<div class="col-12 col-lg-6">
 							<h2>Don't Miss Out on Deals!</h2>
@@ -472,7 +479,8 @@
 						<div class="col-12 col-lg-6">
 							<div class="row">
 								<div class="col-8">
-									<input type="email" class="length-check" placeholder="Email Address here" />
+									<label for="newsletterEmail" class="sr-only">Email</label>
+									<input name="newsletterEmail" id="newsletterEmail" type="email" class="length-check" placeholder="Email Address here" />
 									<div class="invalid">
 										Enter a valid Address
 									</div>
@@ -491,7 +499,7 @@
 		<div class="container">
 			<div class="row justify-content-between">
 				<div class="col-12 col-md-4 mobile-spacing-5">
-					<img class="logo" src="./images/logo.jpeg" alt="logo" border="0">
+					<img class="logo" src="./images/logo.jpeg" alt="logo" />
 					<p class="company-description">
 						The cleaning solution to all of your needs.
 					</p>
@@ -532,8 +540,8 @@
 			</div>
 		</div>
 	</footer>
-	<div class="modal fade" id="serverResponse" tabindex="-1" role="dialog" aria-labelledby="modaltitle" aria-hidden="true">
-		<div class="modal-dialog modal-dialog-centered modal-sm" role="document">
+	<div class="modal fade" id="serverResponse" tabindex="-1" role="dialog" aria-labelledby="modaltitle" aria-hidden="true" data-backdrop="static" data-keyboard="false">
+		<div class="modal-dialog modal-dialog-centered" role="document">
 			<div class="modal-content">
 				<div class="modal-header">
 					<h5 class="modal-title" id="modaltitle">Modal title</h5>
@@ -547,13 +555,10 @@
 							<div class="col-12 text-center">
 								<div class="loading-modal">
 									<i class="fa fa-spinner fa-pulse fa-3x fa-fw"></i>
+									<div class="mt-2">Please do not close the modal</div>
 									<span class="sr-only">Loading...</span>
 								</div>
-								<div class="server-response">
-									Your email has been sucessfuly sent. You will receive an email confirmation from us very shortly. 
-									If you have any questions/concerns do not hesitate to emails us at
-									<a class="link email" href= "mailto:contact@hcserviclean.com?Subject=Question" title="Email">contact<span class="at">@</span>hcserviclean.com</a>
-								</div>
+								<div class="server-response text-left"></div>
 							</div>
 						</div>
 					</div>
@@ -565,6 +570,45 @@
 			</div>
 		</div>
 	</div>
+	<script type="application/ld+json">
+		{
+			"@context": "http://schema.org",
+			"@type": "LocalBusiness",
+			"name": "HC Serviclean LLC",
+			"address": {
+				"@type": "PostalAddress",
+				"streetAddress": "12178 Packers Ave",
+				"addressLocality": "Fishers",
+				"addressRegion": "IN",
+				"postalCode": "46037"
+			},
+			"image": "https://www.hcserviclean.com/images/logo.jpeg",
+			"email": "contact@hcserviclean.com",
+			"telePhone": "847-409-9912",
+			"url": "https://www.hcserviclean.com",
+			"paymentAccepted": [ "cash", "check" ],
+			"openingHours": "Mo,Tu,We,Th,Fr,Sa 08:00-17:00",
+			"openingHoursSpecification": [ {
+				"@type": "OpeningHoursSpecification",
+				"dayOfWeek": [
+					"Monday",
+					"Tuesday",
+					"Wednesday",
+					"Thursday",
+					"Friday",
+					"Saturday"
+				],
+				"opens": "08:00",
+				"closes": "17:00"
+			} ],
+			"geo": {
+				"@type": "GeoCoordinates",
+				"latitude": "39.978404",
+				"longitude": "-85.948837"
+			},
+			"priceRange":"$"
+		}
+	</script>
 	<script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js'></script>
 	<script src='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0/js/bootstrap.min.js'></script>
 	<script src='https://unpkg.com/scrollreveal/dist/scrollreveal.min.js'></script>

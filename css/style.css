@@ -67,14 +67,20 @@ a {
 	margin-bottom: 30px;
 }
 
-
+.server-response .email {
+	font-weight: bold;
+}
 
 .email {
-	color: #9d9d9d;
+	color: inherit;
 }
 .email:hover {
 	transition: all 0.5s ease 0s;
     color: #52b6bc !important;
+}
+
+.card-img-top {
+	height: 260px;
 }
 
 .email:hover .at {

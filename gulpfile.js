@@ -52,7 +52,7 @@ gulp.task('php', function() {
     .pipe(gulp.dest('dist/php'))
 });
 gulp.task('moveFiles', function() {
-  return gulp.src(['*.+(png|jpg|jpeg|gif|svg|xml|webmanifest|txt|ico|xml)', '404.php'])
+  return gulp.src(['*.+(png|jpg|jpeg|gif|svg|xml|webmanifest|txt|ico|xml)', '404.php', 'manifest.json'])
     .pipe(gulp.dest('dist/'))
 });
 
@@ -60,9 +60,9 @@ gulp.task('moveFiles', function() {
 gulp.task('images', function() {
   return gulp.src('images/**/*.+(png|jpg|jpeg|gif|svg)')
     // Caching images that ran through imagemin
-    .pipe(cache(imagemin({
+    .pipe(imagemin({
       interlaced: true,
-    })))
+    }))
     .pipe(gulp.dest('dist/images'))
 });
 

@@ -1,4 +1,9 @@
 var formValidationServiClean = (function(){
+    function refreshPage() {
+        if(isSuccess) {
+            location.reload();
+        }
+    }
     function showModal() {
         $('#serverResponse').modal('show');
     }
@@ -10,13 +15,13 @@ var formValidationServiClean = (function(){
 
     function loadingModal(title) {
         showCorrectModal('loading-modal');
-        $('#modaltitle').text(title);
+        $modalTitle.text(title);
         showModal();
     }
 
     function serverResponseModal(title, body) {
-        showCorrectModal(body)
-        $('#modaltitle').text(title);
+        showCorrectModal('server-response');
+        $modalTitle.text(title);
         $('div.server-response').html(body);
         showModal();
     }
@@ -32,18 +37,18 @@ var formValidationServiClean = (function(){
             formData[field.name] = field.value;
         });
         $.ajax({
-            url: '/php/contact_us.php',
+            url: $phpFilePath,
             data: formData,
             method:'POST',
             success: function(response) { 
                 var modalTitle, modalBody; 
                 if(response == "true") {
                     modalTitle = 'Success';
-                    modalBody = 'Thank you! your email has been sent.';
-                    $form.find('input').val("");
+                    modalBody = 'Your email has been successfully sent. You will receive an email confirmation from us very shortly. <div class="mt-4">For any questions you can email us at: <a class="link email" href= "mailto:contact@hcserviclean.com?Subject=Question" title="Email">contact<span class="at">@</span>hcserviclean.com</a></div>';
+                    isSuccess = true;
                 } else {
                     modalTitle = 'Error';
-                    modalBody = 'Sorry, something went wrong while submitting the form. If you see this message again do not hesite to contact us at <br/> <a class="link email" href= "mailto:contact@hcserviclean.com?Subject=Question" title="Email">contact<span class="at">@</span>hcserviclean.com</a>';
+                    modalBody = 'Sorry, something went wrong while submitting the form. <div class="mt-4">If you see this message again do not hesitate to contact us at <br/> <a class="link email" href= "mailto:contact@hcserviclean.com?Subject=Question" title="Email">contact<span class="at">@</span>hcserviclean.com</a></div>';
                 }
                 serverResponseModal(modalTitle, modalBody);
             }
@@ -51,6 +56,7 @@ var formValidationServiClean = (function(){
     }
 
     function formPost() {
+        isSuccess = false;
         $form.find('.length-check').each(function(){
             notEmpty(this);
         })
@@ -65,8 +71,10 @@ var formValidationServiClean = (function(){
 
     function initialize(args){
         $form = $(args.form);
-        $serverMessage = $form.find('.server-message');
+        $modal = $(args.modal);
+        $phpFilePath = $form.attr('action');
         $form.bind("submit", formPost);
+        $('#serverResponse').bind('hide.bs.modal', refreshPage);
         $length.bind("blur", function() { 
             return notEmpty(this); 
         });
@@ -74,10 +82,12 @@ var formValidationServiClean = (function(){
 
     var 
         $length = $('.length-check'),
+        $modal,
         $form,
-        $serverMessage,
+        $phpFilePath,
+        isSuccess = false,
+        $modalTitle = $('#modaltitle'),
         loadingTitle = 'Loading',
-        loadingBody = 'Loading...',
         publicAPI = {
             initialize: initialize
         }
