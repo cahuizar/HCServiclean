@@ -51,19 +51,15 @@ gulp.task('php', function() {
   return gulp.src('php/*')
     .pipe(gulp.dest('dist/php'))
 });
-gulp.task('moveFiles', function() {
-  return gulp.src(['*.+(png|jpg|jpeg|gif|svg|xml|webmanifest|txt|ico|xml)', '404.php', 'manifest.json'])
-    .pipe(gulp.dest('dist/'))
+
+gulp.task('images', function() {
+  return gulp.src(['images/*', '!images/original/', '!images/original/**'])
+    .pipe(gulp.dest('dist/images'))
 });
 
-// Optimizing Images 
-gulp.task('images', function() {
-  return gulp.src('images/**/*.+(png|jpg|jpeg|gif|svg)')
-    // Caching images that ran through imagemin
-    .pipe(imagemin({
-      interlaced: true,
-    }))
-    .pipe(gulp.dest('dist/images'))
+gulp.task('moveFiles', function() {
+  return gulp.src(['*.+(png|jpg|jpeg|gif|svg|xml|webmanifest|txt|ico|xml)', '404.php', 'manifest.json', ])
+    .pipe(gulp.dest('dist/'))
 });
 
 // Cleaning 
@@ -80,7 +76,7 @@ gulp.task('zip', () =>
 );
 
 gulp.task('clean:dist', function() {
-  return del.sync(['dist/**/*', '!dist/images', '!dist/images/**/*']);
+  return del.sync('dist/**/*');
 });
 
 

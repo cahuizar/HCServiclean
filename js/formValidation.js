@@ -74,7 +74,7 @@ var formValidationServiClean = (function(){
         $modal = $(args.modal);
         $phpFilePath = $form.attr('action');
         $form.bind("submit", formPost);
-        $('#serverResponse').bind('hide.bs.modal', refreshPage);
+        $modal.bind('hide.bs.modal', refreshPage);
         $length.bind("blur", function() { 
             return notEmpty(this); 
         });
