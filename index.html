@@ -293,7 +293,6 @@
 						</div>
 						<div class="col-12 col-md-3">
 							<button type="submit">Submit</button>
-							<div class="server-message"></div>
 						</div>
 					</div>
 				</form>
@@ -480,7 +479,6 @@
 								</div>
 								<div class="col-4 text-center">
 									<button type="submit" class="newsletter-submit">Subscribe</button>
-									<div class="server-message"></div>
 								</div>
 							</div>
 						</div>
@@ -523,7 +521,7 @@
 						<a class="link email" href= "mailto:contact@hcserviclean.com?Subject=Question" title="Email"><i class="fas fa-envelope"></i> contact<span class="at">@</span>hcserviclean.com</a>
 					</div>
 					<div class="contact-val contact-phone">
-						<a href="tel:1-847-293-4525" class="link"><i class="fas fa-phone-square" title="Phone Number"></i><span class="area-code"> (847)</span>-293-4525</a>
+						<a href="tel:1-847-293-4525" class="link" title="Phone Number"><i class="fas fa-phone-square"></i><span class="area-code"> (847)</span>-293-4525</a>
 					</div>
 				</div>
 			</div>
@@ -534,6 +532,39 @@
 			</div>
 		</div>
 	</footer>
+	<div class="modal fade" id="serverResponse" tabindex="-1" role="dialog" aria-labelledby="modaltitle" aria-hidden="true">
+		<div class="modal-dialog modal-dialog-centered modal-sm" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="modaltitle">Modal title</h5>
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+				<div class="modal-body">
+					<div class="container">
+						<div class="row">
+							<div class="col-12 text-center">
+								<div class="loading-modal">
+									<i class="fa fa-spinner fa-pulse fa-3x fa-fw"></i>
+									<span class="sr-only">Loading...</span>
+								</div>
+								<div class="server-response">
+									Your email has been sucessfuly sent. You will receive an email confirmation from us very shortly. 
+									If you have any questions/concerns do not hesitate to emails us at
+									<a class="link email" href= "mailto:contact@hcserviclean.com?Subject=Question" title="Email">contact<span class="at">@</span>hcserviclean.com</a>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="loading-modal btn btn-secondary btn-lg" disabled>Please Wait</button>
+					<button type="button" class="server-response btn btn-lg btn-primary" data-dismiss="modal">Close</button>
+				</div>
+			</div>
+		</div>
+	</div>
 	<script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js'></script>
 	<script src='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0/js/bootstrap.min.js'></script>
 	<script src='https://unpkg.com/scrollreveal/dist/scrollreveal.min.js'></script>
