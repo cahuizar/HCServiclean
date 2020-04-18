@@ -33,8 +33,8 @@ var formValidationServiClean = (function () {
     }
 
     function makeServerCall() {
-        var $form = $(this);
-        $.post($form.attr("action"), $form.serialize()).then(function () {
+        var $formData = $(this);
+        $.post($form.attr("action"), $formData.serialize()).then(function () {
             modalTitle = 'Success';
             modalBody = 'Your email has been successfully sent. You will receive an email confirmation from us very shortly. <div class="mt-4">For any questions you can email us at: <a class="link email" href= "mailto:contact@hcserviclean.com?Subject=Question" title="Email">contact<span class="at">@</span>hcserviclean.com</a></div>';
             isSuccess = true;
