@@ -1,9 +1,10 @@
-var formValidationServiClean = (function(){
+var formValidationServiClean = (function () {
     function refreshPage() {
-        if(isSuccess) {
+        if (isSuccess) {
             location.reload();
         }
     }
+
     function showModal() {
         $('#serverResponse').modal('show');
     }
@@ -28,59 +29,44 @@ var formValidationServiClean = (function(){
 
     function notEmpty(elem) {
         var isValid = $(elem).val() == '';
-        $(elem).toggleClass('invalid-input',isValid).next().toggle(isValid);
+        $(elem).toggleClass('invalid-input', isValid).next().toggle(isValid);
     }
 
     function makeServerCall() {
-        var formData = {};
-        $.each($form.serializeArray(), function (i, field) {
-            formData[field.name] = field.value;
-        });
-        $.ajax({
-            url: $phpFilePath,
-            data: formData,
-            method:'POST',
-            success: function(response) { 
-                var modalTitle, modalBody; 
-                if(response == "true") {
-                    modalTitle = 'Success';
-                    modalBody = 'Your email has been successfully sent. You will receive an email confirmation from us very shortly. <div class="mt-4">For any questions you can email us at: <a class="link email" href= "mailto:contact@hcserviclean.com?Subject=Question" title="Email">contact<span class="at">@</span>hcserviclean.com</a></div>';
-                    isSuccess = true;
-                } else {
-                    modalTitle = 'Error';
-                    modalBody = 'Sorry, something went wrong while submitting the form. <div class="mt-4">If you see this message again do not hesitate to contact us at <br/> <a class="link email" href= "mailto:contact@hcserviclean.com?Subject=Question" title="Email">contact<span class="at">@</span>hcserviclean.com</a></div>';
-                }
-                serverResponseModal(modalTitle, modalBody);
-            }
+        $.post($form.attr("action"), $form.serialize()).then(function () {
+            modalTitle = 'Success';
+            modalBody = 'Your email has been successfully sent. You will receive an email confirmation from us very shortly. <div class="mt-4">For any questions you can email us at: <a class="link email" href= "mailto:contact@hcserviclean.com?Subject=Question" title="Email">contact<span class="at">@</span>hcserviclean.com</a></div>';
+            isSuccess = true;
+            serverResponseModal(modalTitle, modalBody);
         });
     }
 
     function formPost() {
         isSuccess = false;
-        $form.find('.length-check').each(function(){
+        $form.find('.length-check').each(function () {
             notEmpty(this);
         })
         event.preventDefault();
         event.stopPropagation();
-        if($('.invalid-input').is(':visible')) {
+        if ($('.invalid-input').is(':visible')) {
             return false;
         }
         loadingModal(loadingTitle);
         makeServerCall();
     }
 
-    function initialize(args){
+    function initialize(args) {
         $form = $(args.form);
         $modal = $(args.modal);
         $phpFilePath = $form.attr('action');
         $form.bind("submit", formPost);
         $modal.bind('hide.bs.modal', refreshPage);
-        $length.bind("blur", function() { 
-            return notEmpty(this); 
+        $length.bind("blur", function () {
+            return notEmpty(this);
         });
     }
 
-    var 
+    var
         $length = $('.length-check'),
         $modal,
         $form,
