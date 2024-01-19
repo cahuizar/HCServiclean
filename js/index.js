@@ -14,16 +14,16 @@ $(document).ready(function(){
     $(window).scroll(checkScrolled);
     checkScrolled();
 
-    var contactForm = new formValidationServiClean();
-    contactForm.initialize({
-        form: '#contactUsForm',
-        modal: '#serverResponse'
-    });
-    var newsletterForm = new formValidationServiClean();
-    newsletterForm.initialize({
-        form: '#newsletterForm',
-        modal: '#serverResponse'
-    })
+    // var contactForm = new formValidationServiClean();
+    // contactForm.initialize({
+    //     form: '#contactUsForm',
+    //     modal: '#serverResponse'
+    // });
+    // var newsletterForm = new formValidationServiClean();
+    // newsletterForm.initialize({
+    //     form: '#newsletterForm',
+    //     modal: '#serverResponse'
+    // })
 	$('.carousel').carousel({
 		interval: 5000
 	})
