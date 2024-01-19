@@ -273,6 +273,9 @@
                 <div class="row mt-3 align-items-center">
                     <div class="col-12 col-md-9">
                         <div class="row">
+                            <input type="hidden" name="_subject" value="New free estimate request!">
+                            <input type="hidden" name="_autoresponse" value="We have received your free estimate submission. For any questions you can email us at: contact@hcserviclean.com">
+                            <input type="hidden" name="_template" value="table">
                             <div class="col-12 col-md-4 margin-in-between">
                                 <label for="name" class="sr-only">Name </label>
                                 <input name="name" class="length-check" type="text" placeholder="Name" id="name">
@@ -541,8 +544,11 @@
                     <div class="col-12 col-lg-6">
                         <div class="row">
                             <div class="col-8">
-                                <label for="newsletterEmail" class="sr-only">Email</label>
-                                <input name="newsletterEmail" id="newsletterEmail" type="email" class="length-check"
+                                <input type="hidden" name="_subject" value="Add User To Newsletter Request">
+                                <input type="hidden" name="_autoresponse" value="Thank you, you have been added to the newsletter list. For any questions you can email us at: contact@hcserviclean.com">
+                                <input type="hidden" name="_template" value="table">
+                                <label for="email" class="sr-only">Email</label>
+                                <input name="email" id="newsletterEmail" type="email" class="length-check"
                                        placeholder="Email Address here"/>
                                 <div class="invalid">
                                     Enter a valid Address
