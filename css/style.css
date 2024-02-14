@@ -36,11 +36,17 @@ input[type=number] {
 	color: #52b6bc;
 }
 
+.navbar {
+	position: absolute;
+	top: 0px;
+	width: 100%;
+	z-index: 999999;
+	background-color: #fff;
+}
+
 .navbar-light .navbar-toggler {
-	color: white;
 	border-color: transparent;
 	background: transparent !important;
-	
 }
 
 .section-description {
@@ -653,11 +659,6 @@ input[type=number]::-webkit-outer-spin-button {
 		background-attachment: unset !important;
 		background-position: center top !important; 
 	}
-
-	.navbar {
-		background-color: #fff;
-	}
-
 }
 
 /* LG and up  */

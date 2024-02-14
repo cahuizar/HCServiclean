@@ -1,18 +1,6 @@
 $(document).ready(function(){
     window.sr = ScrollReveal({ reset: true });
     sr.reveal('.scroll');
-    function checkScrolled() {
-        if($(window).width() > 991) {
-            if ($(this).scrollTop() > 10 ){  
-                $('#nav').addClass("scrolled");
-            }
-            else{
-                $('#nav').removeClass("scrolled");
-            }
-        }
-    }
-    $(window).scroll(checkScrolled);
-    checkScrolled();
 
     // var contactForm = new formValidationServiClean();
     // contactForm.initialize({
