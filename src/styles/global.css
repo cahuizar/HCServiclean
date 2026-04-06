@@ -1,0 +1,92 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    font-size: 16px;
+  }
+
+  /* Respect users who prefer no motion */
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+
+  /* Offset anchor scroll targets for fixed navbar */
+  [id] {
+    scroll-margin-top: 80px;
+  }
+
+  body {
+    @apply font-sans text-slate-700 antialiased;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply text-slate-900 font-bold;
+  }
+}
+
+@layer components {
+  /* Primary CTA button — gold bg, dark text (WCAG AAA: 10.2:1) */
+  .btn-primary {
+    @apply inline-block rounded-full bg-gold px-8 py-3 font-bold text-slate-900 transition-all duration-200 hover:bg-gold-dark hover:shadow-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold focus-visible:ring-offset-2 text-base min-h-[44px] min-w-[44px];
+  }
+
+  /* Outline button — white border for dark backgrounds */
+  .btn-outline {
+    @apply inline-block rounded-full border-2 border-white px-8 py-3 font-bold text-white transition-all duration-200 hover:bg-white hover:text-slate-900 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 text-base min-h-[44px] min-w-[44px];
+  }
+
+  /* Teal outline button — for light backgrounds */
+  .btn-teal-outline {
+    @apply inline-block rounded-full border-2 border-teal px-8 py-3 font-bold text-teal-dark transition-all duration-200 hover:bg-teal hover:text-slate-900 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal focus-visible:ring-offset-2 text-base min-h-[44px] min-w-[44px];
+  }
+
+  /* Focus ring for all focusable elements */
+  a:focus-visible,
+  button:focus-visible,
+  input:focus-visible,
+  textarea:focus-visible,
+  select:focus-visible {
+    @apply outline-none ring-2 ring-teal ring-offset-2;
+  }
+}
+
+@layer utilities {
+  /* Fade-in animation for scroll reveal */
+  @media (prefers-reduced-motion: no-preference) {
+    .fade-in {
+      animation: fadeIn 0.6s ease forwards;
+    }
+
+    .fade-in-up {
+      animation: fadeInUp 0.6s ease forwards;
+    }
+  }
+
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+}

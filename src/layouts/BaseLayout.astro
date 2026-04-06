@@ -1,0 +1,168 @@
+---
+import '../styles/global.css';
+import Nav from '../components/Nav.astro';
+import Footer from '../components/Footer.astro';
+
+interface Props {
+  title: string;
+  description: string;
+  canonical: string;
+  ogImage?: string;
+}
+
+const {
+  title,
+  description,
+  canonical,
+  ogImage = 'https://hcserviclean.com/images/og-image.jpg',
+} = Astro.props;
+
+const yearsInBusiness = new Date().getFullYear() - 2010;
+
+const localBusinessSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'LocalBusiness',
+  name: 'HC ServiClean LLC',
+  description:
+    'Professional residential house cleaning services in Fishers, Noblesville, Carmel, Geist, and Indianapolis, Indiana.',
+  url: 'https://hcserviclean.com',
+  telephone: '+1-847-293-4525',
+  email: 'contact@hcserviclean.com',
+  address: {
+    '@type': 'PostalAddress',
+    streetAddress: '12178 Packers Ave',
+    addressLocality: 'Fishers',
+    addressRegion: 'IN',
+    postalCode: '46037',
+    addressCountry: 'US',
+  },
+  geo: {
+    '@type': 'GeoCoordinates',
+    latitude: '39.978404',
+    longitude: '-85.948837',
+  },
+  openingHoursSpecification: [
+    {
+      '@type': 'OpeningHoursSpecification',
+      dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'],
+      opens: '08:00',
+      closes: '17:00',
+    },
+  ],
+  paymentAccepted: ['Cash', 'Check'],
+  priceRange: '$',
+  image: 'https://hcserviclean.com/images/og-image.jpg',
+  sameAs: [
+    'https://www.facebook.com/profile.php?id=61555496861439',
+    'https://www.yelp.com/biz/hc-serviclean-noblesville-2',
+  ],
+  foundingDate: '2010',
+  areaServed: [
+    'Fishers, IN',
+    'Indianapolis, IN',
+    'Carmel, IN',
+    'Noblesville, IN',
+    'Geist, IN',
+    'Westfield, IN',
+    'McCordsville, IN',
+    'Zionsville, IN',
+  ],
+};
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <!-- Primary SEO -->
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <meta name="robots" content="index,follow" />
+    <link rel="canonical" href={canonical} />
+
+    <!-- Open Graph -->
+    <meta property="og:locale" content="en_US" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={ogImage} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:site_name" content="HC ServiClean" />
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:site" content="@hcserviclean" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImage} />
+
+    <!-- Favicons -->
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+    <link rel="manifest" href="/site.webmanifest" />
+    <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#52b6bc" />
+    <meta name="apple-mobile-web-app-title" content="HC ServiClean" />
+    <meta name="application-name" content="HC ServiClean" />
+    <meta name="msapplication-TileColor" content="#52b6bc" />
+    <meta name="theme-color" content="#52b6bc" />
+
+    <!-- Preload hero image (LCP) -->
+    <link rel="preload" as="image" href="/images/carousel-1.jpg" />
+
+    <!-- Non-blocking Google Fonts (Lato 400 + 700) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="preload"
+      as="style"
+      href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap"
+    />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap"
+      media="print"
+      onload="this.media='all'"
+    />
+    <noscript>
+      <link
+        rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap"
+      />
+    </noscript>
+
+    <!-- Google Analytics 4 — replace G-XXXXXXXXXX with your GA4 measurement ID -->
+    <!-- To set up GA4: analytics.google.com → Create Property → get G-XXXXXXXXXX -->
+    <!--
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-XXXXXXXXXX');
+    </script>
+    -->
+
+    <!-- JSON-LD: LocalBusiness Schema -->
+    <script type="application/ld+json" set:html={JSON.stringify(localBusinessSchema)} />
+  </head>
+  <body class="bg-white">
+    <!-- Skip to main content (WCAG) -->
+    <a
+      href="#main-content"
+      class="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-50 focus:rounded focus:bg-teal focus:px-4 focus:py-2 focus:text-slate-900 focus:shadow-lg"
+    >
+      Skip to main content
+    </a>
+
+    <Nav />
+
+    <main id="main-content">
+      <slot />
+    </main>
+
+    <Footer yearsInBusiness={yearsInBusiness} />
+  </body>
+</html>

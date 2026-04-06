@@ -1,0 +1,114 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import EstimateForm from '../components/estimate/EstimateForm.astro';
+import SectionHeader from '../components/shared/SectionHeader.astro';
+---
+
+<BaseLayout
+  title="Get a Free Cleaning Estimate | HC ServiClean | Fishers, IN"
+  description="Request a free, no-obligation house cleaning estimate from HC ServiClean. We serve Fishers, Carmel, Noblesville, Geist, Westfield, and Indianapolis, Indiana. We'll contact you within one business day."
+  canonical="https://hcserviclean.com/estimate"
+>
+  <!-- Page header -->
+  <section class="bg-slate-900 py-20 pt-36" aria-label="Page header">
+    <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+      <nav aria-label="Breadcrumb" class="mb-4">
+        <ol class="flex items-center gap-2 text-sm text-slate-400" role="list">
+          <li><a href="/" class="hover:text-white transition-colors">Home</a></li>
+          <li aria-hidden="true"><span>/</span></li>
+          <li class="text-white font-bold" aria-current="page">Free Estimate</li>
+        </ol>
+      </nav>
+      <h1 class="text-4xl font-bold text-white sm:text-5xl">Get a Free Estimate</h1>
+      <p class="mt-3 max-w-2xl text-lg text-slate-300">
+        Fill out the form and we'll contact you within one business day with your personalized quote.
+        No obligation, no pressure.
+      </p>
+    </div>
+  </section>
+
+  <!-- Form + info side by side -->
+  <section class="bg-white py-20" aria-labelledby="estimate-heading">
+    <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex flex-col gap-12 lg:flex-row">
+        <!-- Form -->
+        <div class="w-full lg:w-2/3">
+          <SectionHeader
+            id="estimate-heading"
+            title="Request Your Free Estimate"
+            subtitle="Tell us about your home and we'll get back to you with a personalized quote."
+          />
+          <div class="rounded-2xl border border-slate-100 bg-white p-6 shadow-sm sm:p-8">
+            <EstimateForm />
+          </div>
+        </div>
+
+        <!-- What to expect -->
+        <aside class="w-full lg:w-1/3" aria-labelledby="expect-heading">
+          <h2 id="expect-heading" class="mb-6 text-xl font-bold text-slate-900">What to Expect</h2>
+
+          <ol class="space-y-6 text-sm" role="list">
+            {[
+              {
+                step: '1',
+                title: 'Submit the Form',
+                body: 'Fill out your contact and address details. Takes about 60 seconds.',
+              },
+              {
+                step: '2',
+                title: 'We\'ll Reach Out',
+                body: 'A member of our team will contact you within one business day to discuss your needs.',
+              },
+              {
+                step: '3',
+                title: 'Get Your Quote',
+                body: 'We\'ll provide a personalized service quote — no time limits, no surprises.',
+              },
+              {
+                step: '4',
+                title: 'Schedule Your Clean',
+                body: 'Pick a date and time that works for you. You don\'t even need to be home!',
+              },
+            ].map(({ step, title, body }) => (
+              <li class="flex gap-4">
+                <div class="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-teal text-slate-900 font-bold text-sm" aria-hidden="true">
+                  {step}
+                </div>
+                <div>
+                  <p class="font-bold text-slate-900">{title}</p>
+                  <p class="mt-0.5 text-slate-600">{body}</p>
+                </div>
+              </li>
+            ))}
+          </ol>
+
+          <!-- Contact alternatives -->
+          <div class="mt-8 rounded-xl bg-teal-50 p-5">
+            <p class="text-sm font-bold text-slate-900">Prefer to call or email?</p>
+            <div class="mt-3 space-y-2">
+              <a href="tel:+18472934525" class="flex items-center gap-2 text-sm text-slate-700 hover:text-teal-dark transition-colors">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="h-4 w-4 text-teal shrink-0" aria-hidden="true">
+                  <path fill-rule="evenodd" d="M2 3.5A1.5 1.5 0 013.5 2h1.148a1.5 1.5 0 011.465 1.175l.716 3.223a1.5 1.5 0 01-1.052 1.767l-.933.267c-.41.117-.643.555-.48.95a11.542 11.542 0 006.254 6.254c.395.163.833-.07.95-.48l.267-.933a1.5 1.5 0 011.767-1.052l3.223.716A1.5 1.5 0 0118 15.352V16.5a1.5 1.5 0 01-1.5 1.5H15c-1.149 0-2.263-.15-3.326-.43A13.022 13.022 0 012.43 8.326 13.019 13.019 0 012 5V3.5z" clip-rule="evenodd"/>
+                </svg>
+                (847) 293-4525
+              </a>
+              <a href="mailto:contact@hcserviclean.com" class="flex items-center gap-2 text-sm text-slate-700 hover:text-teal-dark transition-colors">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="h-4 w-4 text-teal shrink-0" aria-hidden="true">
+                  <path d="M3 4a2 2 0 00-2 2v1.161l8.441 4.221a1.25 1.25 0 001.118 0L19 7.162V6a2 2 0 00-2-2H3z"/>
+                  <path d="M19 8.839l-7.77 3.885a2.75 2.75 0 01-2.46 0L1 8.839V14a2 2 0 002 2h14a2 2 0 002-2V8.839z"/>
+                </svg>
+                contact@hcserviclean.com
+              </a>
+            </div>
+          </div>
+
+          <!-- Payment note -->
+          <div class="mt-4 rounded-xl border border-slate-200 p-4">
+            <p class="text-xs font-bold uppercase tracking-widest text-slate-500">Payment</p>
+            <p class="mt-1 text-sm text-slate-600">We currently accept <strong>cash and checks</strong>.</p>
+          </div>
+        </aside>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
