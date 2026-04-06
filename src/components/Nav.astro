@@ -23,9 +23,9 @@ const currentPath = Astro.url.pathname;
       <img
         src="/images/logo-no-slogan.svg"
         alt="HC ServiClean LLC logo"
-        width="140"
-        height="44"
-        class="h-10 w-auto"
+        width="180"
+        height="56"
+        class="nav-logo h-12 w-auto transition-all duration-300"
         loading="eager"
       />
     </a>
@@ -142,6 +142,11 @@ const currentPath = Astro.url.pathname;
     color: white;
   }
 
+  /* Logo: invert to white on dark/transparent nav */
+  #site-header .nav-logo {
+    filter: brightness(0) invert(1);
+  }
+
   /* Scrolled state */
   #site-header.scrolled {
     background-color: white;
@@ -149,6 +154,9 @@ const currentPath = Astro.url.pathname;
   }
   #site-header.scrolled .nav-text-color {
     color: #1e293b; /* slate-800 */
+  }
+  #site-header.scrolled .nav-logo {
+    filter: none;
   }
   #site-header.scrolled #mobile-menu-toggle:hover {
     background-color: #f1f5f9;
@@ -160,6 +168,9 @@ const currentPath = Astro.url.pathname;
   }
   #site-header.solid .nav-text-color {
     color: #1e293b;
+  }
+  #site-header.solid .nav-logo {
+    filter: none;
   }
 </style>
 
