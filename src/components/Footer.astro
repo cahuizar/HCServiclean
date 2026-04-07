@@ -1,4 +1,6 @@
 ---
+import { Image } from 'astro:assets';
+import logo from '../assets/images/logo-no-slogan.png';
 interface Props {
   yearsInBusiness: number;
 }
@@ -25,20 +27,15 @@ const pageLinks = [
     <div class="absolute top-8 left-[15%] h-20 w-20 rounded-full border border-gold opacity-[0.10]"></div>
   </div>
 
-  <!-- Teal→gold→teal accent bar -->
-  <div class="h-1 w-full bg-gradient-to-r from-teal via-gold to-teal"></div>
-
   <div class="relative z-10 container mx-auto px-4 py-12 sm:px-6 lg:px-8">
     <div class="grid grid-cols-1 gap-10 md:grid-cols-3">
 
       <!-- Brand -->
       <div>
         <a href="/" class="inline-block focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal rounded">
-          <img
-            src="/images/logo-no-slogan.svg"
+          <Image
+            src={logo}
             alt="HC ServiClean LLC logo"
-            width="608"
-            height="509"
             class="h-16 w-auto"
             loading="lazy"
           />

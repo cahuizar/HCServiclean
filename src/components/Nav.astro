@@ -1,4 +1,6 @@
 ---
+import { Image } from 'astro:assets';
+import logo from '../assets/images/logo-no-slogan.png';
 const navLinks = [
   { href: '/', label: 'Home' },
   { href: '/about', label: 'About' },
@@ -24,11 +26,9 @@ const currentPath = Astro.url.pathname;
       class="flex items-center focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white rounded"
       title="HC ServiClean Home"
     >
-      <img
-        src="/images/logo-no-slogan.svg"
+      <Image
+        src={logo}
         alt="HC ServiClean LLC logo"
-        width="608"
-        height="509"
         class="nav-logo h-14 w-auto transition-all duration-300 sm:h-16"
         loading="eager"
       />
