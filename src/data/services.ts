@@ -1,6 +1,12 @@
+import type { ImageMetadata } from 'astro';
+import bedroom from '../assets/images/bedroom.jpg';
+import bathroom from '../assets/images/bathroom.jpg';
+import kitchen from '../assets/images/kitchen.jpg';
+import extra from '../assets/images/extra.jpg';
+
 export interface ServiceItem {
   title: string;
-  image: string;
+  image: ImageMetadata;
   imageAlt: string;
   items: string[];
 }
@@ -8,7 +14,7 @@ export interface ServiceItem {
 export const services: ServiceItem[] = [
   {
     title: 'Bedroom',
-    image: '/images/bedroom.jpg',
+    image: bedroom,
     imageAlt: 'Clean, well-made bedroom in an Indiana home',
     items: [
       'Dust picture frames, ceiling fans, lamp shades, and blinds',
@@ -19,7 +25,7 @@ export const services: ServiceItem[] = [
   },
   {
     title: 'Bathroom',
-    image: '/images/bathroom.jpg',
+    image: bathroom,
     imageAlt: 'Sparkling clean bathroom with fresh towels',
     items: [
       'Clean tile walls, bathtubs, showers, toilets, vanity, and sink',
@@ -30,7 +36,7 @@ export const services: ServiceItem[] = [
   },
   {
     title: 'Kitchen',
-    image: '/images/kitchen.jpg',
+    image: kitchen,
     imageAlt: 'Clean modern kitchen with polished countertops',
     items: [
       'Clean countertops and the front of all appliances',
@@ -41,7 +47,7 @@ export const services: ServiceItem[] = [
   },
   {
     title: 'Extras',
-    image: '/images/extra.jpg',
+    image: extra,
     imageAlt: 'Additional cleaning services and special requests',
     items: [
       'Clean inside the fridge',

@@ -1,4 +1,6 @@
 ---
+import { Image } from 'astro:assets';
+import heroBg from '../../assets/images/carousel-1.jpg';
 const yearsInBusiness = new Date().getFullYear() - 2010;
 ---
 
@@ -9,14 +11,12 @@ const yearsInBusiness = new Date().getFullYear() - 2010;
   aria-label="Hero"
 >
   <!-- Background image — LCP element, fetchpriority high -->
-  <img
-    src="/images/carousel-1.jpg"
+  <Image
+    src={heroBg}
     alt="Beautiful clean home interior"
     class="absolute inset-0 h-full w-full object-cover object-center"
     fetchpriority="high"
     decoding="sync"
-    width="1920"
-    height="1280"
     loading="eager"
   />
 

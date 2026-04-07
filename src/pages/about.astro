@@ -2,6 +2,8 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import SectionHeader from '../components/shared/SectionHeader.astro';
 import Testimonials from '../components/home/Testimonials.astro';
+import { Image } from 'astro:assets';
+import mapImg from '../assets/images/map.PNG';
 import Newsletter from '../components/shared/Newsletter.astro';
 import BubbleDecor from '../components/shared/BubbleDecor.astro';
 import PageHeader from '../components/shared/PageHeader.astro';
@@ -82,14 +84,13 @@ const whyUs = [
       <div class="flex flex-col items-center gap-12 lg:flex-row">
         <!-- Map -->
         <div class="w-full lg:w-1/2">
-          <img
-            src="/images/map.PNG"
+          <Image
+            src={mapImg}
             alt="Map showing HC ServiClean service areas including Fishers, Indianapolis, Carmel, Noblesville, and surrounding areas"
-            width="600"
-            height="450"
+            width={600}
+            height={450}
             class="rounded-2xl shadow-md w-full"
             loading="lazy"
-            decoding="async"
           />
         </div>
 
