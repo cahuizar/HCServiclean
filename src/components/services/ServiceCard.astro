@@ -4,8 +4,9 @@ import type { ServiceItem } from '../../data/services';
 
 interface Props {
   service: ServiceItem;
+  loading?: 'lazy' | 'eager';
 }
-const { service } = Astro.props;
+const { service, loading = 'lazy' } = Astro.props;
 ---
 
 <article class="group overflow-hidden rounded-2xl border border-slate-100 bg-white shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-xl">
@@ -16,7 +17,7 @@ const { service } = Astro.props;
       width={600}
       height={450}
       class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
-      loading="lazy"
+      loading={loading}
     />
   </div>
 

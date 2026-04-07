@@ -28,7 +28,7 @@ import { services } from '../data/services';
       />
 
       <div class="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-4">
-        {services.map((service) => <ServiceCard service={service} />)}
+        {services.map((service, i) => <ServiceCard service={service} loading={i < 2 ? 'eager' : 'lazy'} />)}
       </div>
     </div>
   </section>
