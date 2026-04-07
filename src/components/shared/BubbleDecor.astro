@@ -1,0 +1,51 @@
+---
+/**
+ * BubbleDecor — reusable soap-bubble background decoration.
+ * Drop inside any `relative overflow-hidden` section.
+ *
+ * variant:
+ *   'light'  – subtle teal + gold on white/light backgrounds (default)
+ *   'dark'   – slightly brighter on dark (slate-900) backgrounds
+ */
+interface Props {
+  variant?: 'light' | 'dark';
+}
+const { variant = 'light' } = Astro.props;
+
+const tealFill  = variant === 'dark' ? 'bg-teal opacity-[0.12]'  : 'bg-teal opacity-[0.10]';
+const goldFill  = variant === 'dark' ? 'bg-gold opacity-[0.14]'  : 'bg-gold opacity-[0.12]';
+const tealRing  = variant === 'dark' ? 'border-teal opacity-[0.20]' : 'border-teal opacity-[0.18]';
+const goldRing  = variant === 'dark' ? 'border-gold opacity-[0.18]' : 'border-gold opacity-[0.15]';
+---
+
+<!--
+  All circles are pointer-events-none and aria-hidden.
+  They sit behind content via z-0 (content should use relative z-10).
+-->
+<div class="pointer-events-none absolute inset-0 overflow-hidden" aria-hidden="true">
+
+  <!-- Large filled teal — bleeds off top-left -->
+  <div class={`absolute -top-20 -left-20 h-72 w-72 rounded-full ${tealFill}`}></div>
+
+  <!-- Large ring teal — bleeds off bottom-right -->
+  <div class={`absolute -bottom-24 -right-24 h-80 w-80 rounded-full border-2 ${tealRing}`}></div>
+
+  <!-- Medium filled gold — upper-right quadrant -->
+  <div class={`absolute -top-8 right-[12%] h-40 w-40 rounded-full ${goldFill}`}></div>
+
+  <!-- Medium ring gold — lower-left quadrant -->
+  <div class={`absolute bottom-6 left-[18%] h-36 w-36 rounded-full border-2 ${goldRing}`}></div>
+
+  <!-- Small filled teal — mid-right -->
+  <div class={`absolute top-1/2 -right-6 h-24 w-24 rounded-full ${tealFill}`}></div>
+
+  <!-- Small ring teal — mid-left -->
+  <div class={`absolute top-[40%] left-[6%] h-20 w-20 rounded-full border ${tealRing}`}></div>
+
+  <!-- Tiny filled gold — lower-center -->
+  <div class={`absolute bottom-12 left-[55%] h-10 w-10 rounded-full ${goldFill}`}></div>
+
+  <!-- Tiny filled teal — upper-center -->
+  <div class={`absolute top-8 left-[42%] h-8 w-8 rounded-full ${tealFill}`}></div>
+
+</div>

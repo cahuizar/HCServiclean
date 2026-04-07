@@ -1,0 +1,236 @@
+---
+import { Image } from 'astro:assets';
+import logo from '../assets/images/logo-no-slogan.png';
+const navLinks = [
+  { href: '/', label: 'Home' },
+  { href: '/about', label: 'About' },
+  { href: '/services', label: 'Services' },
+  { href: '/faq', label: 'FAQ' },
+  { href: '/estimate', label: 'Free Estimate' },
+];
+
+const currentPath = Astro.url.pathname;
+---
+
+<header
+  class="fixed inset-x-0 top-0 z-50 transition-all duration-300"
+  id="site-header"
+>
+  <nav
+    class="mx-auto flex max-w-7xl items-center justify-between px-4 py-4 sm:px-6 lg:px-8"
+    aria-label="Main navigation"
+  >
+    <!-- Logo -->
+    <a
+      href="/"
+      aria-label="HC ServiClean — go to homepage"
+      class="flex items-center focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white rounded"
+    >
+      <Image
+        src={logo}
+        alt="HC ServiClean LLC logo"
+        class="nav-logo h-14 w-auto transition-all duration-300 sm:h-16"
+        loading="eager"
+      />
+    </a>
+
+    <!-- Desktop links -->
+    <ul class="hidden items-center gap-1 lg:flex" role="list">
+      {
+        navLinks.map((link) => {
+          const isEstimate = link.href === '/estimate';
+          const isActive = currentPath === link.href || (link.href !== '/' && currentPath.startsWith(link.href));
+          return (
+            <li>
+              {isEstimate ? (
+                <a
+                  href={link.href}
+                  class="btn-primary ml-4 !py-2 !px-6 text-sm"
+                >
+                  {link.label}
+                </a>
+              ) : (
+                <a
+                  href={link.href}
+                  class:list={[
+                    'relative px-4 py-2 text-sm font-bold transition-colors duration-200 rounded focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white',
+                    'nav-text-color',
+                    isActive
+                      ? 'after:absolute after:bottom-0 after:left-4 after:right-4 after:h-0.5 after:bg-gold after:rounded-full'
+                      : 'hover:text-gold',
+                  ]}
+                >
+                  {link.label}
+                </a>
+              )}
+            </li>
+          );
+        })
+      }
+    </ul>
+
+    <!-- Mobile hamburger -->
+    <button
+      id="mobile-menu-toggle"
+      type="button"
+      aria-expanded="false"
+      aria-controls="mobile-menu"
+      aria-label="Toggle navigation menu"
+      class="flex h-11 w-11 items-center justify-center rounded-full nav-text-color transition-colors hover:bg-white/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white lg:hidden"
+    >
+      <svg
+        id="hamburger-icon"
+        xmlns="http://www.w3.org/2000/svg"
+        fill="none"
+        viewBox="0 0 24 24"
+        stroke-width="2"
+        stroke="currentColor"
+        class="h-6 w-6"
+        aria-hidden="true"
+      >
+        <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
+      </svg>
+      <svg
+        id="close-icon"
+        xmlns="http://www.w3.org/2000/svg"
+        fill="none"
+        viewBox="0 0 24 24"
+        stroke-width="2"
+        stroke="currentColor"
+        class="hidden h-6 w-6"
+        aria-hidden="true"
+      >
+        <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+      </svg>
+    </button>
+  </nav>
+
+  <!-- Mobile menu -->
+  <div
+    id="mobile-menu"
+    class="hidden border-t border-white/20 bg-slate-900/95 backdrop-blur-sm lg:hidden"
+    role="dialog"
+    aria-label="Mobile navigation"
+  >
+    <ul class="flex flex-col gap-1 px-4 py-4" role="list">
+      {
+        navLinks.map((link) => {
+          const isActive = currentPath === link.href || (link.href !== '/' && currentPath.startsWith(link.href));
+          return (
+            <li>
+              <a
+                href={link.href}
+                class:list={[
+                  'flex min-h-[44px] items-center rounded-lg px-4 py-3 text-base font-bold transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white',
+                  isActive
+                    ? 'bg-teal/20 text-gold'
+                    : 'text-white hover:bg-white/10 hover:text-gold',
+                ]}
+              >
+                {link.label}
+              </a>
+            </li>
+          );
+        })
+      }
+    </ul>
+  </div>
+</header>
+
+<style>
+  /* Default nav: transparent, white text (for hero pages) */
+  #site-header {
+    background-color: transparent;
+  }
+  .nav-text-color {
+    color: white;
+  }
+
+  /* Logo icon: invert to white on dark/transparent nav */
+  #site-header .nav-logo {
+    filter: brightness(0) invert(1);
+  }
+
+  /* Scrolled state */
+  #site-header.scrolled {
+    background-color: white;
+    box-shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1);
+  }
+  #site-header.scrolled .nav-text-color {
+    color: #1e293b;
+  }
+  #site-header.scrolled .nav-logo {
+    filter: none;
+  }
+  #site-header.scrolled #mobile-menu-toggle:hover {
+    background-color: #f1f5f9;
+  }
+
+  /* Solid nav on non-hero pages */
+  #site-header.solid {
+    background-color: white;
+    box-shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1);
+  }
+  #site-header.solid .nav-text-color {
+    color: #1e293b;
+  }
+  #site-header.solid .nav-logo {
+    filter: none;
+  }
+</style>
+
+<script>
+  const header = document.getElementById('site-header');
+  const toggle = document.getElementById('mobile-menu-toggle');
+  const mobileMenu = document.getElementById('mobile-menu');
+  const hamburgerIcon = document.getElementById('hamburger-icon');
+  const closeIcon = document.getElementById('close-icon');
+
+  // Solid nav on pages without a hero background
+  const hasHero = document.querySelector('[data-hero]');
+  if (!hasHero && header) {
+    header.classList.add('solid');
+  }
+
+  // Scroll-based transparent ↔ white nav
+  function updateNav() {
+    if (!header || header.classList.contains('solid')) return;
+    if (window.scrollY > 60) {
+      header.classList.add('scrolled');
+    } else {
+      header.classList.remove('scrolled');
+    }
+  }
+  window.addEventListener('scroll', updateNav, { passive: true });
+  updateNav();
+
+  // Mobile menu toggle
+  toggle?.addEventListener('click', () => {
+    const isOpen = mobileMenu?.classList.contains('hidden') === false;
+    mobileMenu?.classList.toggle('hidden');
+    hamburgerIcon?.classList.toggle('hidden');
+    closeIcon?.classList.toggle('hidden');
+    toggle.setAttribute('aria-expanded', String(!isOpen));
+  });
+
+  // Close mobile menu on link click
+  mobileMenu?.querySelectorAll('a').forEach((link) => {
+    link.addEventListener('click', () => {
+      mobileMenu.classList.add('hidden');
+      hamburgerIcon?.classList.remove('hidden');
+      closeIcon?.classList.add('hidden');
+      toggle?.setAttribute('aria-expanded', 'false');
+    });
+  });
+
+  // Close mobile menu on Escape
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && !mobileMenu?.classList.contains('hidden')) {
+      mobileMenu?.classList.add('hidden');
+      hamburgerIcon?.classList.remove('hidden');
+      closeIcon?.classList.add('hidden');
+      toggle?.setAttribute('aria-expanded', 'false');
+      toggle?.focus();
+    }
+  });
+</script>

@@ -1,5 +1,0 @@
-Sitemap: https://hcserviclean.com/sitemap.xml
-
-User-agent: *
-
-Disallow: /php/*

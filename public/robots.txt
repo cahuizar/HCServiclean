@@ -1,0 +1,4 @@
+User-agent: *
+Disallow: /_assets/
+
+Sitemap: https://hcserviclean.com/sitemap-index.xml

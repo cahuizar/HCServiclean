@@ -1,0 +1,138 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import SectionHeader from '../components/shared/SectionHeader.astro';
+import Testimonials from '../components/home/Testimonials.astro';
+import { Image } from 'astro:assets';
+import mapImg from '../assets/images/map.PNG';
+import Newsletter from '../components/shared/Newsletter.astro';
+import BubbleDecor from '../components/shared/BubbleDecor.astro';
+import PageHeader from '../components/shared/PageHeader.astro';
+
+const yearsInBusiness = new Date().getFullYear() - 2010;
+
+const serviceAreas = [
+  'Fishers', 'Indianapolis', 'Carmel', 'Noblesville',
+  'Geist', 'Westfield', 'McCordsville', 'Cicero',
+  'Zionsville', 'Sheridan',
+];
+
+const whyUs = [
+  {
+    title: 'Full-Time Employees, Not Contractors',
+    body: 'Every cleaner on our team is a full-time, trained employee — not an independent contractor. That means consistent quality and accountability every time.',
+  },
+  {
+    title: 'Background & Reference Checked',
+    body: 'All staff are thoroughly background and reference checked before joining our team. Your home and family are safe with us.',
+  },
+  {
+    title: 'Service Quote, Not Time Quote',
+    body: "We quote by the service, not the clock. Your cleaners stay until everything is done right — no rushing, no shortcuts.",
+  },
+  {
+    title: 'Over 10 Years of Excellence',
+    body: `With over ${yearsInBusiness} years serving Indiana families, we have a long track record of reliability, thoroughness, and client satisfaction.`,
+  },
+  {
+    title: 'Flexible & Accommodating',
+    body: 'We work around your schedule. You also don\'t need to be home — just leave us entry instructions and we\'ll handle the rest.',
+  },
+  {
+    title: 'Your Products or Ours',
+    body: 'We come fully equipped, but if you prefer specific products for your home, we\'re happy to use what you provide.',
+  },
+];
+---
+
+<BaseLayout
+  title="About HC ServiClean | Serving Fishers, Carmel, Noblesville & Indianapolis"
+  description="Learn about HC ServiClean, Indiana's trusted residential cleaning company. Background-checked, full-time employees serving Fishers, Carmel, Noblesville, Geist, and Indianapolis for over 10 years."
+  canonical="https://hcserviclean.com/about"
+>
+  <PageHeader
+    title="About HC ServiClean"
+    subtitle="Indiana's trusted residential cleaning company since 2010. We're not just cleaners — we're neighbors who care about your home."
+    breadcrumb="About"
+  />
+
+  <!-- Why Choose Us -->
+  <section class="bg-slate-50 py-20" aria-labelledby="why-heading">
+    <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+      <SectionHeader
+        id="why-heading"
+        title="Why Choose HC ServiClean?"
+        subtitle={`We have been providing residential cleaning for more than ${yearsInBusiness} years with a history of excellence and dedication to our clients.`}
+      />
+
+      <div class="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+        {
+          whyUs.map(({ title, body }) => (
+            <div class="rounded-2xl border border-slate-100 p-6 shadow-sm hover:shadow-md transition-shadow">
+              <div class="mb-3 h-1 w-8 rounded-full bg-teal"></div>
+              <h3 class="mb-2 font-bold text-slate-900">{title}</h3>
+              <p class="text-sm leading-relaxed text-slate-600">{body}</p>
+            </div>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <!-- Service Area map -->
+  <section class="bg-white py-20" aria-labelledby="areas-heading">
+    <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex flex-col items-center gap-12 lg:flex-row">
+        <!-- Map -->
+        <div class="w-full lg:w-1/2">
+          <Image
+            src={mapImg}
+            alt="Map showing HC ServiClean service areas including Fishers, Indianapolis, Carmel, Noblesville, and surrounding areas"
+            width={600}
+            height={450}
+            class="rounded-2xl shadow-md w-full"
+            loading="lazy"
+          />
+        </div>
+
+        <!-- Areas list -->
+        <div class="w-full lg:w-1/2">
+          <SectionHeader
+            id="areas-heading"
+            title="Service Areas"
+            subtitle="We proudly serve families and homes throughout central Indiana."
+          />
+          <ul class="grid grid-cols-2 gap-3" role="list">
+            {
+              serviceAreas.map((area) => (
+                <li class="flex items-center gap-2 text-slate-700">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 0 20 20"
+                    fill="currentColor"
+                    class="h-4 w-4 shrink-0 text-teal"
+                    aria-hidden="true"
+                  >
+                    <path
+                      fill-rule="evenodd"
+                      d="M9.69 18.933l.003.001C9.89 19.02 10 19 10 19s.11.02.308-.066l.002-.001.006-.003.018-.008a5.741 5.741 0 00.281-.14c.186-.096.446-.24.757-.433.62-.384 1.445-.966 2.274-1.765C15.302 14.988 17 12.493 17 9A7 7 0 103 9c0 3.492 1.698 5.988 3.355 7.584a13.731 13.731 0 002.273 1.765 11.842 11.842 0 00.976.544l.062.029.018.008.006.003zM10 11.25a2.25 2.25 0 100-4.5 2.25 2.25 0 000 4.5z"
+                      clip-rule="evenodd"
+                    />
+                  </svg>
+                  <span class="font-medium">{area}, IN</span>
+                </li>
+              ))
+            }
+          </ul>
+          <div class="mt-8">
+            <a href="/estimate" class="btn-primary">
+              Get a Free Estimate
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <Testimonials />
+  <Newsletter />
+</BaseLayout>

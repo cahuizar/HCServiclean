@@ -1,0 +1,157 @@
+---
+---
+
+<form
+  id="estimate-form"
+  action="https://formsubmit.co/6474b868cfc023f9e72071099eff7d6d"
+  method="post"
+  class="space-y-5"
+  aria-label="Free estimate request form"
+  novalidate
+>
+  <!-- FormSubmit.co config -->
+  <input type="hidden" name="_subject" value="New free estimate request!" />
+  <input
+    type="hidden"
+    name="_autoresponse"
+    value="We have received your free estimate submission. For any questions you can email us at: info@hcserviclean.com"
+  />
+  <input type="hidden" name="_template" value="table" />
+
+  <!-- Row 1: Name / Email / Phone -->
+  <div class="grid grid-cols-1 gap-5 sm:grid-cols-3">
+    <div class="flex flex-col gap-1.5">
+      <label for="est-name" class="text-sm font-bold text-slate-900">
+        Full Name <span class="text-red-500" aria-hidden="true">*</span>
+      </label>
+      <input
+        id="est-name"
+        name="name"
+        type="text"
+        required
+        autocomplete="name"
+        placeholder="Jane Smith"
+        aria-required="true"
+        class="input-field"
+      />
+    </div>
+
+    <div class="flex flex-col gap-1.5">
+      <label for="est-email" class="text-sm font-bold text-slate-900">
+        Email Address <span class="text-red-500" aria-hidden="true">*</span>
+      </label>
+      <input
+        id="est-email"
+        name="email"
+        type="email"
+        required
+        autocomplete="email"
+        placeholder="jane@example.com"
+        aria-required="true"
+        class="input-field"
+      />
+    </div>
+
+    <div class="flex flex-col gap-1.5">
+      <label for="est-phone" class="text-sm font-bold text-slate-900">
+        Phone Number <span class="text-red-500" aria-hidden="true">*</span>
+      </label>
+      <input
+        id="est-phone"
+        name="phoneNumber"
+        type="tel"
+        required
+        autocomplete="tel"
+        placeholder="(555) 000-0000"
+        aria-required="true"
+        class="input-field"
+      />
+    </div>
+  </div>
+
+  <!-- Row 2: Address -->
+  <div class="flex flex-col gap-1.5">
+    <label for="est-address" class="text-sm font-bold text-slate-900">
+      Address Line 1 <span class="text-red-500" aria-hidden="true">*</span>
+    </label>
+    <input
+      id="est-address"
+      name="address1"
+      type="text"
+      required
+      autocomplete="street-address"
+      placeholder="123 Main Street"
+      aria-required="true"
+      class="input-field"
+    />
+  </div>
+
+  <div class="flex flex-col gap-1.5">
+    <label for="est-address2" class="text-sm font-bold text-slate-900">
+      Address Line 2 <span class="text-slate-500 text-xs font-normal">(optional)</span>
+    </label>
+    <input
+      id="est-address2"
+      name="address2"
+      type="text"
+      autocomplete="address-line2"
+      placeholder="Apt, suite, unit, etc."
+      class="input-field"
+    />
+  </div>
+
+  <!-- Row 3: City / Zip -->
+  <div class="grid grid-cols-1 gap-5 sm:grid-cols-2">
+    <div class="flex flex-col gap-1.5">
+      <label for="est-city" class="text-sm font-bold text-slate-900">
+        City <span class="text-red-500" aria-hidden="true">*</span>
+      </label>
+      <input
+        id="est-city"
+        name="city"
+        type="text"
+        required
+        autocomplete="address-level2"
+        placeholder="Fishers"
+        aria-required="true"
+        class="input-field"
+      />
+    </div>
+
+    <div class="flex flex-col gap-1.5">
+      <label for="est-zip" class="text-sm font-bold text-slate-900">
+        Zip Code <span class="text-red-500" aria-hidden="true">*</span>
+      </label>
+      <input
+        id="est-zip"
+        name="zipCode"
+        type="text"
+        required
+        autocomplete="postal-code"
+        placeholder="46037"
+        pattern="[0-9]{5}"
+        aria-required="true"
+        class="input-field"
+      />
+    </div>
+  </div>
+
+  <!-- Submit -->
+  <div class="pt-2">
+    <button
+      type="submit"
+      class="btn-primary w-full sm:w-auto px-12 text-base"
+    >
+      Request My Free Estimate
+    </button>
+    <p class="mt-3 text-xs text-slate-500">
+      * Required fields. We'll contact you within 1 business day.
+    </p>
+  </div>
+</form>
+
+<style>
+  .input-field {
+    @apply w-full min-h-[44px] rounded-xl border border-slate-300 bg-white px-4 py-2.5 text-slate-900 placeholder-slate-400 transition-colors focus:border-teal focus:outline-none focus:ring-2 focus:ring-teal/30 invalid:border-red-400;
+  }
+</style>

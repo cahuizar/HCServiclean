@@ -1,0 +1,36 @@
+---
+import BubbleDecor from './BubbleDecor.astro';
+
+interface Props {
+  title: string;
+  subtitle?: string;
+  breadcrumb: string;
+}
+
+const { title, subtitle, breadcrumb } = Astro.props;
+---
+
+<section
+  class="relative overflow-hidden py-24 pt-40"
+  style="background-color: #ffffff; background-image: radial-gradient(rgba(82,182,188,0.18) 1.5px, transparent 1.5px); background-size: 26px 26px;"
+  aria-label="Page header"
+>
+  <BubbleDecor variant="light" />
+  <div class="relative z-10 container mx-auto px-4 sm:px-6 lg:px-8">
+    <nav aria-label="Breadcrumb" class="mb-4">
+      <ol class="flex items-center gap-2 text-sm" role="list">
+        <li>
+          <a href="/" class="text-slate-500 transition-colors hover:text-teal">Home</a>
+        </li>
+        <li aria-hidden="true">
+          <span class="text-slate-300">/</span>
+        </li>
+        <li class="font-semibold text-teal" aria-current="page">{breadcrumb}</li>
+      </ol>
+    </nav>
+    <h1 class="text-4xl font-bold text-slate-900 sm:text-5xl">{title}</h1>
+    {subtitle && (
+      <p class="mt-3 max-w-2xl text-lg text-slate-500">{subtitle}</p>
+    )}
+  </div>
+</section>
