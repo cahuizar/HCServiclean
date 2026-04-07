@@ -17,7 +17,7 @@ export default {
         },
       },
       fontFamily: {
-        sans: ['Lato', 'system-ui', 'sans-serif'],
+        sans: ['Plus Jakarta Sans', 'system-ui', 'sans-serif'],
       },
       container: {
         center: true,

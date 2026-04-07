@@ -19,13 +19,17 @@ const currentPath = Astro.url.pathname;
     aria-label="Main navigation"
   >
     <!-- Logo -->
-    <a href="/" class="flex items-center focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white rounded" title="HC ServiClean Home">
+    <a
+      href="/"
+      class="flex items-center focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white rounded"
+      title="HC ServiClean Home"
+    >
       <img
         src="/images/logo-no-slogan.svg"
         alt="HC ServiClean LLC logo"
-        width="180"
-        height="56"
-        class="nav-logo h-12 w-auto transition-all duration-300"
+        width="608"
+        height="509"
+        class="nav-logo h-14 w-auto transition-all duration-300 sm:h-16"
         loading="eager"
       />
     </a>
@@ -142,7 +146,7 @@ const currentPath = Astro.url.pathname;
     color: white;
   }
 
-  /* Logo: invert to white on dark/transparent nav */
+  /* Logo icon: invert to white on dark/transparent nav */
   #site-header .nav-logo {
     filter: brightness(0) invert(1);
   }
@@ -153,7 +157,7 @@ const currentPath = Astro.url.pathname;
     box-shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1);
   }
   #site-header.scrolled .nav-text-color {
-    color: #1e293b; /* slate-800 */
+    color: #1e293b;
   }
   #site-header.scrolled .nav-logo {
     filter: none;
@@ -161,7 +165,8 @@ const currentPath = Astro.url.pathname;
   #site-header.scrolled #mobile-menu-toggle:hover {
     background-color: #f1f5f9;
   }
-  /* Force dark nav on non-hero pages (no hero image) */
+
+  /* Solid nav on non-hero pages */
   #site-header.solid {
     background-color: white;
     box-shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1);

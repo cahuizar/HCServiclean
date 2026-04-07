@@ -3,6 +3,8 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import SectionHeader from '../components/shared/SectionHeader.astro';
 import Testimonials from '../components/home/Testimonials.astro';
 import Newsletter from '../components/shared/Newsletter.astro';
+import BubbleDecor from '../components/shared/BubbleDecor.astro';
+import PageHeader from '../components/shared/PageHeader.astro';
 
 const yearsInBusiness = new Date().getFullYear() - 2010;
 
@@ -45,25 +47,14 @@ const whyUs = [
   description="Learn about HC ServiClean, Indiana's trusted residential cleaning company. Background-checked, full-time employees serving Fishers, Carmel, Noblesville, Geist, and Indianapolis for over 10 years."
   canonical="https://hcserviclean.com/about"
 >
-  <!-- Page header -->
-  <section class="bg-slate-900 py-20 pt-36" aria-label="Page header">
-    <div class="container mx-auto px-4 sm:px-6 lg:px-8">
-      <nav aria-label="Breadcrumb" class="mb-4">
-        <ol class="flex items-center gap-2 text-sm text-slate-400" role="list">
-          <li><a href="/" class="hover:text-white transition-colors">Home</a></li>
-          <li aria-hidden="true"><span>/</span></li>
-          <li class="text-white font-bold" aria-current="page">About</li>
-        </ol>
-      </nav>
-      <h1 class="text-4xl font-bold text-white sm:text-5xl">About HC ServiClean</h1>
-      <p class="mt-3 max-w-2xl text-lg text-slate-300">
-        Indiana's trusted residential cleaning company since 2010. We're not just cleaners — we're neighbors who care about your home.
-      </p>
-    </div>
-  </section>
+  <PageHeader
+    title="About HC ServiClean"
+    subtitle="Indiana's trusted residential cleaning company since 2010. We're not just cleaners — we're neighbors who care about your home."
+    breadcrumb="About"
+  />
 
   <!-- Why Choose Us -->
-  <section class="bg-white py-20" aria-labelledby="why-heading">
+  <section class="bg-slate-50 py-20" aria-labelledby="why-heading">
     <div class="container mx-auto px-4 sm:px-6 lg:px-8">
       <SectionHeader
         id="why-heading"
@@ -86,7 +77,7 @@ const whyUs = [
   </section>
 
   <!-- Service Area map -->
-  <section class="bg-teal-50 py-20" aria-labelledby="areas-heading">
+  <section class="bg-white py-20" aria-labelledby="areas-heading">
     <div class="container mx-auto px-4 sm:px-6 lg:px-8">
       <div class="flex flex-col items-center gap-12 lg:flex-row">
         <!-- Map -->

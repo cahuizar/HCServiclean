@@ -39,17 +39,17 @@
 @layer components {
   /* Primary CTA button — gold bg, dark text (WCAG AAA: 10.2:1) */
   .btn-primary {
-    @apply inline-block rounded-full bg-gold px-8 py-3 font-bold text-slate-900 transition-all duration-200 hover:bg-gold-dark hover:shadow-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold focus-visible:ring-offset-2 text-base min-h-[44px] min-w-[44px];
+    @apply inline-flex items-center justify-center leading-none rounded-full bg-gold px-8 py-3 font-bold text-slate-900 transition-all duration-200 hover:bg-gold-dark hover:shadow-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold focus-visible:ring-offset-2 text-base min-h-[44px] min-w-[44px];
   }
 
   /* Outline button — white border for dark backgrounds */
   .btn-outline {
-    @apply inline-block rounded-full border-2 border-white px-8 py-3 font-bold text-white transition-all duration-200 hover:bg-white hover:text-slate-900 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 text-base min-h-[44px] min-w-[44px];
+    @apply inline-flex items-center justify-center leading-none rounded-full border-2 border-white px-8 py-3 font-bold text-white transition-all duration-200 hover:bg-white hover:text-slate-900 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 text-base min-h-[44px] min-w-[44px];
   }
 
   /* Teal outline button — for light backgrounds */
   .btn-teal-outline {
-    @apply inline-block rounded-full border-2 border-teal px-8 py-3 font-bold text-teal-dark transition-all duration-200 hover:bg-teal hover:text-slate-900 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal focus-visible:ring-offset-2 text-base min-h-[44px] min-w-[44px];
+    @apply inline-flex items-center justify-center leading-none rounded-full border-2 border-teal px-8 py-3 font-bold text-teal-dark transition-all duration-200 hover:bg-teal hover:text-slate-900 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal focus-visible:ring-offset-2 text-base min-h-[44px] min-w-[44px];
   }
 
   /* Focus ring for all focusable elements */

@@ -4,6 +4,40 @@ import Hero from '../components/home/Hero.astro';
 import ServiceHighlights from '../components/home/ServiceHighlights.astro';
 import Testimonials from '../components/home/Testimonials.astro';
 import Newsletter from '../components/shared/Newsletter.astro';
+import BubbleDecor from '../components/shared/BubbleDecor.astro';
+
+const yearsInBusiness = new Date().getFullYear() - 2010;
+
+const stats = [
+  { label: 'Years Serving Indiana', number: yearsInBusiness, suffix: '+' },
+  { label: 'Happy Families', number: 500, suffix: '+' },
+  { label: 'Satisfaction Rate', number: 100, suffix: '%' },
+  { label: 'Background Checked Staff', number: null, suffix: '' },
+];
+
+const serviceAreas = [
+  'Fishers', 'Indianapolis', 'Carmel', 'Noblesville',
+  'Geist', 'Westfield', 'McCordsville', 'Cicero',
+  'Zionsville', 'Sheridan',
+];
+
+const steps = [
+  {
+    num: '1',
+    title: 'Request Your Estimate',
+    body: 'Fill out our quick form or give us a call. No commitment, no pressure — just a free personalized quote.',
+  },
+  {
+    num: '2',
+    title: 'We Schedule Your Clean',
+    body: "We'll reach out within one business day to confirm your date and time. You don't even need to be home.",
+  },
+  {
+    num: '3',
+    title: 'Relax in a Clean Home',
+    body: 'Our vetted, insured team arrives and cleans to your satisfaction — guaranteed or we come back free.',
+  },
+];
 ---
 
 <BaseLayout
@@ -13,30 +47,103 @@ import Newsletter from '../components/shared/Newsletter.astro';
 >
   <Hero />
 
-  <!-- Why Choose Us strip -->
-  <section class="bg-slate-900 py-10" aria-label="Why choose us highlights">
+  <!-- ─── HOW IT WORKS ─────────────────────────────────────────────────── -->
+  <section
+    class="relative overflow-hidden py-20"
+    style="background-color: #ffffff; background-image: radial-gradient(rgba(82,182,188,0.18) 1.5px, transparent 1.5px); background-size: 26px 26px;"
+    aria-labelledby="how-heading"
+  >
+    <BubbleDecor variant="light" />
+    <div class="relative z-10 container mx-auto px-4 sm:px-6 lg:px-8">
+
+      <div class="mb-16 text-center">
+        <p class="text-xs font-bold uppercase tracking-widest text-teal">Simple Process</p>
+        <h2 id="how-heading" class="mt-2 text-3xl font-bold text-slate-900 sm:text-4xl">Getting Started Is Easy</h2>
+        <p class="mt-3 text-slate-500">Three simple steps to a spotless home. No commitment required.</p>
+      </div>
+
+      <!-- Steps grid -->
+      <div class="relative grid grid-cols-1 gap-10 md:grid-cols-3 md:gap-6">
+
+        <!-- Connecting dashed line — desktop only, runs between circle centres -->
+        <div
+          class="pointer-events-none absolute top-10 left-[17%] right-[17%] hidden border-t-2 border-dashed border-teal/30 md:block"
+          aria-hidden="true"
+        ></div>
+
+        {steps.map(({ num, title, body }) => (
+          <div class="flex flex-col items-center text-center">
+
+            <!-- Numbered circle -->
+            <div class="relative z-10 flex h-20 w-20 shrink-0 items-center justify-center rounded-full bg-teal shadow-xl shadow-teal/25">
+              <span class="text-2xl font-bold text-white" aria-hidden="true">{num}</span>
+            </div>
+
+            <!-- Card -->
+            <div class="mt-6 w-full rounded-3xl bg-white p-7 shadow-sm ring-1 ring-slate-100">
+              <h3 class="font-bold text-slate-900">{title}</h3>
+              <p class="mt-2 text-sm leading-relaxed text-slate-500">{body}</p>
+            </div>
+
+          </div>
+        ))}
+      </div>
+
+      <div class="mt-12 text-center">
+        <a href="/estimate" class="btn-primary">Get My Free Estimate</a>
+      </div>
+
+    </div>
+  </section>
+
+  <ServiceHighlights />
+
+  <!-- ─── TRUST STATS ──────────────────────────────────────────────────── -->
+  <section class="bg-slate-900 py-14" aria-label="Trust statistics">
     <div class="container mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="grid grid-cols-2 gap-6 text-center md:grid-cols-4">
-        {[
-          { number: '10+', label: 'Years of Excellence' },
-          { number: '100%', label: 'Satisfaction Guaranteed' },
-          { number: 'Free', label: 'Estimates Always' },
-          { number: 'Trusted', label: 'Background Checked Staff' },
-        ].map(({ number, label }) => (
-          <div>
-            <p class="text-2xl font-bold text-gold sm:text-3xl">{number}</p>
-            <p class="mt-1 text-xs font-bold uppercase tracking-widest text-slate-400 sm:text-sm">{label}</p>
+      <div class="grid grid-cols-2 gap-10 md:grid-cols-4 md:gap-0 md:divide-x md:divide-slate-700">
+        {stats.map(({ label, number, suffix }) => (
+          <div class="flex flex-col items-center text-center md:px-8">
+            {number !== null
+              ? (
+                <span
+                  class="text-4xl font-bold text-gold sm:text-5xl"
+                  data-counter={number}
+                  data-suffix={suffix}
+                >0{suffix}</span>
+              ) : (
+                <span class="text-4xl font-bold text-gold sm:text-5xl">✓</span>
+              )
+            }
+            <span class="mt-2 text-xs font-semibold uppercase tracking-widest text-slate-400">{label}</span>
           </div>
         ))}
       </div>
     </div>
   </section>
 
-  <ServiceHighlights />
-
   <Testimonials />
 
-  <!-- CTA banner -->
+  <!-- ─── SERVICE AREAS TEASER ─────────────────────────────────────────── -->
+  <section class="bg-slate-50 py-16" aria-labelledby="areas-teaser-heading">
+    <div class="container mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <p class="text-xs font-bold uppercase tracking-widest text-teal">Where We Clean</p>
+      <h2 id="areas-teaser-heading" class="mt-2 text-2xl font-bold text-slate-900 sm:text-3xl">Serving Central Indiana</h2>
+      <p class="mt-2 text-slate-500">We proudly serve families across the Indianapolis metro area.</p>
+      <div class="mt-8 flex flex-wrap justify-center gap-2">
+        {serviceAreas.map((area) => (
+          <span class="rounded-full border border-teal/30 bg-white px-4 py-1.5 text-sm font-medium text-slate-700 shadow-sm">
+            {area}, IN
+          </span>
+        ))}
+      </div>
+      <div class="mt-8">
+        <a href="/about#areas-heading" class="btn-teal-outline">View Full Service Area</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── CTA BAND ──────────────────────────────────────────────────────── -->
   <section
     class="relative py-24 text-center"
     style="background-image: url('/images/contact-parallax.jpg'); background-size: cover; background-position: center;"
@@ -60,4 +167,31 @@ import Newsletter from '../components/shared/Newsletter.astro';
   </section>
 
   <Newsletter />
+
+  <script>
+    // Animated number counters for stats strip
+    const counters = document.querySelectorAll<HTMLElement>('[data-counter]');
+    const counterObs = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((e) => {
+          if (!e.isIntersecting) return;
+          const el = e.target as HTMLElement;
+          const target = parseInt(el.dataset.counter ?? '0', 10);
+          const suffix = el.dataset.suffix ?? '';
+          const duration = 1600;
+          const startTime = performance.now();
+          const tick = (now: number) => {
+            const progress = Math.min((now - startTime) / duration, 1);
+            const eased = 1 - Math.pow(1 - progress, 3);
+            el.textContent = Math.round(eased * target) + suffix;
+            if (progress < 1) requestAnimationFrame(tick);
+          };
+          requestAnimationFrame(tick);
+          counterObs.unobserve(el);
+        });
+      },
+      { threshold: 0.5 }
+    );
+    counters.forEach((el) => counterObs.observe(el));
+  </script>
 </BaseLayout>

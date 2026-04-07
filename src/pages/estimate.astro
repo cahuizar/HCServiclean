@@ -2,6 +2,9 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import EstimateForm from '../components/estimate/EstimateForm.astro';
 import SectionHeader from '../components/shared/SectionHeader.astro';
+import BubbleDecor from '../components/shared/BubbleDecor.astro';
+import Newsletter from '../components/shared/Newsletter.astro';
+import PageHeader from '../components/shared/PageHeader.astro';
 ---
 
 <BaseLayout
@@ -9,26 +12,14 @@ import SectionHeader from '../components/shared/SectionHeader.astro';
   description="Request a free, no-obligation house cleaning estimate from HC ServiClean. We serve Fishers, Carmel, Noblesville, Geist, Westfield, and Indianapolis, Indiana. We'll contact you within one business day."
   canonical="https://hcserviclean.com/estimate"
 >
-  <!-- Page header -->
-  <section class="bg-slate-900 py-20 pt-36" aria-label="Page header">
-    <div class="container mx-auto px-4 sm:px-6 lg:px-8">
-      <nav aria-label="Breadcrumb" class="mb-4">
-        <ol class="flex items-center gap-2 text-sm text-slate-400" role="list">
-          <li><a href="/" class="hover:text-white transition-colors">Home</a></li>
-          <li aria-hidden="true"><span>/</span></li>
-          <li class="text-white font-bold" aria-current="page">Free Estimate</li>
-        </ol>
-      </nav>
-      <h1 class="text-4xl font-bold text-white sm:text-5xl">Get a Free Estimate</h1>
-      <p class="mt-3 max-w-2xl text-lg text-slate-300">
-        Fill out the form and we'll contact you within one business day with your personalized quote.
-        No obligation, no pressure.
-      </p>
-    </div>
-  </section>
+  <PageHeader
+    title="Get a Free Estimate"
+    subtitle="Fill out the form and we'll contact you within one business day with your personalized quote. No obligation, no pressure."
+    breadcrumb="Free Estimate"
+  />
 
   <!-- Form + info side by side -->
-  <section class="bg-white py-20" aria-labelledby="estimate-heading">
+  <section class="bg-slate-50 py-20" aria-labelledby="estimate-heading">
     <div class="container mx-auto px-4 sm:px-6 lg:px-8">
       <div class="flex flex-col gap-12 lg:flex-row">
         <!-- Form -->
@@ -92,12 +83,12 @@ import SectionHeader from '../components/shared/SectionHeader.astro';
                 </svg>
                 (847) 293-4525
               </a>
-              <a href="mailto:contact@hcserviclean.com" class="flex items-center gap-2 text-sm text-slate-700 hover:text-teal-dark transition-colors">
+              <a href="mailto:info@hcserviclean.com" class="flex items-center gap-2 text-sm text-slate-700 hover:text-teal-dark transition-colors">
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="h-4 w-4 text-teal shrink-0" aria-hidden="true">
                   <path d="M3 4a2 2 0 00-2 2v1.161l8.441 4.221a1.25 1.25 0 001.118 0L19 7.162V6a2 2 0 00-2-2H3z"/>
                   <path d="M19 8.839l-7.77 3.885a2.75 2.75 0 01-2.46 0L1 8.839V14a2 2 0 002 2h14a2 2 0 002-2V8.839z"/>
                 </svg>
-                contact@hcserviclean.com
+                info@hcserviclean.com
               </a>
             </div>
           </div>
@@ -111,4 +102,6 @@ import SectionHeader from '../components/shared/SectionHeader.astro';
       </div>
     </div>
   </section>
+
+  <Newsletter />
 </BaseLayout>

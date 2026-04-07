@@ -15,6 +15,8 @@ const pageLinks = [
 ---
 
 <footer class="bg-slate-900 text-slate-300">
+  <!-- Brand accent bar -->
+  <div class="h-1 w-full bg-gradient-to-r from-teal via-gold to-teal"></div>
   <div class="container mx-auto px-4 py-12 sm:px-6 lg:px-8">
     <div class="grid grid-cols-1 gap-10 md:grid-cols-3">
       <!-- Brand -->
@@ -23,9 +25,9 @@ const pageLinks = [
           <img
             src="/images/logo-no-slogan.svg"
             alt="HC ServiClean LLC logo"
-            width="140"
-            height="44"
-            class="h-10 w-auto brightness-0 invert"
+            width="608"
+            height="509"
+            class="h-16 w-auto brightness-0 invert"
             loading="lazy"
           />
         </a>
@@ -40,7 +42,7 @@ const pageLinks = [
             target="_blank"
             rel="noopener noreferrer"
             aria-label="HC ServiClean on Facebook"
-            class="flex h-11 w-11 items-center justify-center rounded-full bg-slate-800 text-slate-300 transition-colors hover:bg-teal hover:text-slate-900 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal"
+            class="flex h-11 w-11 items-center justify-center rounded-full bg-slate-800 text-slate-300 transition-colors hover:bg-gold hover:text-slate-900 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold"
           >
             <!-- Facebook icon -->
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="h-5 w-5" aria-hidden="true">
@@ -52,7 +54,7 @@ const pageLinks = [
             target="_blank"
             rel="noopener noreferrer"
             aria-label="HC ServiClean on Yelp"
-            class="flex h-11 w-11 items-center justify-center rounded-full bg-slate-800 text-slate-300 transition-colors hover:bg-teal hover:text-slate-900 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal"
+            class="flex h-11 w-11 items-center justify-center rounded-full bg-slate-800 text-slate-300 transition-colors hover:bg-gold hover:text-slate-900 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold"
           >
             <!-- Yelp icon -->
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="h-5 w-5" aria-hidden="true">
@@ -64,7 +66,7 @@ const pageLinks = [
 
       <!-- Page Links -->
       <div>
-        <h2 class="mb-4 text-sm font-bold uppercase tracking-widest text-slate-100">
+        <h2 class="mb-4 text-sm font-bold uppercase tracking-widest text-gold">
           Quick Links
         </h2>
         <ul class="space-y-2" role="list">
@@ -73,7 +75,7 @@ const pageLinks = [
               <li>
                 <a
                   href={link.href}
-                  class="text-sm text-slate-400 transition-colors hover:text-teal focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal rounded"
+                  class="text-sm text-slate-400 transition-colors hover:text-gold focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold rounded"
                 >
                   {link.label}
                 </a>
@@ -85,17 +87,17 @@ const pageLinks = [
 
       <!-- Contact -->
       <div>
-        <h2 class="mb-4 text-sm font-bold uppercase tracking-widest text-slate-100">
+        <h2 class="mb-4 text-sm font-bold uppercase tracking-widest text-gold">
           Contact Us
         </h2>
         <ul class="space-y-3" role="list">
           <li>
             <a
               href="mailto:contact@hcserviclean.com?Subject=Question"
-              class="flex items-center gap-2 text-sm text-slate-400 transition-colors hover:text-teal focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal rounded"
+              class="flex items-center gap-2 text-sm text-slate-400 transition-colors hover:text-gold focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold rounded"
             >
               <!-- Email icon -->
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="h-4 w-4 shrink-0 text-teal" aria-hidden="true">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="h-4 w-4 shrink-0 text-gold" aria-hidden="true">
                 <path d="M1.5 8.67v8.58a3 3 0 003 3h15a3 3 0 003-3V8.67l-8.928 5.493a3 3 0 01-3.144 0L1.5 8.67z"/>
                 <path d="M22.5 6.908V6.75a3 3 0 00-3-3h-15a3 3 0 00-3 3v.158l9.714 5.978a1.5 1.5 0 001.572 0L22.5 6.908z"/>
               </svg>
@@ -105,10 +107,10 @@ const pageLinks = [
           <li>
             <a
               href="tel:+18472934525"
-              class="flex items-center gap-2 text-sm text-slate-400 transition-colors hover:text-teal focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal rounded"
+              class="flex items-center gap-2 text-sm text-slate-400 transition-colors hover:text-gold focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold rounded"
             >
               <!-- Phone icon -->
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="h-4 w-4 shrink-0 text-teal" aria-hidden="true">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="h-4 w-4 shrink-0 text-gold" aria-hidden="true">
                 <path fill-rule="evenodd" d="M1.5 4.5a3 3 0 013-3h1.372c.86 0 1.61.586 1.819 1.42l1.105 4.423a1.875 1.875 0 01-.694 1.955l-1.293.97c-.135.101-.164.249-.126.352a11.285 11.285 0 006.697 6.697c.103.038.25.009.352-.126l.97-1.293a1.875 1.875 0 011.955-.694l4.423 1.105c.834.209 1.42.959 1.42 1.82V19.5a3 3 0 01-3 3h-2.25C8.552 22.5 1.5 15.448 1.5 6.75V4.5z" clip-rule="evenodd"/>
               </svg>
               (847) 293-4525
