@@ -11,6 +11,13 @@ import PageHeader from '../components/shared/PageHeader.astro';
   description="Request a free, no-obligation house cleaning estimate from HC ServiClean. We serve Fishers, Carmel, Noblesville, Geist, Westfield, and Indianapolis, Indiana. We'll contact you within one business day."
   canonical="https://hcserviclean.com/estimate"
 >
+  <!-- Cloudflare Turnstile — only loaded on the estimate page -->
+  <script
+    slot="head"
+    src="https://challenges.cloudflare.com/turnstile/v0/api.js"
+    async
+    defer
+  ></script>
   <PageHeader
     title="Get a Free Estimate"
     subtitle="Fill out the form and we'll contact you within one business day with your personalized quote. No obligation, no pressure."
