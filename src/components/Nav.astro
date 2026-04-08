@@ -108,23 +108,24 @@ const currentPath = Astro.url.pathname;
   <!-- Mobile menu -->
   <div
     id="mobile-menu"
-    class="hidden border-t border-white/20 bg-slate-900/95 backdrop-blur-sm lg:hidden"
+    class="hidden border-t-2 border-teal bg-white shadow-2xl lg:hidden"
     role="dialog"
     aria-label="Mobile navigation"
   >
-    <ul class="flex flex-col gap-1 px-4 py-4" role="list">
+    <!-- Nav links (Home / About / Services / FAQ) -->
+    <ul class="flex flex-col px-4 pt-4 pb-2" role="list">
       {
-        navLinks.map((link) => {
+        navLinks.filter((l) => l.href !== '/estimate').map((link) => {
           const isActive = currentPath === link.href || (link.href !== '/' && currentPath.startsWith(link.href));
           return (
             <li>
               <a
                 href={link.href}
                 class:list={[
-                  'flex min-h-[44px] items-center rounded-lg px-4 py-3 text-base font-bold transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white',
+                  'flex min-h-[44px] items-center rounded-xl px-4 py-3 text-base font-bold transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal',
                   isActive
-                    ? 'bg-teal/20 text-gold'
-                    : 'text-white hover:bg-white/10 hover:text-gold',
+                    ? 'bg-teal/10 text-teal'
+                    : 'text-slate-800 hover:bg-slate-50 hover:text-teal',
                 ]}
               >
                 {link.label}
@@ -134,6 +135,28 @@ const currentPath = Astro.url.pathname;
         })
       }
     </ul>
+
+    <!-- Divider -->
+    <div class="mx-4 border-t border-slate-100 my-1"></div>
+
+    <!-- CTA + quick call -->
+    <div class="flex flex-col gap-3 px-4 py-5">
+      <a
+        href="/estimate"
+        class="btn-primary flex w-full items-center justify-center text-base py-3.5"
+      >
+        Get a Free Estimate
+      </a>
+      <a
+        href="tel:+18472934525"
+        class="flex min-h-[44px] items-center justify-center gap-2 rounded-xl border border-slate-200 text-sm font-semibold text-slate-600 transition-colors hover:border-teal hover:text-teal focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal"
+      >
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="h-4 w-4 shrink-0 text-teal" aria-hidden="true">
+          <path fill-rule="evenodd" d="M2 3.5A1.5 1.5 0 013.5 2h1.148a1.5 1.5 0 011.465 1.175l.716 3.223a1.5 1.5 0 01-1.052 1.767l-.933.267c-.41.117-.643.555-.48.95a11.542 11.542 0 006.254 6.254c.395.163.833-.07.95-.48l.267-.933a1.5 1.5 0 011.767-1.052l3.223.716A1.5 1.5 0 0118 15.352V16.5a1.5 1.5 0 01-1.5 1.5H15c-1.149 0-2.263-.15-3.326-.43A13.022 13.022 0 012.43 8.326 13.019 13.019 0 012 5V3.5z" clip-rule="evenodd"/>
+        </svg>
+        (847) 293-4525
+      </a>
+    </div>
   </div>
 </header>
 
@@ -177,6 +200,21 @@ const currentPath = Astro.url.pathname;
   #site-header.solid .nav-logo {
     filter: none;
   }
+
+  /* Mobile menu open — force white nav so menu connects cleanly */
+  #site-header.menu-open {
+    background-color: white;
+    box-shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1);
+  }
+  #site-header.menu-open .nav-text-color {
+    color: #1e293b;
+  }
+  #site-header.menu-open .nav-logo {
+    filter: none;
+  }
+  #site-header.menu-open #mobile-menu-toggle:hover {
+    background-color: #f1f5f9;
+  }
 </style>
 
 <script>
@@ -195,6 +233,8 @@ const currentPath = Astro.url.pathname;
   // Scroll-based transparent ↔ white nav
   function updateNav() {
     if (!header || header.classList.contains('solid')) return;
+    // Don't fight the menu-open override while menu is open
+    if (header.classList.contains('menu-open')) return;
     if (window.scrollY > 60) {
       header.classList.add('scrolled');
     } else {
@@ -204,32 +244,41 @@ const currentPath = Astro.url.pathname;
   window.addEventListener('scroll', updateNav, { passive: true });
   updateNav();
 
+  // Shared helper — close menu and restore correct nav state
+  function closeMenu() {
+    mobileMenu?.classList.add('hidden');
+    hamburgerIcon?.classList.remove('hidden');
+    closeIcon?.classList.add('hidden');
+    toggle?.setAttribute('aria-expanded', 'false');
+    // Remove forced-white override, then let scroll position decide
+    header?.classList.remove('menu-open');
+    updateNav();
+  }
+
   // Mobile menu toggle
   toggle?.addEventListener('click', () => {
-    const isOpen = mobileMenu?.classList.contains('hidden') === false;
-    mobileMenu?.classList.toggle('hidden');
-    hamburgerIcon?.classList.toggle('hidden');
-    closeIcon?.classList.toggle('hidden');
-    toggle.setAttribute('aria-expanded', String(!isOpen));
+    const isOpen = !mobileMenu?.classList.contains('hidden');
+    if (isOpen) {
+      closeMenu();
+    } else {
+      mobileMenu?.classList.remove('hidden');
+      hamburgerIcon?.classList.add('hidden');
+      closeIcon?.classList.remove('hidden');
+      toggle.setAttribute('aria-expanded', 'true');
+      // Force white nav so the open menu connects cleanly to the header
+      header?.classList.add('menu-open');
+    }
   });
 
   // Close mobile menu on link click
   mobileMenu?.querySelectorAll('a').forEach((link) => {
-    link.addEventListener('click', () => {
-      mobileMenu.classList.add('hidden');
-      hamburgerIcon?.classList.remove('hidden');
-      closeIcon?.classList.add('hidden');
-      toggle?.setAttribute('aria-expanded', 'false');
-    });
+    link.addEventListener('click', () => closeMenu());
   });
 
   // Close mobile menu on Escape
   document.addEventListener('keydown', (e) => {
     if (e.key === 'Escape' && !mobileMenu?.classList.contains('hidden')) {
-      mobileMenu?.classList.add('hidden');
-      hamburgerIcon?.classList.remove('hidden');
-      closeIcon?.classList.add('hidden');
-      toggle?.setAttribute('aria-expanded', 'false');
+      closeMenu();
       toggle?.focus();
     }
   });
