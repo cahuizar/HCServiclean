@@ -2,7 +2,6 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import ServiceCard from '../components/services/ServiceCard.astro';
 import SectionHeader from '../components/shared/SectionHeader.astro';
-import Newsletter from '../components/shared/Newsletter.astro';
 import PageHeader from '../components/shared/PageHeader.astro';
 import { services } from '../data/services';
 ---
@@ -66,7 +65,7 @@ import { services } from '../data/services';
   </section>
 
   <!-- CTA -->
-  <section class="bg-white py-16 text-center" aria-label="Get started">
+  <section class="bg-slate-50 py-16 text-center" aria-label="Get started">
     <div class="container mx-auto px-4 sm:px-6 lg:px-8">
       <h2 class="text-2xl font-bold text-slate-900 sm:text-3xl">Ready to Book a Clean?</h2>
       <p class="mt-2 text-slate-600">Get your free estimate — no obligation, no pressure.</p>
@@ -78,5 +77,4 @@ import { services } from '../data/services';
     </div>
   </section>
 
-  <Newsletter />
 </BaseLayout>

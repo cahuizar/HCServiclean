@@ -1,5 +1,6 @@
 ---
 import { Image } from 'astro:assets';
+import { Icon } from 'astro-icon/components';
 import logo from '../assets/images/logo-no-slogan.png';
 interface Props {
   yearsInBusiness: number;
@@ -54,9 +55,7 @@ const pageLinks = [
             aria-label="HC ServiClean on Facebook"
             class="flex h-10 w-10 items-center justify-center rounded-full bg-teal-50 text-teal transition-colors hover:bg-teal hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal"
           >
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="h-5 w-5" aria-hidden="true">
-              <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
-            </svg>
+            <Icon name="fa6-brands:facebook" class="h-5 w-5" aria-hidden="true" />
           </a>
           <a
             href="https://www.yelp.com/biz/hc-serviclean-noblesville-2"
@@ -65,9 +64,7 @@ const pageLinks = [
             aria-label="HC ServiClean on Yelp"
             class="flex h-10 w-10 items-center justify-center rounded-full bg-teal-50 text-teal transition-colors hover:bg-teal hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal"
           >
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="h-5 w-5" aria-hidden="true">
-              <path d="M20.16 12.73l-4.916 1.135c-.83.19-1.572-.584-1.31-1.398l.055-.17 1.694-4.689c.297-.82 1.38-.98 1.898-.27l3.223 4.386c.47.64.07 1.54-.644 1.706zM10.78 20.01l.433-5.025c.073-.847.975-1.3 1.69-.857l.155.1 4.204 3.147c.733.548.59 1.666-.243 2.016l-4.637 1.878c-.787.32-1.658-.274-1.602-1.26zm-7.857-1.024l4.37-2.583c.739-.437 1.608.056 1.624.914v.181l-.082 5.075c-.014.858-.914 1.381-1.672.982L2.718 21.29c-.743-.385-.855-1.41-.195-1.953zm3.093-7.938c.543-.662 1.582-.567 1.99.18l.085.17 2.24 4.576c.378.772-.14 1.664-1 1.68h-.182L4.024 17.6c-.866-.016-1.42-.915-1.073-1.706l2.065-4.846zm5.025-8.06l.092 5.075c.016.856-.846 1.412-1.602.994l-.157-.095L4.97 6.018c-.74-.513-.644-1.64.166-2.02L9.73 1.906c.804-.38 1.703.2 1.71 1.082z"/>
-            </svg>
+            <Icon name="fa6-brands:yelp" class="h-5 w-5" aria-hidden="true" />
           </a>
         </div>
       </div>
