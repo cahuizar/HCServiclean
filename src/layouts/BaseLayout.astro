@@ -147,6 +147,9 @@ const localBusinessSchema = {
 
     <!-- JSON-LD: LocalBusiness Schema -->
     <script type="application/ld+json" set:html={JSON.stringify(localBusinessSchema)} />
+
+    <!-- Page-specific head content (e.g. Turnstile script on /estimate) -->
+    <slot name="head" />
   </head>
   <body class="bg-white">
     <!-- Skip to main content (WCAG) -->

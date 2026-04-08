@@ -1,23 +1,52 @@
 ---
 ---
 
+<!-- Success card — hidden until fetch resolves successfully -->
+<div
+  id="est-success"
+  class="hidden text-center space-y-6 py-10"
+  aria-live="polite"
+  role="status"
+>
+  <!-- Checkmark icon -->
+  <div class="mx-auto flex h-20 w-20 items-center justify-center rounded-full bg-teal/10">
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      stroke-width="2.5"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+      class="h-10 w-10 text-teal"
+      aria-hidden="true"
+    >
+      <path d="M20 6L9 17l-5-5" />
+    </svg>
+  </div>
+
+  <div class="space-y-2">
+    <h2 class="text-2xl font-bold text-slate-900">Your estimate request was sent!</h2>
+    <p class="text-slate-600 max-w-sm mx-auto">
+      We'll reach out within 1 business day to discuss your home's needs.
+    </p>
+  </div>
+
+  <div class="flex flex-col sm:flex-row items-center justify-center gap-3 pt-2">
+    <a href="/" class="btn-primary px-8">Back to Home</a>
+    <a href="/services" class="btn-teal-outline px-8">View Our Services</a>
+  </div>
+</div>
+
+<!-- Estimate form -->
 <form
   id="estimate-form"
-  action="https://formsubmit.co/6474b868cfc023f9e72071099eff7d6d"
-  method="post"
+  action="https://formtorch.com/f/zxgd3n6m9r"
+  method="POST"
   class="space-y-5"
   aria-label="Free estimate request form"
   novalidate
 >
-  <!-- FormSubmit.co config -->
-  <input type="hidden" name="_subject" value="New free estimate request!" />
-  <input
-    type="hidden"
-    name="_autoresponse"
-    value="We have received your free estimate submission. For any questions you can email us at: info@hcserviclean.com"
-  />
-  <input type="hidden" name="_template" value="table" />
-
   <!-- Row 1: Name / Email / Phone -->
   <div class="grid grid-cols-1 gap-5 sm:grid-cols-3">
     <div class="flex flex-col gap-1.5">
@@ -136,10 +165,25 @@
     </div>
   </div>
 
+  <!-- Cloudflare Turnstile widget -->
+  <div class="cf-turnstile" data-sitekey="0x4AAAAAAC2NcgP4v9l5R87v"></div>
+
+  <!-- Error banner — hidden until a fetch failure occurs -->
+  <div
+    id="est-error"
+    class="hidden rounded-xl border border-red-200 bg-red-50 p-4 text-sm text-red-700"
+    role="alert"
+    aria-live="assertive"
+  >
+    <span class="font-semibold">Something went wrong.</span> Please try again or call us at{' '}
+    <a href="tel:+18472934525" class="underline hover:no-underline">(847) 293-4525</a>.
+  </div>
+
   <!-- Submit -->
   <div class="pt-2">
     <button
       type="submit"
+      id="est-submit"
       class="btn-primary w-full sm:w-auto px-12 text-base"
     >
       Request My Free Estimate
@@ -155,3 +199,54 @@
     @apply w-full min-h-[44px] rounded-xl border border-slate-300 bg-white px-4 py-2.5 text-slate-900 placeholder-slate-400 transition-colors focus:border-teal focus:outline-none focus:ring-2 focus:ring-teal/30 invalid:border-red-400;
   }
 </style>
+
+<script>
+  const form = document.getElementById('estimate-form') as HTMLFormElement;
+  const successEl = document.getElementById('est-success') as HTMLElement;
+  const errorEl = document.getElementById('est-error') as HTMLElement;
+  const submitBtn = document.getElementById('est-submit') as HTMLButtonElement;
+  const originalText = submitBtn.textContent ?? 'Request My Free Estimate';
+
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+
+    // Hide any previous error
+    errorEl.classList.add('hidden');
+
+    // Native browser validation first
+    if (!form.checkValidity()) {
+      form.reportValidity();
+      return;
+    }
+
+    // Loading state
+    submitBtn.disabled = true;
+    submitBtn.textContent = 'Sending…';
+
+    // Collect all fields including cf-turnstile-response
+    const data = Object.fromEntries(new FormData(form));
+
+    try {
+      const res = await fetch('https://formtorch.com/f/zxgd3n6m9r', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(data),
+      });
+
+      if (!res.ok) throw new Error(`HTTP ${res.status}`);
+
+      // Success: hide form, reveal confirmation card, scroll it into view
+      form.classList.add('hidden');
+      successEl.classList.remove('hidden');
+      successEl.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    } catch {
+      // Failure: show error, reset button, reset Turnstile for a fresh token
+      errorEl.classList.remove('hidden');
+      submitBtn.disabled = false;
+      submitBtn.textContent = originalText;
+      if (typeof window !== 'undefined' && (window as any).turnstile) {
+        (window as any).turnstile.reset();
+      }
+    }
+  });
+</script>
