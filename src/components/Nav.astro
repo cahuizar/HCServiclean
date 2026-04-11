@@ -3,10 +3,10 @@ import { Image } from 'astro:assets';
 import logo from '../assets/images/logo-no-slogan.png';
 const navLinks = [
   { href: '/', label: 'Home' },
-  { href: '/about', label: 'About' },
-  { href: '/services', label: 'Services' },
-  { href: '/faq', label: 'FAQ' },
-  { href: '/estimate', label: 'Free Estimate' },
+  { href: '/about/', label: 'About' },
+  { href: '/services/', label: 'Services' },
+  { href: '/faq/', label: 'FAQ' },
+  { href: '/estimate/', label: 'Free Estimate' },
 ];
 
 const currentPath = Astro.url.pathname;
@@ -142,7 +142,7 @@ const currentPath = Astro.url.pathname;
     <!-- CTA + quick call -->
     <div class="flex flex-col gap-3 px-4 py-5">
       <a
-        href="/estimate"
+        href="/estimate/"
         class="btn-primary flex w-full items-center justify-center text-base py-3.5"
       >
         Get a Free Estimate
