@@ -5,6 +5,7 @@ import Testimonials from '../components/home/Testimonials.astro';
 import { Image } from 'astro:assets';
 import mapImg from '../assets/images/map.PNG';
 import PageHeader from '../components/shared/PageHeader.astro';
+import { locations } from '../data/locations';
 
 const yearsInBusiness = new Date().getFullYear() - 2010;
 
@@ -13,6 +14,10 @@ const serviceAreas = [
   'Geist', 'Westfield', 'McCordsville', 'Cicero',
   'Zionsville', 'Sheridan',
 ];
+
+const locationMap = Object.fromEntries(
+  locations.map((l) => [l.city, l.canonicalPath])
+);
 
 const whyUs = [
   {
@@ -43,9 +48,9 @@ const whyUs = [
 ---
 
 <BaseLayout
-  title="About HC ServiClean | Serving Fishers, Carmel, Noblesville & Indianapolis"
-  description="Learn about HC ServiClean, Indiana's trusted residential cleaning company. Background-checked, full-time employees serving Fishers, Carmel, Noblesville, Geist, and Indianapolis for over 10 years."
-  canonical="https://hcserviclean.com/about"
+  title="About HC ServiClean | House Cleaning in Indiana"
+  description="Learn about HC ServiClean, Indiana's trusted residential cleaning company. Background-checked, full-time employees serving Fishers, Carmel, Noblesville, Geist, and Indianapolis since 2010."
+  canonical="https://hcserviclean.com/about/"
 >
   <PageHeader
     title="About HC ServiClean"
@@ -101,28 +106,35 @@ const whyUs = [
           />
           <ul class="grid grid-cols-2 gap-3" role="list">
             {
-              serviceAreas.map((area) => (
-                <li class="flex items-center gap-2 text-slate-700">
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    viewBox="0 0 20 20"
-                    fill="currentColor"
-                    class="h-4 w-4 shrink-0 text-teal"
-                    aria-hidden="true"
-                  >
-                    <path
-                      fill-rule="evenodd"
-                      d="M9.69 18.933l.003.001C9.89 19.02 10 19 10 19s.11.02.308-.066l.002-.001.006-.003.018-.008a5.741 5.741 0 00.281-.14c.186-.096.446-.24.757-.433.62-.384 1.445-.966 2.274-1.765C15.302 14.988 17 12.493 17 9A7 7 0 103 9c0 3.492 1.698 5.988 3.355 7.584a13.731 13.731 0 002.273 1.765 11.842 11.842 0 00.976.544l.062.029.018.008.006.003zM10 11.25a2.25 2.25 0 100-4.5 2.25 2.25 0 000 4.5z"
-                      clip-rule="evenodd"
-                    />
-                  </svg>
-                  <span class="font-medium">{area}, IN</span>
-                </li>
-              ))
+              serviceAreas.map((area) => {
+                const href = locationMap[area];
+                return (
+                  <li class="flex items-center gap-2 text-slate-700">
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      viewBox="0 0 20 20"
+                      fill="currentColor"
+                      class="h-4 w-4 shrink-0 text-teal"
+                      aria-hidden="true"
+                    >
+                      <path
+                        fill-rule="evenodd"
+                        d="M9.69 18.933l.003.001C9.89 19.02 10 19 10 19s.11.02.308-.066l.002-.001.006-.003.018-.008a5.741 5.741 0 00.281-.14c.186-.096.446-.24.757-.433.62-.384 1.445-.966 2.274-1.765C15.302 14.988 17 12.493 17 9A7 7 0 103 9c0 3.492 1.698 5.988 3.355 7.584a13.731 13.731 0 002.273 1.765 11.842 11.842 0 00.976.544l.062.029.018.008.006.003zM10 11.25a2.25 2.25 0 100-4.5 2.25 2.25 0 000 4.5z"
+                        clip-rule="evenodd"
+                      />
+                    </svg>
+                    {href ? (
+                      <a href={href} class="font-medium transition-colors hover:text-teal">{area}, IN</a>
+                    ) : (
+                      <span class="font-medium">{area}, IN</span>
+                    )}
+                  </li>
+                );
+              })
             }
           </ul>
           <div class="mt-8">
-            <a href="/estimate" class="btn-primary">
+            <a href="/estimate/" class="btn-primary">
               Get a Free Estimate
             </a>
           </div>
