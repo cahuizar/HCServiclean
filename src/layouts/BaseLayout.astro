@@ -21,7 +21,7 @@ const yearsInBusiness = new Date().getFullYear() - 2010;
 
 const localBusinessSchema = {
   '@context': 'https://schema.org',
-  '@type': 'LocalBusiness',
+  '@type': ['LocalBusiness', 'CleaningService'],
   name: 'HC ServiClean LLC',
   description:
     'Professional residential house cleaning services in Fishers, Noblesville, Carmel, Geist, and Indianapolis, Indiana.',
@@ -52,6 +52,23 @@ const localBusinessSchema = {
   paymentAccepted: ['Cash', 'Check'],
   priceRange: '$',
   image: 'https://hcserviclean.com/images/og-image.jpg',
+  aggregateRating: {
+    '@type': 'AggregateRating',
+    ratingValue: '5',
+    reviewCount: '8',
+    bestRating: '5',
+    worstRating: '1',
+  },
+  hasOfferCatalog: {
+    '@type': 'OfferCatalog',
+    name: 'Residential House Cleaning Services',
+    itemListElement: [
+      { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'Bedroom Cleaning' } },
+      { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'Bathroom Cleaning' } },
+      { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'Kitchen Cleaning' } },
+      { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'Deep Cleaning Extras' } },
+    ],
+  },
   sameAs: [
     'https://www.facebook.com/profile.php?id=61555496861439',
     'https://www.yelp.com/biz/hc-serviclean-noblesville-2',
@@ -88,6 +105,9 @@ const localBusinessSchema = {
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:image" content={ogImage} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:type" content="image/jpeg" />
     <meta property="og:url" content={canonical} />
     <meta property="og:site_name" content="HC ServiClean" />
 
