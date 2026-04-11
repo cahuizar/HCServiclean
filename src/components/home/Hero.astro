@@ -3,12 +3,6 @@ import { Image } from 'astro:assets';
 import heroBg from '../../assets/images/carousel-1.jpg';
 import BubbleDecor from '../shared/BubbleDecor.astro';
 const yearsInBusiness = new Date().getFullYear() - 2010;
-
-const trustChips = [
-  { icon: '✓', text: 'Background Checked' },
-  { icon: '✓', text: 'Full-Time Employees' },
-  { icon: '✓', text: 'Free Estimates' },
-];
 ---
 
 <section
@@ -25,50 +19,35 @@ const trustChips = [
     <!-- ── LEFT: Copy panel ──────────────────────────────────────────────── -->
     <div class="flex flex-col justify-center px-6 py-36 sm:px-12 lg:px-16 lg:py-28">
 
-      <!-- Badge -->
-      <div class="mb-6 inline-flex w-fit items-center gap-2 rounded-full border border-white/20 bg-white/10 px-4 py-1.5 text-sm font-bold text-white backdrop-blur-sm">
-        <span class="h-2 w-2 rounded-full bg-gold animate-pulse"></span>
-        Serving Indiana Since 2010
-      </div>
+      <!-- Eyebrow: brand name (small, not the hero) -->
+      <p class="mb-4 text-sm font-bold uppercase tracking-widest text-teal">
+        HC ServiClean
+      </p>
 
-      <!-- H1 — brand name is the visual star; keyword phrase is part of the H1 for SEO -->
+      <!-- H1: punchy hook + keyword location anchor -->
       <h1 class="leading-tight text-white">
         <span class="block text-5xl font-bold sm:text-6xl lg:text-7xl">
-          HC <span class="text-teal">Servi</span><span class="text-gold">Clean</span>
+          Spotless homes,<br />happy families.
         </span>
-        <span class="mt-3 block text-lg font-medium tracking-wide text-white/70 sm:text-xl">
-          House Cleaning — Fishers, Carmel &amp; Indianapolis, IN
+        <span class="mt-4 block text-base font-medium tracking-wide text-white/60 sm:text-lg">
+          Professional house cleaning — Fishers, Carmel &amp; Indianapolis, IN
         </span>
       </h1>
 
-      <!-- Subtext -->
-      <p class="mt-5 max-w-md text-base leading-relaxed text-white/55">
-        Background-checked, full-time employees serving Indiana families for over
-        <strong class="font-semibold text-white/80">{yearsInBusiness} years</strong>.
-        We quote by service — not the clock.
+      <!-- Supporting copy -->
+      <p class="mt-5 max-w-sm text-base leading-relaxed text-white/50">
+        Background-checked, full-time staff serving central Indiana for over
+        <strong class="font-semibold text-white/70">{yearsInBusiness} years</strong>.
+        Satisfaction guaranteed on every clean.
       </p>
 
-      <!-- CTAs -->
-      <div class="mt-8 flex flex-col gap-3 sm:flex-row">
-        <a href="/estimate/" class="btn-primary text-base px-8 py-3.5">
+      <!-- Single strong CTA -->
+      <div class="mt-8">
+        <a href="/estimate/" class="btn-primary text-base px-10 py-4">
           Get a Free Estimate
-        </a>
-        <a href="/services/" class="btn-outline text-base px-8 py-3.5">
-          View Our Services
         </a>
       </div>
 
-      <!-- Trust chips -->
-      <div class="mt-10 flex flex-wrap gap-2.5">
-        {trustChips.map(({ icon, text }) => (
-          <div class="flex items-center gap-2 rounded-full border border-white/10 bg-white/[0.07] px-4 py-2 text-sm font-semibold text-white/75 backdrop-blur-sm">
-            <span class="flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-teal text-slate-900 text-[10px] font-bold">
-              {icon}
-            </span>
-            {text}
-          </div>
-        ))}
-      </div>
     </div>
 
     <!-- ── RIGHT: Photo panel (desktop only) ─────────────────────────────── -->
@@ -128,21 +107,10 @@ const trustChips = [
 
   </div>
 
-  <!-- Scroll indicator -->
-  <button
-    data-scroll-next
-    aria-label="Scroll down to explore"
-    class="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 text-white/40 transition-colors duration-200 hover:text-white/80 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white rounded"
-  >
-    <div class="flex h-9 w-5 items-start justify-center rounded-full border-2 border-current pt-1.5">
-      <div class="h-2 w-px animate-bounce rounded-full bg-current"></div>
-    </div>
-    <span class="text-[9px] font-bold uppercase tracking-widest">Scroll</span>
-  </button>
-
 </section>
 
 <script>
+  // Keep the scroll-next behavior if other components use it
   document.querySelector('[data-scroll-next]')?.addEventListener('click', () => {
     document.querySelector('[data-hero]')
       ?.nextElementSibling
