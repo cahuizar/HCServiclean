@@ -5,10 +5,32 @@ interface Props {
   title: string;
   subtitle?: string;
   breadcrumb: string;
+  parentCrumb?: { label: string; href: string };
 }
 
-const { title, subtitle, breadcrumb } = Astro.props;
+const { title, subtitle, breadcrumb, parentCrumb } = Astro.props;
+
+const breadcrumbItems = [
+  { position: 1, name: 'Home', item: 'https://hcserviclean.com/' },
+  ...(parentCrumb
+    ? [{ position: 2, name: parentCrumb.label, item: `https://hcserviclean.com${parentCrumb.href}` }]
+    : []),
+  { position: parentCrumb ? 3 : 2, name: breadcrumb },
+];
+
+const breadcrumbSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: breadcrumbItems.map((crumb) => ({
+    '@type': 'ListItem',
+    position: crumb.position,
+    name: crumb.name,
+    ...(crumb.item ? { item: crumb.item } : {}),
+  })),
+};
 ---
+
+<script type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />
 
 <section
   class="relative overflow-hidden py-24 pt-40"
@@ -22,6 +44,16 @@ const { title, subtitle, breadcrumb } = Astro.props;
         <li>
           <a href="/" class="text-slate-500 transition-colors hover:text-teal">Home</a>
         </li>
+        {parentCrumb && (
+          <>
+            <li aria-hidden="true"><span class="text-slate-300">/</span></li>
+            <li>
+              <a href={parentCrumb.href} class="text-slate-500 transition-colors hover:text-teal">
+                {parentCrumb.label}
+              </a>
+            </li>
+          </>
+        )}
         <li aria-hidden="true">
           <span class="text-slate-300">/</span>
         </li>
