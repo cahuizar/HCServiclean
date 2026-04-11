@@ -153,17 +153,19 @@ const localBusinessSchema = {
       />
     </noscript>
 
-    <!-- Google Analytics 4 — replace G-XXXXXXXXXX with your GA4 measurement ID -->
+    <!-- Google Analytics 4 — add PUBLIC_GA_ID=G-XXXXXXXXXX to .env to enable -->
     <!-- To set up GA4: analytics.google.com → Create Property → get G-XXXXXXXXXX -->
-    <!--
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-      gtag('config', 'G-XXXXXXXXXX');
-    </script>
-    -->
+    {import.meta.env.PUBLIC_GA_ID && (
+      <>
+        <script async src={`https://www.googletagmanager.com/gtag/js?id=${import.meta.env.PUBLIC_GA_ID}`}></script>
+        <script define:vars={{ gaId: import.meta.env.PUBLIC_GA_ID }}>
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+          gtag('config', gaId);
+        </script>
+      </>
+    )}
 
     <!-- JSON-LD: LocalBusiness Schema -->
     <script type="application/ld+json" set:html={JSON.stringify(localBusinessSchema)} />
