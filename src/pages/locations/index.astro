@@ -1,0 +1,49 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import PageHeader from '../../components/shared/PageHeader.astro';
+import { locations } from '../../data/locations';
+---
+
+<BaseLayout
+  title="House Cleaning Service Areas | HC ServiClean Indiana"
+  description="HC ServiClean serves Fishers, Carmel, Noblesville, Indianapolis & surrounding Indiana communities. Find your city and get a free house cleaning estimate."
+  canonical="https://hcserviclean.com/locations/"
+>
+  <PageHeader
+    title="Areas We Serve"
+    subtitle="Professional house cleaning across central Indiana — find your city below."
+    breadcrumb="Locations"
+  />
+
+  <section class="bg-white py-16" aria-labelledby="locations-heading">
+    <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+
+      <h2 id="locations-heading" class="sr-only">All Service Locations</h2>
+
+      <div class="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+        {locations.map((loc) => (
+          <a
+            href={loc.canonicalPath}
+            class="group flex flex-col justify-between rounded-2xl border border-slate-100 bg-white p-6 shadow-sm transition-all duration-200 hover:-translate-y-1 hover:border-teal/40 hover:shadow-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal"
+          >
+            <div>
+              <p class="text-xs font-bold uppercase tracking-widest text-teal">{loc.county}</p>
+              <h3 class="mt-1 text-xl font-bold text-slate-900">{loc.city}, IN</h3>
+              <p class="mt-2 text-sm leading-relaxed text-slate-500 line-clamp-3">{loc.intro}</p>
+            </div>
+            <p class="mt-4 text-sm font-semibold text-teal transition-colors group-hover:text-teal-dark">
+              House cleaning in {loc.city} →
+            </p>
+          </a>
+        ))}
+      </div>
+
+      <div class="mt-12 text-center">
+        <p class="text-slate-500">Don't see your city?</p>
+        <a href="/estimate/" class="btn-primary mt-4">
+          Request a Free Estimate
+        </a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

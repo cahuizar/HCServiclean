@@ -2,6 +2,7 @@
 import { Image } from 'astro:assets';
 import { Icon } from 'astro-icon/components';
 import logo from '../assets/images/logo-no-slogan.png';
+import { locations } from '../data/locations';
 interface Props {
   yearsInBusiness: number;
 }
@@ -10,10 +11,10 @@ const currentYear = new Date().getFullYear();
 
 const pageLinks = [
   { href: '/', label: 'Home' },
-  { href: '/about', label: 'About' },
-  { href: '/services', label: 'Services' },
-  { href: '/faq', label: 'FAQ' },
-  { href: '/estimate', label: 'Free Estimate' },
+  { href: '/about/', label: 'About' },
+  { href: '/services/', label: 'Services' },
+  { href: '/faq/', label: 'FAQ' },
+  { href: '/estimate/', label: 'Free Estimate' },
 ];
 ---
 
@@ -29,14 +30,16 @@ const pageLinks = [
   </div>
 
   <div class="relative z-10 container mx-auto px-4 py-12 sm:px-6 lg:px-8">
-    <div class="grid grid-cols-1 gap-10 md:grid-cols-3">
+    <div class="grid grid-cols-1 gap-y-10 gap-x-12 sm:grid-cols-2 xl:flex xl:flex-row xl:items-start">
 
-      <!-- Brand -->
-      <div>
+      <!-- Column 1: Brand -->
+      <div class="xl:w-52 xl:shrink-0">
         <a href="/" aria-label="HC ServiClean — go to homepage" class="inline-block focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal rounded">
           <Image
             src={logo}
             alt="HC ServiClean LLC logo"
+            width={77}
+            height={64}
             class="h-16 w-auto"
             loading="lazy"
           />
@@ -45,8 +48,6 @@ const pageLinks = [
           The cleaning solution to all of your needs.<br />
           Serving Indiana since 2010 — over {yearsInBusiness} years of excellence.
         </p>
-
-        <!-- Social links -->
         <div class="mt-4 flex gap-3">
           <a
             href="https://www.facebook.com/profile.php?id=61555496861439"
@@ -69,11 +70,9 @@ const pageLinks = [
         </div>
       </div>
 
-      <!-- Quick Links -->
-      <div>
-        <h2 class="mb-4 text-sm font-bold uppercase tracking-widest text-teal">
-          Quick Links
-        </h2>
+      <!-- Column 2: Quick Links -->
+      <div class="xl:w-40 xl:shrink-0">
+        <h2 class="mb-4 text-sm font-bold uppercase tracking-widest text-teal">Quick Links</h2>
         <ul class="space-y-2" role="list">
           {pageLinks.map((link) => (
             <li>
@@ -88,11 +87,26 @@ const pageLinks = [
         </ul>
       </div>
 
-      <!-- Contact -->
-      <div>
-        <h2 class="mb-4 text-sm font-bold uppercase tracking-widest text-teal">
-          Contact Us
-        </h2>
+      <!-- Column 3: Service Areas — 2-column internal grid -->
+      <div class="xl:flex-1 xl:min-w-0">
+        <h2 class="mb-4 text-sm font-bold uppercase tracking-widest text-teal">Service Areas</h2>
+        <ul class="grid grid-cols-2 gap-x-6 gap-y-2" role="list">
+          {locations.map((loc) => (
+            <li>
+              <a
+                href={loc.canonicalPath}
+                class="text-sm text-slate-500 transition-colors hover:text-teal focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal rounded"
+              >
+                {loc.city}, IN
+              </a>
+            </li>
+          ))}
+        </ul>
+      </div>
+
+      <!-- Column 4: Contact Us -->
+      <div class="xl:w-56 xl:shrink-0">
+        <h2 class="mb-4 text-sm font-bold uppercase tracking-widest text-teal">Contact Us</h2>
         <ul class="space-y-3" role="list">
           <li>
             <a

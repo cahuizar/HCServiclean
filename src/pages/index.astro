@@ -4,6 +4,7 @@ import Hero from '../components/home/Hero.astro';
 import ServiceHighlights from '../components/home/ServiceHighlights.astro';
 import Testimonials from '../components/home/Testimonials.astro';
 import BubbleDecor from '../components/shared/BubbleDecor.astro';
+import { locations } from '../data/locations';
 
 const yearsInBusiness = new Date().getFullYear() - 2010;
 
@@ -19,6 +20,10 @@ const serviceAreas = [
   'Geist', 'Westfield', 'McCordsville', 'Cicero',
   'Zionsville', 'Sheridan',
 ];
+
+const locationMap = Object.fromEntries(
+  locations.map((l) => [l.city, l.canonicalPath])
+);
 
 const steps = [
   {
@@ -40,8 +45,8 @@ const steps = [
 ---
 
 <BaseLayout
-  title="HC ServiClean | Fishers House Cleaning Services | Get a Free Estimate"
-  description="We have provided the best house cleaning services in Fishers, Noblesville, Carmel, Geist, and Indianapolis for over 10 years. Trust us to get the cleaning done right. The solution to all your cleaning needs!"
+  title="House Cleaning in Fishers & Indianapolis | HC ServiClean"
+  description="Professional house cleaning in Fishers, Carmel, Noblesville & Indianapolis, IN. Background-checked staff, free estimates, satisfaction guaranteed since 2010."
   canonical="https://hcserviclean.com/"
 >
   <Hero />
@@ -89,7 +94,7 @@ const steps = [
       </div>
 
       <div class="mt-12 text-center">
-        <a href="/estimate" class="btn-primary">Get My Free Estimate</a>
+        <a href="/estimate/" class="btn-primary">Get My Free Estimate</a>
       </div>
 
     </div>
@@ -130,14 +135,24 @@ const steps = [
       <h2 id="areas-teaser-heading" class="mt-2 text-2xl font-bold text-slate-900 sm:text-3xl">Serving Central Indiana</h2>
       <p class="mt-2 text-slate-500">We proudly serve families across the Indianapolis metro area.</p>
       <div class="mt-8 flex flex-wrap justify-center gap-2">
-        {serviceAreas.map((area) => (
-          <span class="rounded-full border border-teal/30 bg-white px-4 py-1.5 text-sm font-medium text-slate-700 shadow-sm">
-            {area}, IN
-          </span>
-        ))}
+        {serviceAreas.map((area) => {
+          const href = locationMap[area];
+          return href ? (
+            <a
+              href={href}
+              class="rounded-full border border-teal/30 bg-white px-4 py-1.5 text-sm font-medium text-slate-700 shadow-sm transition-colors hover:bg-teal/10 hover:border-teal"
+            >
+              {area}, IN
+            </a>
+          ) : (
+            <span class="rounded-full border border-teal/30 bg-white px-4 py-1.5 text-sm font-medium text-slate-700 shadow-sm">
+              {area}, IN
+            </span>
+          );
+        })}
       </div>
       <div class="mt-8">
-        <a href="/about#areas-heading" class="btn-teal-outline">View Full Service Area</a>
+        <a href="/about/#areas-heading" class="btn-teal-outline">View Full Service Area</a>
       </div>
     </div>
   </section>
@@ -155,7 +170,7 @@ const steps = [
         Request your free estimate today. We'll reach out within one business day.
       </p>
       <div class="mt-8 flex flex-col items-center justify-center gap-4 sm:flex-row">
-        <a href="/estimate" class="btn-primary text-base px-10 py-3.5 w-full sm:w-auto">
+        <a href="/estimate/" class="btn-primary text-base px-10 py-3.5 w-full sm:w-auto">
           Get a Free Estimate
         </a>
         <a href="tel:+18472934525" class="btn-outline text-base px-10 py-3.5 w-full sm:w-auto">

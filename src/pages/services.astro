@@ -7,12 +7,12 @@ import { services } from '../data/services';
 ---
 
 <BaseLayout
-  title="House Cleaning Services | Bedroom, Bathroom, Kitchen & More | HC ServiClean"
+  title="House Cleaning Services in Indiana | HC ServiClean"
   description="Professional residential cleaning services including bedrooms, bathrooms, kitchens, and special extras in Fishers, Carmel, Noblesville, and Indianapolis, Indiana. Service quote-based — no time limits."
-  canonical="https://hcserviclean.com/services"
+  canonical="https://hcserviclean.com/services/"
 >
   <PageHeader
-    title="Our Cleaning Services"
+    title="Professional House Cleaning Services in Indiana"
     subtitle="Every clean is guaranteed to your satisfaction. We stay until the job is done — we quote by service, not by time."
     breadcrumb="Services"
   />
@@ -27,7 +27,7 @@ import { services } from '../data/services';
       />
 
       <div class="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-4">
-        {services.map((service) => <ServiceCard service={service} loading="eager" />)}
+        {services.map((service) => <ServiceCard service={service} />)}
       </div>
     </div>
   </section>
@@ -70,7 +70,7 @@ import { services } from '../data/services';
       <h2 class="text-2xl font-bold text-slate-900 sm:text-3xl">Ready to Book a Clean?</h2>
       <p class="mt-2 text-slate-600">Get your free estimate — no obligation, no pressure.</p>
       <div class="mt-6">
-        <a href="/estimate" class="btn-primary text-base px-10 py-3.5">
+        <a href="/estimate/" class="btn-primary text-base px-10 py-3.5">
           Get a Free Estimate
         </a>
       </div>

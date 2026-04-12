@@ -1,90 +1,132 @@
 ---
 import { Image } from 'astro:assets';
-import heroBg from '../../assets/images/carousel-1.jpg';
+import heroBg from '../../assets/images/family-living-room.png';
+import BubbleDecor from '../shared/BubbleDecor.astro';
 const yearsInBusiness = new Date().getFullYear() - 2010;
 ---
 
 <section
   id="home"
   data-hero
-  class="relative flex min-h-screen items-center justify-center overflow-hidden"
+  class="relative overflow-hidden bg-slate-900"
   aria-label="Hero"
 >
-  <!-- Background image — LCP element, fetchpriority high -->
-  <Image
-    src={heroBg}
-    alt="Beautiful clean home interior"
-    class="absolute inset-0 h-full w-full object-cover object-center"
-    fetchpriority="high"
-    decoding="sync"
-    loading="eager"
-  />
+  <BubbleDecor variant="dark" />
 
-  <!-- Dark overlay -->
-  <div class="absolute inset-0 bg-slate-900/60"></div>
+  <div class="relative z-10 grid w-full grid-cols-1 lg:grid-cols-2 lg:min-h-screen">
 
-  <!-- Content -->
-  <div class="relative z-10 px-4 text-center sm:px-6 lg:px-8">
-    <div class="mx-auto max-w-3xl">
-      <!-- Badge -->
-      <div class="mb-6 inline-flex items-center gap-2 rounded-full border border-white/30 bg-white/10 px-4 py-1.5 text-sm font-bold text-white backdrop-blur-sm">
-        <span class="h-2 w-2 rounded-full bg-gold animate-pulse"></span>
-        Serving Indiana Since 2010
-      </div>
+    <!-- ── LEFT: Copy panel ──────────────────────────────────────────────── -->
+    <div class="flex flex-col items-center text-center justify-start pt-28 pb-12 px-[6vw] lg:items-start lg:text-left lg:justify-center lg:pl-[7vw] lg:pr-[4vw] lg:py-28">
 
-      <!-- Headline -->
-      <h1 class="text-5xl font-bold leading-tight text-white sm:text-6xl lg:text-7xl">
-        HC <span class="text-teal">Servi</span><span class="text-gold">Clean</span>
+      <h1 class="leading-tight text-white">
+        <span class="block text-5xl font-bold sm:text-6xl lg:text-7xl xl:text-8xl">
+          Spotless homes,<br />happy families.
+        </span>
+        <span class="mt-4 block text-base font-medium tracking-wide text-white/60 sm:text-lg xl:mt-6 xl:text-xl">
+          Professional house cleaning across central Indiana
+        </span>
       </h1>
 
-      <p class="mt-4 text-xl font-bold text-white sm:text-2xl">
-        Indiana's Trusted Residential Cleaning Service
+      <p class="mt-5 max-w-md text-base leading-relaxed text-white/50 xl:max-w-lg xl:text-lg">
+        Background-checked, full-time staff serving Fishers, Carmel, Noblesville,
+        Indianapolis &amp; surrounding communities for over
+        <strong class="font-semibold text-white/70">{yearsInBusiness} years</strong>.
+        Satisfaction guaranteed on every clean.
       </p>
 
-      <p class="mt-3 text-base text-white/80 sm:text-lg">
-        Serving Fishers, Carmel, Noblesville, Geist, and the greater Indianapolis area
-        for over <strong class="text-gold">{yearsInBusiness} years</strong>.
-      </p>
-
-      <!-- CTAs -->
-      <div class="mt-8 flex flex-col items-center gap-4 sm:flex-row sm:justify-center">
-        <a href="/estimate" class="btn-primary w-full sm:w-auto text-base px-10 py-3.5">
+      <div class="mt-8">
+        <a href="/estimate/" class="btn-primary text-base px-10 py-4">
           Get a Free Estimate
         </a>
-        <a href="/services" class="btn-outline w-full sm:w-auto text-base px-10 py-3.5">
-          View Our Services
-        </a>
       </div>
 
-      <!-- Trust badges -->
-      <div class="mt-10 flex flex-col items-center justify-center gap-6 sm:flex-row sm:gap-10">
-        {[
-          { icon: '✓', text: 'Background Checked' },
-          { icon: '✓', text: 'Full-Time Employees' },
-          { icon: '✓', text: 'Free Estimates' },
-        ].map(({ icon, text }) => (
-          <div class="flex items-center gap-2 text-sm font-bold text-white/90">
-            <span class="flex h-6 w-6 items-center justify-center rounded-full bg-teal text-slate-900 text-xs font-bold">{icon}</span>
-            {text}
+    </div>
+
+    <!-- ── RIGHT: Photo panel ──────────────────────────────────────────────── -->
+    <div class="flex flex-col items-center justify-center pb-20 px-[6vw] lg:py-20 lg:pr-[7vw] lg:pl-4">
+
+      <!-- Decorative rings — desktop only -->
+      <div class="pointer-events-none absolute inset-0 hidden lg:flex items-center justify-center" aria-hidden="true">
+        <div class="h-[560px] w-[560px] rounded-full border border-teal/[0.15] xl:h-[640px] xl:w-[640px] 2xl:h-[760px] 2xl:w-[760px]"></div>
+      </div>
+      <div class="pointer-events-none absolute inset-0 hidden lg:flex items-center justify-center" aria-hidden="true">
+        <div class="h-[480px] w-[480px] rounded-full border border-gold/[0.10] xl:h-[560px] xl:w-[560px] 2xl:h-[660px] 2xl:w-[660px]"></div>
+      </div>
+
+      <!-- Photo card -->
+      <div class="relative w-full max-w-[520px] overflow-visible xl:max-w-[600px]">
+
+        <div class="overflow-hidden rounded-3xl shadow-2xl ring-1 ring-white/10">
+          <Image
+            src={heroBg}
+            alt="Professionally cleaned home interior in Fishers, Indiana — HC ServiClean"
+            width={1200}
+            quality={100}
+            class="h-[340px] w-full object-cover object-left lg:object-[25%_50%] sm:h-[400px] lg:h-[520px] xl:h-[580px]"
+            fetchpriority="high"
+            decoding="sync"
+            loading="eager"
+          />
+        </div>
+
+        <!-- Client Rating card -->
+        <div class="card-rating absolute top-3 right-3 flex items-center gap-2 rounded-2xl bg-white px-3 py-2.5 shadow-2xl sm:gap-3 sm:px-5 sm:py-3.5 lg:-top-5 lg:-right-6">
+          <div class="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-gold/10 text-base sm:h-10 sm:w-10 sm:text-xl">
+            ⭐
           </div>
-        ))}
+          <div>
+            <p class="text-[10px] font-semibold text-slate-400 sm:text-xs">Client Rating</p>
+            <p class="text-sm font-bold text-slate-900 sm:text-base">
+              5.0 <span class="text-xs font-normal text-gold sm:text-sm">★★★★★</span>
+            </p>
+          </div>
+        </div>
+
+        <!-- Happy Families card -->
+        <div class="card-families absolute bottom-3 left-3 flex items-center gap-2 rounded-2xl bg-white px-3 py-2.5 shadow-2xl sm:gap-3 sm:px-5 sm:py-3.5 lg:-bottom-5 lg:-left-8">
+          <div class="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-teal/10 text-base sm:h-10 sm:w-10 sm:text-xl">
+            🏠
+          </div>
+          <div>
+            <p class="text-[10px] font-semibold text-slate-400 sm:text-xs">Happy Families</p>
+            <p class="text-lg font-bold text-slate-900 sm:text-xl">500+</p>
+          </div>
+        </div>
+
       </div>
     </div>
+
   </div>
 
-  <!-- Scroll indicator — mouse icon + label, clicks to scroll to next section -->
-  <button
-    data-scroll-next
-    aria-label="Scroll down to explore"
-    class="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 text-white/50 transition-colors duration-200 hover:text-white/90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white rounded"
-  >
-    <!-- Mouse outline with animated scroll dot -->
-    <div class="flex h-9 w-5 items-start justify-center rounded-full border-2 border-current pt-1.5">
-      <div class="h-2 w-px animate-bounce rounded-full bg-current"></div>
-    </div>
-    <span class="text-[9px] font-bold uppercase tracking-widest">Scroll</span>
-  </button>
 </section>
+
+<style>
+  /* Rating card: arrow points down into the image */
+  .card-rating::after {
+    content: '';
+    position: absolute;
+    bottom: -7px;
+    left: 18px;
+    width: 0;
+    height: 0;
+    border-left: 7px solid transparent;
+    border-right: 7px solid transparent;
+    border-top: 7px solid white;
+  }
+
+  /* Families card: arrow points up into the image */
+  .card-families::after {
+    content: '';
+    position: absolute;
+    top: -7px;
+    right: 18px;
+    width: 0;
+    height: 0;
+    border-left: 7px solid transparent;
+    border-right: 7px solid transparent;
+    border-bottom: 7px solid white;
+  }
+</style>
 
 <script>
   document.querySelector('[data-scroll-next]')?.addEventListener('click', () => {
