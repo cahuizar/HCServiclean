@@ -5,6 +5,7 @@ const navLinks = [
   { href: '/', label: 'Home' },
   { href: '/about/', label: 'About' },
   { href: '/services/', label: 'Services' },
+  { href: '/locations/', label: 'Locations' },
   { href: '/faq/', label: 'FAQ' },
   { href: '/estimate/', label: 'Free Estimate' },
 ];
@@ -29,8 +30,11 @@ const currentPath = Astro.url.pathname;
       <Image
         src={logo}
         alt="HC ServiClean LLC logo"
+        width={76}
+        height={64}
         class="nav-logo h-14 w-auto transition-all duration-300 sm:h-16"
         loading="eager"
+        fetchpriority="high"
       />
     </a>
 
@@ -38,7 +42,7 @@ const currentPath = Astro.url.pathname;
     <ul class="hidden items-center gap-1 lg:flex" role="list">
       {
         navLinks.map((link) => {
-          const isEstimate = link.href === '/estimate';
+          const isEstimate = link.href === '/estimate/';
           const isActive = currentPath === link.href || (link.href !== '/' && currentPath.startsWith(link.href));
           return (
             <li>
