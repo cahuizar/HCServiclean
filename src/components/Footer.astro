@@ -30,14 +30,16 @@ const pageLinks = [
   </div>
 
   <div class="relative z-10 container mx-auto px-4 py-12 sm:px-6 lg:px-8">
-    <div class="grid grid-cols-1 gap-y-10 gap-x-12 sm:grid-cols-2 xl:[grid-template-columns:minmax(0,1.2fr)_minmax(0,0.8fr)_minmax(0,2fr)_minmax(0,1.4fr)]">
+    <div class="grid grid-cols-1 gap-y-10 gap-x-12 sm:grid-cols-2 xl:flex xl:flex-row xl:items-start">
 
       <!-- Column 1: Brand -->
-      <div>
+      <div class="xl:w-52 xl:shrink-0">
         <a href="/" aria-label="HC ServiClean — go to homepage" class="inline-block focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal rounded">
           <Image
             src={logo}
             alt="HC ServiClean LLC logo"
+            width={77}
+            height={64}
             class="h-16 w-auto"
             loading="lazy"
           />
@@ -69,7 +71,7 @@ const pageLinks = [
       </div>
 
       <!-- Column 2: Quick Links -->
-      <div>
+      <div class="xl:w-40 xl:shrink-0">
         <h2 class="mb-4 text-sm font-bold uppercase tracking-widest text-teal">Quick Links</h2>
         <ul class="space-y-2" role="list">
           {pageLinks.map((link) => (
@@ -86,7 +88,7 @@ const pageLinks = [
       </div>
 
       <!-- Column 3: Service Areas — 2-column internal grid -->
-      <div>
+      <div class="xl:flex-1 xl:min-w-0">
         <h2 class="mb-4 text-sm font-bold uppercase tracking-widest text-teal">Service Areas</h2>
         <ul class="grid grid-cols-2 gap-x-6 gap-y-2" role="list">
           {locations.map((loc) => (
@@ -103,7 +105,7 @@ const pageLinks = [
       </div>
 
       <!-- Column 4: Contact Us -->
-      <div>
+      <div class="xl:w-56 xl:shrink-0">
         <h2 class="mb-4 text-sm font-bold uppercase tracking-widest text-teal">Contact Us</h2>
         <ul class="space-y-3" role="list">
           <li>
