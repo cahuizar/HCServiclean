@@ -128,9 +128,7 @@ const localBusinessSchema = {
     <meta name="application-name" content="HC ServiClean" />
     <meta name="msapplication-TileColor" content="#52b6bc" />
     <meta name="theme-color" content="#52b6bc" />
-
-    <!-- Preload hero image (LCP) -->
-    <link rel="preload" as="image" href="/images/carousel-1.jpg" />
+    <meta name="google-site-verification" content="6hZCKgQLXZW3lFtqlc0bRS6VsQimZ0U49Bzc9K6e06Q" />
 
     <!-- Non-blocking Google Fonts (Plus Jakarta Sans 400/500/600/700) -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -152,20 +150,17 @@ const localBusinessSchema = {
         href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap"
       />
     </noscript>
+    
 
-    <!-- Google Analytics 4 — add PUBLIC_GA_ID=G-XXXXXXXXXX to .env to enable -->
-    <!-- To set up GA4: analytics.google.com → Create Property → get G-XXXXXXXXXX -->
-    {import.meta.env.PUBLIC_GA_ID && (
-      <>
-        <script async src={`https://www.googletagmanager.com/gtag/js?id=${import.meta.env.PUBLIC_GA_ID}`}></script>
-        <script define:vars={{ gaId: import.meta.env.PUBLIC_GA_ID }}>
-          window.dataLayer = window.dataLayer || [];
-          function gtag(){dataLayer.push(arguments);}
-          gtag('js', new Date());
-          gtag('config', gaId);
-        </script>
-      </>
-    )}
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-NGECJ7EPL2"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-NGECJ7EPL2');
+    </script>
 
     <!-- JSON-LD: LocalBusiness Schema -->
     <script type="application/ld+json" set:html={JSON.stringify(localBusinessSchema)} />
