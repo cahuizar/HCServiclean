@@ -7,6 +7,10 @@ import icon from 'astro-icon';
 export default defineConfig({
   site: 'https://hcserviclean.com',
   trailingSlash: 'always',
+  redirects: {
+    '/home':  '/',
+    '/home/': '/',
+  },
   integrations: [
     tailwind(),
     react(),
