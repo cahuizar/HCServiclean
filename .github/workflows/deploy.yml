@@ -4,6 +4,10 @@ on:
   push:
     branches: [master]
   workflow_dispatch:
+  # Weekly rebuild to re-pull the latest Google reviews from Featurable.
+  # Note: GitHub disables scheduled workflows after 60 days of repo inactivity.
+  schedule:
+    - cron: '0 11 * * 1' # Mondays ~11:00 UTC
 
 permissions:
   contents: read
