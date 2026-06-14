@@ -1,0 +1,99 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import PageHeader from '../components/shared/PageHeader.astro';
+import ReviewCard from '../components/shared/ReviewCard.astro';
+import { reviews, averageRating, reviewCount } from '../data/reviews';
+
+const ratingLabel = averageRating.toFixed(1);
+
+// TODO: replace with the owner's Google "Write a review" link (e.g. https://g.page/r/...).
+const GOOGLE_REVIEW_URL =
+  'https://search.google.com/local/writereview?placeid=';
+const hasGoogleReviewUrl = GOOGLE_REVIEW_URL.endsWith('placeid=') === false;
+---
+
+<BaseLayout
+  title="Client Reviews | HC ServiClean House Cleaning, Fishers IN"
+  description="Read what families across Fishers, Carmel, Noblesville & Indianapolis say about HC ServiClean's house cleaning. Real Google reviews from our happy clients."
+  canonical="https://hcserviclean.com/reviews/"
+>
+  <PageHeader
+    title="What Our Clients Say"
+    subtitle="Real reviews from families we've cleaned for across central Indiana."
+    breadcrumb="Reviews"
+  />
+
+  <!-- Rating summary -->
+  <section class="bg-white py-12" aria-labelledby="rating-summary-heading">
+    <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="mx-auto flex max-w-2xl flex-col items-center gap-4 rounded-3xl bg-slate-50 p-8 text-center ring-1 ring-slate-100 sm:flex-row sm:justify-center sm:gap-8 sm:text-left">
+        <div>
+          <p class="text-5xl font-bold text-slate-900">{ratingLabel}</p>
+          <div class="mt-1 flex justify-center gap-0.5 sm:justify-start" aria-hidden="true">
+            {Array.from({ length: 5 }).map((_, i) => (
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class:list={['h-5 w-5', i < Math.round(averageRating) ? 'text-gold' : 'text-slate-200']}>
+                <path fill-rule="evenodd" d="M10.788 3.21c.448-1.077 1.976-1.077 2.424 0l2.082 5.007 5.404.433c1.164.093 1.636 1.545.749 2.305l-4.117 3.527 1.257 5.273c.271 1.136-.964 2.033-1.96 1.425L12 18.354 7.373 21.18c-.996.608-2.231-.29-1.96-1.425l1.257-5.273-4.117-3.527c-.887-.76-.415-2.212.749-2.305l5.404-.433 2.082-5.006z" clip-rule="evenodd"/>
+              </svg>
+            ))}
+          </div>
+        </div>
+        <div class="hidden h-16 w-px bg-slate-200 sm:block" aria-hidden="true"></div>
+        <div>
+          <h2 id="rating-summary-heading" class="text-lg font-bold text-slate-900">
+            Based on {reviewCount} Google review{reviewCount === 1 ? '' : 's'}
+          </h2>
+          <p class="mt-1 text-sm text-slate-500">
+            Verified reviews from our clients on Google.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- All reviews -->
+  <section class="bg-slate-50 py-16" aria-label="Client reviews">
+    <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
+        {reviews.map((review) => <ReviewCard review={review} />)}
+      </div>
+
+      {hasGoogleReviewUrl && (
+        <div class="mt-12 text-center">
+          <p class="mb-4 text-slate-600">We'd love to hear about your experience.</p>
+          <a
+            href={GOOGLE_REVIEW_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="btn-primary"
+          >
+            Leave Us a Review
+          </a>
+        </div>
+      )}
+    </div>
+  </section>
+
+  <!-- CTA band -->
+  <section
+    class="relative py-24 text-center"
+    style="background-image: url('/images/contact-parallax.jpg'); background-size: cover; background-position: center;"
+    aria-label="Call to action"
+  >
+    <div class="absolute inset-0 bg-slate-900/70"></div>
+    <div class="relative z-10 px-4">
+      <h2 class="text-3xl font-bold text-white sm:text-4xl">Ready for a Cleaner Home?</h2>
+      <p class="mx-auto mt-3 max-w-xl text-lg text-white/80">
+        Join the families who trust HC ServiClean. Request your free estimate today.
+      </p>
+      <div class="mt-8 flex flex-col items-center justify-center gap-4 sm:flex-row">
+        <a href="/estimate/" class="btn-primary text-base px-10 py-3.5 w-full sm:w-auto">
+          Get a Free Estimate
+        </a>
+        <a href="tel:+18472934525" class="btn-outline text-base px-10 py-3.5 w-full sm:w-auto">
+          Call (847) 293-4525
+        </a>
+      </div>
+    </div>
+  </section>
+
+</BaseLayout>

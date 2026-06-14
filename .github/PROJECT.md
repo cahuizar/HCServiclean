@@ -85,7 +85,8 @@ src/
 ├── data/
 │   ├── services.ts               ← Edit to change service card content
 │   ├── faqs.ts                   ← Edit to add/change FAQ items
-│   └── testimonials.ts           ← Edit to add/change testimonials
+│   ├── reviews.json              ← Auto-generated Google reviews snapshot (fetch-reviews.mjs)
+│   └── reviews.ts                ← Typed loader for reviews + aggregate rating
 └── styles/
     └── global.css                ← @tailwind directives + button classes + base styles
 ```
@@ -135,7 +136,7 @@ Both FormSubmit.co endpoints are public (already were on the old site). They are
 |---|---|
 | Service cards (title, image, items) | `src/data/services.ts` |
 | FAQ questions & answers | `src/data/faqs.ts` |
-| Testimonials | `src/data/testimonials.ts` |
+| Reviews (auto-fed from Google via Featurable) | `src/data/reviews.json` / `scripts/fetch-reviews.mjs` |
 | Nav links | `src/components/Nav.astro` |
 | Footer content | `src/components/Footer.astro` |
 | Business info (address, phone, schema) | `src/layouts/BaseLayout.astro` |

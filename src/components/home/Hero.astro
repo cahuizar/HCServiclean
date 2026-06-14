@@ -2,7 +2,10 @@
 import { Image } from 'astro:assets';
 import heroBg from '../../assets/images/family-living-room.png';
 import BubbleDecor from '../shared/BubbleDecor.astro';
+import { averageRating } from '../../data/reviews';
 const yearsInBusiness = new Date().getFullYear() - 2010;
+const ratingLabel = averageRating.toFixed(1);
+const ratingStars = '★'.repeat(Math.round(averageRating)) + '☆'.repeat(5 - Math.round(averageRating));
 ---
 
 <section
@@ -77,7 +80,7 @@ const yearsInBusiness = new Date().getFullYear() - 2010;
           <div>
             <p class="text-[10px] font-semibold text-slate-400 sm:text-xs">Client Rating</p>
             <p class="text-sm font-bold text-slate-900 sm:text-base">
-              5.0 <span class="text-xs font-normal text-gold sm:text-sm">★★★★★</span>
+              {ratingLabel} <span class="text-xs font-normal text-gold sm:text-sm">{ratingStars}</span>
             </p>
           </div>
         </div>
@@ -89,7 +92,7 @@ const yearsInBusiness = new Date().getFullYear() - 2010;
           </div>
           <div>
             <p class="text-[10px] font-semibold text-slate-400 sm:text-xs">Happy Families</p>
-            <p class="text-lg font-bold text-slate-900 sm:text-xl">500+</p>
+            <p class="text-lg font-bold text-slate-900 sm:text-xl">100+</p>
           </div>
         </div>
 

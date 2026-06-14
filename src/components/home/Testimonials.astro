@@ -1,5 +1,8 @@
 ---
-import { testimonials } from '../../data/testimonials';
+import { featuredReviews, averageRating, reviewCount } from '../../data/reviews';
+import ReviewCard from '../shared/ReviewCard.astro';
+
+const ratingLabel = averageRating.toFixed(1);
 ---
 
 <section class="bg-slate-50 py-20" aria-labelledby="testimonials-heading">
@@ -13,44 +16,28 @@ import { testimonials } from '../../data/testimonials';
       <p class="mx-auto mt-3 max-w-lg text-slate-500">
         Don't just take our word for it — hear from families we've served across Indiana.
       </p>
+
+      <!-- Trust line -->
+      <div class="mt-5 inline-flex items-center gap-2 rounded-full bg-white px-4 py-2 shadow-sm ring-1 ring-slate-100">
+        <span class="flex gap-0.5" aria-hidden="true">
+          {Array.from({ length: 5 }).map(() => (
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="h-4 w-4 text-gold">
+              <path fill-rule="evenodd" d="M10.788 3.21c.448-1.077 1.976-1.077 2.424 0l2.082 5.007 5.404.433c1.164.093 1.636 1.545.749 2.305l-4.117 3.527 1.257 5.273c.271 1.136-.964 2.033-1.96 1.425L12 18.354 7.373 21.18c-.996.608-2.231-.29-1.96-1.425l1.257-5.273-4.117-3.527c-.887-.76-.415-2.212.749-2.305l5.404-.433 2.082-5.006z" clip-rule="evenodd"/>
+            </svg>
+          ))}
+        </span>
+        <span class="text-sm font-semibold text-slate-700">
+          {ratingLabel} · Based on {reviewCount} Google review{reviewCount === 1 ? '' : 's'}
+        </span>
+      </div>
     </div>
 
     <div class="grid grid-cols-1 gap-6 md:grid-cols-3">
-      {testimonials.map((t) => (
-        <figure class="flex flex-col rounded-3xl bg-white p-8 shadow-sm ring-1 ring-slate-100 transition-all duration-300 hover:-translate-y-1 hover:shadow-md">
+      {featuredReviews.map((review) => <ReviewCard review={review} />)}
+    </div>
 
-          <!-- Large decorative quote mark -->
-          <div class="mb-4 text-5xl font-bold leading-none text-teal/20 select-none" aria-hidden="true">"</div>
-
-          <!-- Stars -->
-          <div class="mb-4 flex gap-1" aria-label="5 out of 5 stars" role="img">
-            {Array(5).fill(null).map(() => (
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="h-5 w-5 text-gold" aria-hidden="true">
-                <path fill-rule="evenodd" d="M10.788 3.21c.448-1.077 1.976-1.077 2.424 0l2.082 5.007 5.404.433c1.164.093 1.636 1.545.749 2.305l-4.117 3.527 1.257 5.273c.271 1.136-.964 2.033-1.96 1.425L12 18.354 7.373 21.18c-.996.608-2.231-.29-1.96-1.425l1.257-5.273-4.117-3.527c-.887-.76-.415-2.212.749-2.305l5.404-.433 2.082-5.006z" clip-rule="evenodd"/>
-              </svg>
-            ))}
-          </div>
-
-          <!-- Quote -->
-          <blockquote class="flex-1">
-            <p class="text-sm leading-relaxed text-slate-600">{t.quote}</p>
-          </blockquote>
-
-          <!-- Author -->
-          <figcaption class="mt-6 flex items-center gap-4 border-t border-slate-100 pt-5">
-            <div
-              class="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-teal text-slate-900 text-sm font-bold"
-              aria-hidden="true"
-            >
-              {t.author.split(' ').map((n: string) => n[0]).join('')}
-            </div>
-            <div>
-              <p class="font-bold text-slate-900">{t.author}</p>
-              <p class="text-xs text-slate-400">{t.city}, Indiana · Verified Client</p>
-            </div>
-          </figcaption>
-        </figure>
-      ))}
+    <div class="mt-12 text-center">
+      <a href="/reviews/" class="btn-teal-outline">Read All Reviews</a>
     </div>
 
   </div>
