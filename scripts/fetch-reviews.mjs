@@ -17,8 +17,8 @@ import { dirname, join } from 'node:path';
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const OUT_FILE = join(__dirname, '..', 'src', 'data', 'reviews.json');
 
-// TODO: replace with the real Featurable widget ID once the owner creates the widget.
-const WIDGET_ID = process.env.FEATURABLE_WIDGET_ID || '';
+// Featurable widget ID (public, not a secret). Override via FEATURABLE_WIDGET_ID if needed.
+const WIDGET_ID = process.env.FEATURABLE_WIDGET_ID || '90b35846-3ce1-41e5-8b86-fc30f81da0b9';
 
 const ENDPOINT = (id) => `https://featurable.com/api/v1/widgets/${id}`;
 
@@ -47,6 +47,9 @@ function normalize(r) {
   const text = pick(r, 'comment', 'text', 'reviewBody', 'review') || '';
   const date = pick(r, 'createTime', 'createdAt', 'date', 'time', 'updateTime') || '';
   const relativeTime = pick(r, 'relativeTimeDescription', 'relativeTime', 'relative_time_description');
+  const avatarUrl =
+    pick(reviewer, 'profilePhotoUrl', 'photoUrl', 'profile_photo_url', 'photo') ||
+    pick(r, 'profilePhotoUrl', 'reviewerPhotoUrl', 'profile_photo_url');
 
   return {
     author: String(author).trim(),
@@ -54,6 +57,7 @@ function normalize(r) {
     text: String(text).trim(),
     date: date ? new Date(date).toISOString() : '',
     ...(relativeTime ? { relativeTime: String(relativeTime) } : {}),
+    ...(avatarUrl ? { avatarUrl: String(avatarUrl) } : {}),
   };
 }
 

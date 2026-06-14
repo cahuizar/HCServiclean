@@ -2,14 +2,9 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import PageHeader from '../components/shared/PageHeader.astro';
 import ReviewCard from '../components/shared/ReviewCard.astro';
-import { reviews, averageRating, reviewCount } from '../data/reviews';
+import { reviews, averageRating, reviewCount, googleReviewUrl } from '../data/reviews';
 
 const ratingLabel = averageRating.toFixed(1);
-
-// TODO: replace with the owner's Google "Write a review" link (e.g. https://g.page/r/...).
-const GOOGLE_REVIEW_URL =
-  'https://search.google.com/local/writereview?placeid=';
-const hasGoogleReviewUrl = GOOGLE_REVIEW_URL.endsWith('placeid=') === false;
 ---
 
 <BaseLayout
@@ -53,23 +48,18 @@ const hasGoogleReviewUrl = GOOGLE_REVIEW_URL.endsWith('placeid=') === false;
   <!-- All reviews -->
   <section class="bg-slate-50 py-16" aria-label="Client reviews">
     <div class="container mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
-        {reviews.map((review) => <ReviewCard review={review} />)}
+      <div class="columns-1 gap-6 sm:columns-2 lg:columns-3">
+        {reviews.map((review) => (
+          <div class="mb-6 break-inside-avoid">
+            <ReviewCard review={review} />
+          </div>
+        ))}
       </div>
 
-      {hasGoogleReviewUrl && (
-        <div class="mt-12 text-center">
-          <p class="mb-4 text-slate-600">We'd love to hear about your experience.</p>
-          <a
-            href={GOOGLE_REVIEW_URL}
-            target="_blank"
-            rel="noopener noreferrer"
-            class="btn-primary"
-          >
-            Leave Us a Review
-          </a>
-        </div>
-      )}
+      <div class="mt-12 text-center">
+        <p class="mb-4 text-slate-600">We'd love to hear about your experience.</p>
+        <a href="/leave-a-review/" class="btn-primary">Leave Us a Review</a>
+      </div>
     </div>
   </section>
 

@@ -1,0 +1,174 @@
+---
+import type { Review } from '../../data/reviews';
+import { reviews as allReviews } from '../../data/reviews';
+import ReviewCard from '../shared/ReviewCard.astro';
+
+interface Props {
+  reviews?: Review[];
+}
+
+const { reviews = allReviews } = Astro.props;
+---
+
+<div
+  class="review-carousel relative"
+  role="group"
+  aria-roledescription="carousel"
+  aria-label="Client reviews"
+>
+  <!-- Track -->
+  <div
+    class="carousel-track flex snap-x snap-mandatory gap-6 overflow-x-auto scroll-smooth pb-2"
+    tabindex="0"
+    aria-label="Reviews — scroll or use arrow keys to browse"
+  >
+    {reviews.map((review) => (
+      <div class="snap-start shrink-0 basis-full sm:basis-[calc(50%-12px)] lg:basis-[calc(33.333%-16px)]">
+        <ReviewCard review={review} />
+      </div>
+    ))}
+  </div>
+
+  <!-- Controls -->
+  <div class="carousel-controls mt-8 flex items-center justify-center gap-3">
+    <button
+      type="button"
+      class="carousel-prev flex h-11 w-11 items-center justify-center rounded-full bg-white text-slate-700 shadow-sm ring-1 ring-slate-200 transition-colors hover:bg-teal hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal"
+      aria-label="Previous reviews"
+    >
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="h-5 w-5" aria-hidden="true">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5 8.25 12l7.5-7.5" />
+      </svg>
+    </button>
+
+    <div class="carousel-dots flex items-center gap-1" role="group" aria-label="Select review page"></div>
+
+    <button
+      type="button"
+      class="carousel-next flex h-11 w-11 items-center justify-center rounded-full bg-white text-slate-700 shadow-sm ring-1 ring-slate-200 transition-colors hover:bg-teal hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal"
+      aria-label="Next reviews"
+    >
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="h-5 w-5" aria-hidden="true">
+        <path stroke-linecap="round" stroke-linejoin="round" d="m8.25 4.5 7.5 7.5-7.5 7.5" />
+      </svg>
+    </button>
+  </div>
+</div>
+
+<style>
+  /* Hide the native scrollbar — navigation is via buttons/dots/swipe */
+  .carousel-track {
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
+  .carousel-track::-webkit-scrollbar {
+    display: none;
+  }
+</style>
+
+<script>
+  document.querySelectorAll<HTMLElement>('.review-carousel').forEach((root) => {
+    const track = root.querySelector<HTMLElement>('.carousel-track');
+    const prev = root.querySelector<HTMLButtonElement>('.carousel-prev');
+    const next = root.querySelector<HTMLButtonElement>('.carousel-next');
+    const dotsWrap = root.querySelector<HTMLElement>('.carousel-dots');
+    const controls = root.querySelector<HTMLElement>('.carousel-controls');
+    if (!track || !prev || !next || !dotsWrap || !controls) return;
+
+    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    const pageCount = () => Math.max(1, Math.round(track.scrollWidth / track.clientWidth));
+    const currentPage = () => Math.round(track.scrollLeft / track.clientWidth);
+
+    function scrollToPage(i: number) {
+      const pages = pageCount();
+      const clamped = ((i % pages) + pages) % pages; // wrap around both ends
+      track.scrollTo({ left: clamped * track.clientWidth, behavior: reduceMotion ? 'auto' : 'smooth' });
+    }
+
+    function updateDots() {
+      const active = currentPage();
+      dotsWrap.querySelectorAll<HTMLElement>('.carousel-dot').forEach((d, i) => {
+        const isActive = i === active;
+        if (isActive) d.setAttribute('aria-current', 'true');
+        else d.removeAttribute('aria-current');
+        const dot = d.firstElementChild as HTMLElement | null;
+        if (!dot) return;
+        dot.classList.toggle('bg-teal', isActive);
+        dot.classList.toggle('w-5', isActive);
+        dot.classList.toggle('bg-slate-300', !isActive);
+        dot.classList.toggle('w-2', !isActive);
+      });
+    }
+
+    function buildDots() {
+      const pages = pageCount();
+      // A single page means no scrolling is needed — hide the controls entirely.
+      controls.classList.toggle('hidden', pages <= 1);
+      dotsWrap.innerHTML = '';
+      for (let i = 0; i < pages; i++) {
+        const b = document.createElement('button');
+        b.type = 'button';
+        b.setAttribute('aria-label', `Go to review page ${i + 1}`);
+        b.className = 'carousel-dot flex h-11 w-6 items-center justify-center focus-visible:outline-none';
+        const span = document.createElement('span');
+        span.className = 'block h-2 w-2 rounded-full bg-slate-300 transition-all duration-300';
+        b.appendChild(span);
+        b.addEventListener('click', () => scrollToPage(i));
+        dotsWrap.appendChild(b);
+      }
+      updateDots();
+    }
+
+    prev.addEventListener('click', () => scrollToPage(currentPage() - 1));
+    next.addEventListener('click', () => scrollToPage(currentPage() + 1));
+
+    let ticking = false;
+    track.addEventListener(
+      'scroll',
+      () => {
+        if (ticking) return;
+        ticking = true;
+        requestAnimationFrame(() => {
+          updateDots();
+          ticking = false;
+        });
+      },
+      { passive: true }
+    );
+
+    let resizeTimer: number | undefined;
+    window.addEventListener('resize', () => {
+      window.clearTimeout(resizeTimer);
+      resizeTimer = window.setTimeout(buildDots, 150);
+    });
+
+    buildDots();
+
+    // ── Auto-play (skipped for reduced-motion users) ──
+    if (!reduceMotion) {
+      let timer: number | null = null;
+      const stop = () => {
+        if (timer !== null) {
+          window.clearInterval(timer);
+          timer = null;
+        }
+      };
+      const start = () => {
+        stop();
+        if (pageCount() <= 1) return;
+        timer = window.setInterval(() => {
+          // Hold position while a reviewer has a card expanded open.
+          if (root.querySelector('.review-card.is-expanded')) return;
+          scrollToPage(currentPage() + 1);
+        }, 5500);
+      };
+      root.addEventListener('mouseenter', stop);
+      root.addEventListener('mouseleave', start);
+      root.addEventListener('focusin', stop);
+      root.addEventListener('focusout', start);
+      document.addEventListener('visibilitychange', () => (document.hidden ? stop() : start()));
+      start();
+    }
+  });
+</script>

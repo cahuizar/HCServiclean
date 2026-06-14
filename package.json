@@ -5,6 +5,7 @@
   "scripts": {
     "dev": "astro dev",
     "fetch:reviews": "node scripts/fetch-reviews.mjs",
+    "og:images": "node scripts/generate-og-images.mjs",
     "build": "node scripts/fetch-reviews.mjs && astro build",
     "preview": "astro preview",
     "astro": "astro"

@@ -15,6 +15,8 @@ export interface Review {
   date: string;
   /** Optional human-friendly age, e.g. "2 months ago". */
   relativeTime?: string;
+  /** Optional reviewer profile photo URL (from Google). Falls back to initials. */
+  avatarUrl?: string;
 }
 
 export const reviews: Review[] = data.reviews;
@@ -25,7 +27,5 @@ export const averageRating: number =
   data.averageRating ??
   Number((reviews.reduce((sum, r) => sum + r.rating, 0) / reviews.length).toFixed(1));
 
-/** Curated highlights for home/about — highest rated, most recent first. */
-export const featuredReviews: Review[] = [...reviews]
-  .sort((a, b) => b.rating - a.rating || (b.date > a.date ? 1 : -1))
-  .slice(0, 3);
+/** Google "Write a review" deep link for HC ServiClean. */
+export const googleReviewUrl = 'https://g.page/r/Cb2Fhsi_mrTfEBM/review';

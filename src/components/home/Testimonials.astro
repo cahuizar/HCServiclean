@@ -1,6 +1,6 @@
 ---
-import { featuredReviews, averageRating, reviewCount } from '../../data/reviews';
-import ReviewCard from '../shared/ReviewCard.astro';
+import { reviews, averageRating, reviewCount } from '../../data/reviews';
+import ReviewCarousel from './ReviewCarousel.astro';
 
 const ratingLabel = averageRating.toFixed(1);
 ---
@@ -32,9 +32,7 @@ const ratingLabel = averageRating.toFixed(1);
       </div>
     </div>
 
-    <div class="grid grid-cols-1 gap-6 md:grid-cols-3">
-      {featuredReviews.map((review) => <ReviewCard review={review} />)}
-    </div>
+    <ReviewCarousel reviews={reviews} />
 
     <div class="mt-12 text-center">
       <a href="/reviews/" class="btn-teal-outline">Read All Reviews</a>
