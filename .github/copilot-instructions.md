@@ -34,6 +34,6 @@ Hosted on GitHub Pages. Auto-deployed via GitHub Actions on push to `master`.
 - Add jQuery, Bootstrap, or CDN CSS frameworks
 - Use `!important`
 - Use `px` font sizes (use Tailwind scale)
-- Modify FormSubmit.co action URLs
+- Modify the Jobber `clienthub_id`/`form_id`/`form_url` values in `JobberRequestForm.astro` independently of each other
 - Delete `public/CNAME`
 - Commit `.env` or secrets

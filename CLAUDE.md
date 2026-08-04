@@ -17,8 +17,7 @@ It ensures consistent coding standards across all AI-assisted development.
 | SSG | Astro 4.x | Static HTML output, zero JS by default |
 | CSS | Tailwind CSS 3.x | Mobile-first, utility-first |
 | JS | None by default | Only tiny inline `<script>` tags for Nav toggle |
-| Future form | React island via `client:visible` | See `EstimateFormIsland.tsx` |
-| Forms | FormSubmit.co | Hashed endpoints — preserve exactly |
+| Forms | Jobber embedded work request form | Client-side widget on `/estimate` — see `JobberRequestForm.astro`. Legacy `EstimateForm.astro`/`EstimateFormIsland.tsx` retained but unused |
 | Deploy | GitHub Actions | `.github/workflows/deploy.yml` |
 
 ## Site Structure
@@ -110,7 +109,7 @@ Content data lives in `src/data/` — edit services, FAQs, and testimonials ther
 - ❌ No new npm dependencies without discussing with Carlos first
 - ❌ No committing `.env` files, API keys, or passwords
 - ❌ No removing the `CNAME` file from `public/` (breaks custom domain)
-- ❌ No modifying the FormSubmit.co action URLs (forms will break)
+- ❌ No modifying the Jobber `clienthub_id`/`form_id`/`form_url` values in `JobberRequestForm.astro` independently of each other (they must always be updated together, straight from Jobber's dashboard)
 
 ## Branch & Deploy Workflow
 
@@ -122,14 +121,14 @@ Content data lives in `src/data/` — edit services, FAQs, and testimonials ther
 ## Analytics & Forms
 
 - **GA4:** Snippet is commented out in `BaseLayout.astro` — uncomment and replace `G-XXXXXXXXXX` with the real measurement ID once the GA4 property is created at analytics.google.com
-- **Estimate form:** `https://formsubmit.co/6474b868cfc023f9e72071099eff7d6d` — do not change
+- **Estimate form:** Jobber embedded work request form, rendered via `src/components/estimate/JobberRequestForm.astro` on `/estimate` only. IDs (`clienthub_id`/`form_url`, form_id `4875304`) come straight from Jobber's dashboard — do not change independently. Brand color, logo, fields, and pagination are configured in Jobber's Business Profile/Requests settings, not in this codebase.
 - **Newsletter form:** `https://formsubmit.co/18b17300afc0862f33349630a5af1370` — do not change
 
-## Future Work (Phase 2)
+## Jobber Integration
 
-See `src/components/estimate/EstimateFormIsland.tsx` for the scaffold.
-When ready to build the multi-step form:
-1. Implement the React component in `EstimateFormIsland.tsx`
-2. In `src/pages/estimate.astro`, replace `<EstimateForm />` with `<EstimateFormIsland client:visible formAction="..." />`
+- `/estimate` renders `<JobberRequestForm />`, which embeds Jobber's work request widget (a cross-origin iframe injected by Jobber's own script — we control the surrounding card/spacing, not the fields inside it).
+- `/referrals` was removed (folded into `/estimate`) and redirects there via `astro.config.mjs`.
+- **Custom confirmation page:** `src/pages/estimate/thank-you.astro` (`noindex`, excluded from the sitemap) is registered in Jobber's dashboard (Requests settings → this form → "Show a custom confirmation page instead" → `https://hcserviclean.com/estimate/thank-you/`) so submitters land on our own branded thank-you page instead of Jobber's generic in-widget message. It fires a GA4 `generate_lead` event on load. If this form's `clienthub_id`/`form_id` ever changes, re-check that setting still points here.
+- Legacy custom form code — `src/components/estimate/EstimateForm.astro` (FormTorch + Cloudflare Turnstile) and `EstimateFormIsland.tsx` (unbuilt multi-step scaffold) — is intentionally retained on disk but disconnected from every page. This superseded the "Future Work (Phase 2)" plan that used to live in this file; don't re-wire either file without discussing it first.
 
 See `.github/PROJECT.md` for full architecture details.

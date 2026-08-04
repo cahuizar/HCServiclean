@@ -11,6 +11,9 @@ interface Props {
   ogImage?: string;
   ogImageWidth?: number;
   ogImageHeight?: number;
+  // Set true for pages that shouldn't be indexed/ranked (e.g. a post-submit
+  // confirmation page reachable only via redirect, not navigation).
+  noindex?: boolean;
 }
 
 const {
@@ -21,6 +24,7 @@ const {
   // Branded share cards are generated at 1200×630 (scripts/generate-og-images.mjs).
   ogImageWidth = 1200,
   ogImageHeight = 630,
+  noindex = false,
 } = Astro.props;
 
 const yearsInBusiness = new Date().getFullYear() - 2010;
@@ -114,7 +118,7 @@ const localBusinessSchema = {
     <!-- Primary SEO -->
     <title>{title}</title>
     <meta name="description" content={description} />
-    <meta name="robots" content="index,follow" />
+    <meta name="robots" content={noindex ? 'noindex,follow' : 'index,follow'} />
     <link rel="canonical" href={canonical} />
 
     <!-- Open Graph -->
@@ -172,9 +176,10 @@ const localBusinessSchema = {
 
     <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-NGECJ7EPL2"></script>
-    <script>
+    <script is:inline>
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
+      window.gtag = gtag;
       gtag('js', new Date());
 
       gtag('config', 'G-NGECJ7EPL2');
@@ -183,7 +188,7 @@ const localBusinessSchema = {
     <!-- JSON-LD: LocalBusiness Schema -->
     <script type="application/ld+json" set:html={JSON.stringify(localBusinessSchema)} />
 
-    <!-- Page-specific head content (e.g. Turnstile script on /estimate) -->
+    <!-- Page-specific head content (e.g. Jobber embed assets on /estimate) -->
     <slot name="head" />
   </head>
   <body class="bg-white">
