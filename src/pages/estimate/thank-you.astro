@@ -1,0 +1,83 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+---
+
+<BaseLayout
+  title="Thank You for Your Estimate Request | HC ServiClean"
+  description="Your free house cleaning estimate request has been received. HC ServiClean will contact you within one business day with your personalized quote."
+  canonical="https://hcserviclean.com/estimate/thank-you/"
+  noindex={true}
+>
+  <!-- GA4 conversion event — fires once, on this confirmation-only page -->
+  <script is:inline>
+    if (typeof window.gtag === 'function') {
+      window.gtag('event', 'generate_lead', {
+        event_category: 'estimate_form',
+        event_label: 'jobber_work_request',
+      });
+    }
+  </script>
+
+  <section class="bg-slate-50 py-24 sm:py-32" aria-labelledby="thank-you-heading">
+    <div class="container mx-auto max-w-2xl px-4 text-center sm:px-6 lg:px-8">
+      <!-- Success icon -->
+      <div class="mx-auto flex h-20 w-20 items-center justify-center rounded-full bg-teal/10">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="h-10 w-10 text-teal" aria-hidden="true">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M20 6L9 17l-5-5" />
+        </svg>
+      </div>
+
+      <h1 id="thank-you-heading" class="mt-6 text-4xl font-bold text-slate-900 sm:text-5xl">
+        Your Estimate Request Is In!
+      </h1>
+      <p class="mt-4 text-lg leading-relaxed text-slate-600">
+        Thanks for reaching out to HC ServiClean — we've received your information and a member of our team will contact you within one business day with your personalized quote.
+      </p>
+
+      <!-- What happens next -->
+      <div class="mt-10 rounded-2xl border border-slate-100 bg-white p-6 text-left shadow-sm sm:p-8">
+        <h2 class="text-lg font-bold text-slate-900">What Happens Next</h2>
+        <ol class="mt-4 space-y-4 text-sm" role="list">
+          <li class="flex gap-4">
+            <div class="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-teal text-slate-900 text-sm font-bold" aria-hidden="true">1</div>
+            <p class="text-slate-600"><span class="font-bold text-slate-900">We review your details</span> — your home, service needs, and any notes you shared.</p>
+          </li>
+          <li class="flex gap-4">
+            <div class="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-teal text-slate-900 text-sm font-bold" aria-hidden="true">2</div>
+            <p class="text-slate-600"><span class="font-bold text-slate-900">We reach out within one business day</span> — by phone or email, whichever you provided.</p>
+          </li>
+          <li class="flex gap-4">
+            <div class="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-teal text-slate-900 text-sm font-bold" aria-hidden="true">3</div>
+            <p class="text-slate-600"><span class="font-bold text-slate-900">You get a no-obligation quote</span> — and we schedule your clean whenever it works for you.</p>
+          </li>
+        </ol>
+      </div>
+
+      <!-- Contact alternatives -->
+      <div class="mt-6 rounded-xl bg-teal-50 p-5 text-left">
+        <p class="text-sm font-bold text-slate-900">Need to reach us sooner?</p>
+        <div class="mt-3 space-y-2">
+          <a href="tel:+18472934525" class="flex items-center gap-2 text-sm text-slate-700 transition-colors hover:text-teal-dark">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="h-4 w-4 shrink-0 text-teal" aria-hidden="true">
+              <path fill-rule="evenodd" d="M2 3.5A1.5 1.5 0 013.5 2h1.148a1.5 1.5 0 011.465 1.175l.716 3.223a1.5 1.5 0 01-1.052 1.767l-.933.267c-.41.117-.643.555-.48.95a11.542 11.542 0 006.254 6.254c.395.163.833-.07.95-.48l.267-.933a1.5 1.5 0 011.767-1.052l3.223.716A1.5 1.5 0 0118 15.352V16.5a1.5 1.5 0 01-1.5 1.5H15c-1.149 0-2.263-.15-3.326-.43A13.022 13.022 0 012.43 8.326 13.019 13.019 0 012 5V3.5z" clip-rule="evenodd"/>
+            </svg>
+            (847) 293-4525
+          </a>
+          <a href="mailto:info@hcserviclean.com" class="flex items-center gap-2 text-sm text-slate-700 transition-colors hover:text-teal-dark">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="h-4 w-4 shrink-0 text-teal" aria-hidden="true">
+              <path d="M3 4a2 2 0 00-2 2v1.161l8.441 4.221a1.25 1.25 0 001.118 0L19 7.162V6a2 2 0 00-2-2H3z"/>
+              <path d="M19 8.839l-7.77 3.885a2.75 2.75 0 01-2.46 0L1 8.839V14a2 2 0 002 2h14a2 2 0 002-2V8.839z"/>
+            </svg>
+            info@hcserviclean.com
+          </a>
+        </div>
+      </div>
+
+      <!-- CTAs -->
+      <div class="mt-10 flex flex-col items-center justify-center gap-3 sm:flex-row">
+        <a href="/" class="btn-primary px-8">Back to Home</a>
+        <a href="/services/" class="btn-teal-outline px-8">View Our Services</a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

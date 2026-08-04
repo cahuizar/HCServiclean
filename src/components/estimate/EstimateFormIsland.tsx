@@ -3,6 +3,10 @@
  *
  * SCAFFOLD ONLY — renders null in production until Phase 2 is implemented.
  *
+ * SUPERSEDED: /estimate now uses JobberRequestForm.astro instead. This Phase 2
+ * plan is on hold — Jobber's own dashboard now owns form-field/step config.
+ * Retained on disk intentionally; don't build this out without discussing it first.
+ *
  * To activate:
  * 1. Implement the multi-step form below
  * 2. In estimate.astro, replace <EstimateForm /> with:

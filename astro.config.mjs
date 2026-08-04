@@ -10,11 +10,17 @@ export default defineConfig({
   redirects: {
     '/home':  '/',
     '/home/': '/',
+    '/referrals':  '/estimate/',
+    '/referrals/': '/estimate/',
   },
   integrations: [
     tailwind(),
     react(),
-    sitemap(),
+    sitemap({
+      // Confirmation page is noindex and only reachable via Jobber's
+      // post-submit redirect — keep it out of the sitemap too.
+      filter: (page) => !page.includes('/estimate/thank-you'),
+    }),
     icon(),
   ],
   build: {

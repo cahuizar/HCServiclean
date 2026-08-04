@@ -39,8 +39,8 @@ The `public/CNAME` file maps the custom domain `hcserviclean.com`.
 | No Bootstrap | — | Removed: 29KB JS + 30KB CSS. Replaced with Tailwind + CSS Grid/Flexbox |
 | No Font Awesome | — | Removed: inline SVG icons instead (zero external request) |
 | Google Fonts | Lato 400+700 | Non-blocking `preload` pattern — no render-blocking |
-| Forms | FormSubmit.co | No backend needed. Hashed endpoints already verified on old site |
-| Islands | React via `@astrojs/react` | Zero cost now (no islands active). Ready for estimate form Phase 2 |
+| Forms | Jobber embedded work request form | Client-side widget (script + iframe) on `/estimate` only. Legacy FormSubmit.co/FormTorch code retained but disconnected |
+| Islands | React via `@astrojs/react` | Zero cost (no islands active). The planned estimate-form island was superseded by the Jobber embed — see "Jobber Integration" below |
 
 ## Site Structure
 
@@ -49,7 +49,7 @@ The `public/CNAME` file maps the custom domain `hcserviclean.com`.
 /services   → Full services page (all 4 service cards with complete item lists)
 /about      → About page (why choose us, team info, service area map)
 /faq        → FAQ page (general + trust & safety, FAQPage schema for Google rich results)
-/estimate   → Estimate form page (Phase 1: FormSubmit.co; Phase 2: React island)
+/estimate   → Estimate form page (Jobber embedded work request form)
 /404        → Custom 404 page
 ```
 
@@ -75,8 +75,9 @@ src/
 │   ├── services/
 │   │   └── ServiceCard.astro     ← Service card (props: service: ServiceItem)
 │   ├── estimate/
-│   │   ├── EstimateForm.astro    ← Phase 1: FormSubmit.co form
-│   │   └── EstimateFormIsland.tsx ← Phase 2 scaffold (renders null)
+│   │   ├── JobberRequestForm.astro ← Active: Jobber embedded work request form
+│   │   ├── EstimateForm.astro    ← Retained, unused: former FormTorch + Turnstile form
+│   │   └── EstimateFormIsland.tsx ← Retained, unused: unbuilt Phase 2 scaffold (renders null)
 │   ├── faq/
 │   │   └── FaqItem.astro         ← Native <details>/<summary> (zero JS)
 │   └── shared/
@@ -121,14 +122,20 @@ The old UA-127313644-1 (Universal Analytics) is sunset. To enable GA4:
 
 ## Forms
 
-Both FormSubmit.co endpoints are public (already were on the old site). They are hash-based, not API keys.
-
-| Form | Endpoint | Config |
+| Form | Mechanism | Config |
 |---|---|---|
-| Estimate | `https://formsubmit.co/6474b868cfc023f9e72071099eff7d6d` | Subject: "New free estimate request!" |
+| Estimate | Jobber embedded work request widget, rendered by `src/components/estimate/JobberRequestForm.astro` on `/estimate` only | `clienthub_id`/`form_url` (form_id `4875304`) come from Jobber's dashboard — do not change independently. Brand color, logo, fields, and single-page-vs-paginated layout are configured in Jobber's Business Profile/Requests settings, not in code |
 | Newsletter | `https://formsubmit.co/18b17300afc0862f33349630a5af1370` | Subject: "Add User To Newsletter Request" |
 
-**Note:** If you ever redeploy to a new domain, FormSubmit.co will send a confirmation email for the new domain. Just click the link in that email to re-activate.
+**Note:** If you ever redeploy to a new domain, FormSubmit.co will send a confirmation email for the new domain (relevant to the Newsletter form above). Just click the link in that email to re-activate.
+
+## Jobber Integration
+
+- `/estimate` renders `<JobberRequestForm />`, embedding Jobber's work request widget — a cross-origin iframe injected by Jobber's own script into a mount `<div>` (confirmed empirically). We control the surrounding card/spacing/width; we do not control styling of the fields inside it.
+- `/referrals` was removed (its "referred by a friend" messaging was folded into `/estimate`'s copy) and now redirects to `/estimate/` via `astro.config.mjs`'s `redirects` map.
+- `src/pages/estimate/thank-you.astro` is a custom, on-brand confirmation page (`noindex`, excluded from the sitemap via the `sitemap()` integration's `filter` option in `astro.config.mjs`) registered in Jobber's dashboard as the form's "custom confirmation page" redirect target, so submitters see our own thank-you page instead of Jobber's default message. Fires a GA4 `generate_lead` event on load.
+- **Important gotcha already hit once:** any `<script>` in `BaseLayout.astro`/pages that needs to set or read a true global (like `window.gtag`) must have `is:inline`, or Astro bundles it as an ES module and the "global" only exists inside that module's scope. This silently broke `window.gtag` for months (GA4's own pageview tracking still worked via `dataLayer.push`, but no external script could call `gtag()`) until Jobber's script — the first thing to actually call the global `gtag()` — surfaced it as a crash that prevented the widget from rendering at all. Fixed in `BaseLayout.astro`.
+- The former custom form stack — `EstimateForm.astro` (FormTorch + Cloudflare Turnstile) and `EstimateFormIsland.tsx` (the Phase 2 multi-step scaffold below) — is intentionally retained on disk but disconnected from every page. Don't re-wire either without discussing it first.
 
 ## Editing Content
 
@@ -142,16 +149,6 @@ Both FormSubmit.co endpoints are public (already were on the old site). They are
 | Business info (address, phone, schema) | `src/layouts/BaseLayout.astro` |
 | Page SEO (title, description) | Each `src/pages/*.astro` file |
 
-## Phase 2 — Multi-Step Estimate Form
+## Phase 2 — Multi-Step Estimate Form (superseded)
 
-The `/estimate` page is ready for the upgrade. When Phase 2 is built:
-
-1. Open `src/components/estimate/EstimateFormIsland.tsx`
-2. Implement the multi-step form (4 steps: contact → address → service → extras+date)
-3. In `src/pages/estimate.astro`, replace `<EstimateForm />` with:
-   ```astro
-   <EstimateFormIsland client:visible formAction="https://formsubmit.co/6474b868cfc023f9e72071099eff7d6d" />
-   ```
-4. The `EstimateFormData` TypeScript interface is already defined in the island file
-
-The form will hydrate only when visible (`client:visible`) — zero JS cost on initial page load.
+This plan — a custom multi-step React form in `EstimateFormIsland.tsx` — was superseded by the Jobber embed described above. The scaffold file still exists (unbuilt, renders `null`) but is not on a path to being finished; Jobber's own dashboard now owns form-field/step configuration instead. Kept for history rather than deleted outright.
